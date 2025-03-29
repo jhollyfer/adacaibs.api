@@ -10,6 +10,19 @@ jobs:
   run-unit-test:
     name: Run Unit Test
     runs-on: ubuntu-latest
+    env:
+      TZ: UTC
+      PORT: 3333
+      HOST: test
+      LOG_LEVEL: test
+      APP_KEY: test
+      NODE_ENV: test
+
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_USERNAME: test
+      DB_PASSWORD: test
+      DB_DATABASE: test
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
