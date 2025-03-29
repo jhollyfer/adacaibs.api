@@ -14,6 +14,6 @@ import '#routes/user.route'
 
 router.get('/', async () => {
   return {
-    hello: 'world',
+    message: 'Bem vindo ao Adacaibs API',
   }
 })
