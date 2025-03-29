@@ -14,7 +14,7 @@ jobs:
       TZ: UTC
       PORT: 3333
       HOST: test
-      LOG_LEVEL: test
+      LOG_LEVEL: info
       APP_KEY: test
       NODE_ENV: test
 
