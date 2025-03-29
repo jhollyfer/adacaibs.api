@@ -1,0 +1,21 @@
+@baseUrl = http://localhost:3333
+@token = oat_MQ.SENueFoxdmEzRzRNNEROVjBjZTE4SWVPbk84cmZEU0dPWVVCd2dDbTMyMTMxMzI1ODE
+
+POST {{baseUrl}}/authentication/send-link
+Content-Type: application/json
+
+{
+  "email": "administrador@adacaibs.com"
+}
+
+###
+
+POST {{baseUrl}}/user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "user adacaibs",
+  "email": "user1@adacaibs.com",
+  "role": "EDITOR"
+}

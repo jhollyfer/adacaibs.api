@@ -1,0 +1,19 @@
+name: adacaibs
+
+services:
+  database:
+    env_file: .env
+    image: bitnami/postgresql
+    ports:
+      - ${DB_PORT}:5432
+    expose:
+      - 5432
+    volumes:
+      - postgres_data:/bitnami/postgresql
+    environment:
+      POSTGRESQL_USERNAME: ${DB_USERNAME}
+      POSTGRESQL_PASSWORD: ${DB_PASSWORD}
+      POSTGRESQL_DATABASE: ${DB_DATABASE}
+
+volumes:
+  postgres_data:
