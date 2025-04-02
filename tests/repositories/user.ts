@@ -20,7 +20,9 @@ export default class UserInMemoryRepository implements UserContractRepository {
       .filter(
         (u) => u.name.includes(payload.search ?? '') || u.email.includes(payload.search ?? '')
       )
-      .slice(payload.page - 1, payload.per_page + (payload.page - 1))
+      .slice((payload.page - 1) * payload.per_page, payload.page * payload.per_page)
+
+    console.log({ users: users.length })
 
     const result = {
       data: users,
