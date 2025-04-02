@@ -34,7 +34,10 @@
     "#config/*": "./config/*.js",
     "#use-cases/*": "./app/use-cases/*.js",
     "#routes/*": "./app/routes/*.js",
-    "#repositories/*": "./app/repositories/*.js"
+    "#repositories/*": "./app/repositories/*.js",
+    "#core/*": "./app/core/*.js",
+    "#domain/*": "./app/domain/*.js",
+    "#infra/*": "./app/infra/*.js"
   },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
@@ -43,6 +46,7 @@
     "@adonisjs/tsconfig": "^1.4.0",
     "@japa/api-client": "^3.0.3",
     "@japa/assert": "^4.0.1",
+    "@japa/expect": "^3.0.3",
     "@japa/plugin-adonisjs": "^4.0.0",
     "@japa/runner": "^4.2.0",
     "@swc/core": "1.10.7",

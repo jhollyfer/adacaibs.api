@@ -8,7 +8,7 @@ const authConfig = defineConfig({
     api: tokensGuard({
       provider: tokensUserProvider({
         tokens: 'tokens',
-        model: () => import('#models/user'),
+        model: () => import('#infra/database/lucid/models/user'),
       }),
     }),
   },

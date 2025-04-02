@@ -1,4 +1,4 @@
-import { UserContractRepository } from '#repositories/contract/user'
+import { UserContractRepository } from '#domain/user/application/repositories/user'
 import type { ApplicationService } from '@adonisjs/core/types'
 
 export default class AppProvider {
@@ -13,7 +13,7 @@ export default class AppProvider {
    * The container bindings have booted
    */
   async boot(): Promise<void> {
-    const { default: UserLucidRepository } = await import('#repositories/lucid/user')
+    const { default: UserLucidRepository } = await import('#infra/database/lucid/repositories/user')
 
     this.app.container.bind(UserContractRepository, () => {
       return this.app.container.make(UserLucidRepository)

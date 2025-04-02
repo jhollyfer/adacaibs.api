@@ -1,6 +1,6 @@
-import AuthenticationLink from '#models/authentication-link'
-import User from '#models/user'
-import { AuthenticationSchema } from '#validators/authentication.validator'
+import AuthenticationLink from '#infra/database/lucid/models/authentication-link'
+import User from '#infra/database/lucid/models/user'
+import { AuthenticationSchema } from '#infra/http/validators/authentication.validator'
 import { Infer } from '@vinejs/vine/types'
 import { DateTime } from 'luxon'
 

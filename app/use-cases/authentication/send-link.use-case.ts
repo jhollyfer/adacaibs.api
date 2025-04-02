@@ -1,5 +1,5 @@
-import User from '#models/user'
-import { AuthenticationSchema } from '#validators/authentication.validator'
+import User from '#infra/database/lucid/models/user'
+import { AuthenticationSchema } from '#infra/http/validators/authentication.validator'
 import { cuid } from '@adonisjs/core/helpers'
 import { Infer } from '@vinejs/vine/types'
 

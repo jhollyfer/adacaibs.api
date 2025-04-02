@@ -1,4 +1,4 @@
-import { UserRole, UserStatus } from '#models/enum'
+import { UserRole, UserStatus } from '#core/constant'
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
@@ -8,7 +8,7 @@ export default class extends BaseSchema {
 
   async up(): Promise<void> {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id').notNullable()
+      table.uuid('id').notNullable().defaultTo(this.db.knexRawQuery('uuid_generate_v4()')).primary()
       table.string('name').notNullable()
       table.string('email', 254).notNullable().unique()
       table.string('password').notNullable()

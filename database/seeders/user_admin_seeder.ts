@@ -1,5 +1,5 @@
-import { UserRole } from '#models/enum'
-import User from '#models/user'
+import { UserRole } from '#core/constant'
+import User from '#infra/database/lucid/models/user'
 import { BaseSeeder } from '@adonisjs/lucid/seeders'
 
 export default class extends BaseSeeder {

@@ -24,8 +24,8 @@ server.errorHandler(() => import('#exceptions/handler'))
  * the request URL.
  */
 server.use([
-  () => import('#middleware/container_bindings_middleware'),
-  () => import('#middleware/force_json_response_middleware'),
+  () => import('#infra/http/middleware/container_bindings_middleware'),
+  () => import('#infra/http/middleware/force_json_response_middleware'),
   () => import('@adonisjs/cors/cors_middleware'),
 ])
 
@@ -43,5 +43,5 @@ router.use([
  * the routes or the routes group.
  */
 export const middleware = router.named({
-  auth: () => import('#middleware/auth_middleware'),
+  auth: () => import('#infra/http/middleware/auth_middleware'),
 })

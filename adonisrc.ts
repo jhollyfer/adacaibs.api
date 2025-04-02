@@ -58,7 +58,7 @@ export default defineConfig({
   tests: {
     suites: [
       {
-        files: ['tests/unit/**/*.spec(.ts|.js)', 'app/use-cases/**/*.spec(.ts|.js)'],
+        files: ['tests/unit/**/*.spec(.ts|.js)', 'app/domain/**/*.spec(.ts|.js)'],
         name: 'unit',
         timeout: 2000,
       },
