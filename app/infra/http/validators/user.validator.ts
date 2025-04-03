@@ -3,23 +3,39 @@ import { PaginationQuerySchema } from '#infra/http/validators/query.validator'
 import vine from '@vinejs/vine'
 
 export const UserSchema = {
-  create: {
+  'sign-in': {
+    body: vine.object({
+      email: vine.string().trim().email(),
+      password: vine.string().trim(),
+    }),
+  },
+  'create': {
     body: vine.object({
       name: vine.string().trim(),
       email: vine.string().trim().email(),
       role: vine.enum(UserRole),
     }),
   },
-  paginate: {
+  'update': {
+    body: vine.object({
+      name: vine.string().trim().optional(),
+      email: vine.string().trim().email(),
+      role: vine.enum(UserRole).optional(),
+    }),
+  },
+  'paginate': {
     query: PaginationQuerySchema,
   },
 }
 
 export const UserValidator = {
-  create: {
+  'sign-in': {
+    body: vine.compile(UserSchema['sign-in'].body),
+  },
+  'create': {
     body: vine.compile(UserSchema.create.body),
   },
-  paginate: {
+  'paginate': {
     query: vine.compile(UserSchema.paginate.query),
   },
 }

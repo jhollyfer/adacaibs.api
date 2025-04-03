@@ -30,4 +30,19 @@ export default class UserInMemoryRepository implements UserContractRepository {
 
     return result
   }
+
+  async save(user: User): Promise<User> {
+    const itemIndex = this.items.findIndex((item) => item.id === user.id)
+
+    this.items[itemIndex] = user
+
+    return user
+  }
+
+  async authenticate(payload: User): Promise<{ token: string }> {
+    console.log({ payload })
+    return {
+      token: 'token',
+    }
+  }
 }

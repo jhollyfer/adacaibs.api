@@ -18,8 +18,18 @@ export class User extends Entity<Props> {
     return this.props.name
   }
 
+  set name(name: string) {
+    this.props.name = name
+    this.touch()
+  }
+
   get email(): string {
     return this.props.email
+  }
+
+  set email(email: string) {
+    this.props.email = email
+    this.touch()
   }
 
   get password(): string {
@@ -28,6 +38,11 @@ export class User extends Entity<Props> {
 
   get role(): UserRole {
     return this.props.role
+  }
+
+  set role(role: UserRole) {
+    this.props.role = role
+    this.touch()
   }
 
   get status(): UserStatus {
@@ -42,9 +57,9 @@ export class User extends Entity<Props> {
     return this.props.updatedAt
   }
 
-  // private touch(): void {
-  //   this.props.updatedAt = new Date()
-  // }
+  private touch(): void {
+    this.props.updatedAt = new Date()
+  }
 
   static create(props: Optional<Props, 'createdAt'>, id?: UniqueEntityId): User {
     const user = new User(

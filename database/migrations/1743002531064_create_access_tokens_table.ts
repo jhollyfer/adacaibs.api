@@ -3,11 +3,12 @@ import { BaseSchema } from '@adonisjs/lucid/schema'
 export default class extends BaseSchema {
   protected tableName = 'auth_access_tokens'
 
-  async up() {
+  async up(): Promise<void> {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid('id').notNullable().defaultTo(this.db.knexRawQuery('uuid_generate_v4()')).primary()
+      table.uuid('id').primary().defaultTo(this.db.knexRawQuery('uuid_generate_v4()'))
+
       table
-        .integer('tokenable_id')
+        .uuid('tokenable_id')
         .notNullable()
         .unsigned()
         .references('id')
@@ -25,7 +26,7 @@ export default class extends BaseSchema {
     })
   }
 
-  async down() {
+  async down(): Promise<void> {
     this.schema.dropTable(this.tableName)
   }
 }

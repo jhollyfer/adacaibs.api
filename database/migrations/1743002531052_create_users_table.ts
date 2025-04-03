@@ -8,7 +8,8 @@ export default class extends BaseSchema {
 
   async up(): Promise<void> {
     this.schema.createTable(this.tableName, (table) => {
-      table.uuid('id').notNullable().defaultTo(this.db.knexRawQuery('uuid_generate_v4()')).primary()
+      table.uuid('id').primary().defaultTo(this.db.knexRawQuery('uuid_generate_v4()'))
+
       table.string('name').notNullable()
       table.string('email', 254).notNullable().unique()
       table.string('password').notNullable()
@@ -34,6 +35,7 @@ export default class extends BaseSchema {
   }
 
   async down(): Promise<void> {
+    this.schema.raw('DROP TYPE IF EXISTS "user_status" CASCADE')
     this.schema.raw('DROP TYPE IF EXISTS "user_roles" CASCADE')
     this.schema.dropTable(this.tableName)
   }

@@ -11,6 +11,6 @@ export default class UserPaginateController {
     const { query } = UserValidator.paginate
     const payload = await query.validate(context.request.qs())
     const result = await this.useCase.execute(payload)
-    return context.response.ok(result)
+    return context.response.ok(result.value)
   }
 }

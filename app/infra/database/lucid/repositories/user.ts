@@ -26,4 +26,18 @@ export default class UserLucidRepository implements UserContractRepository {
 
     return result
   }
+
+  async save(payload: User): Promise<User> {
+    const data = UserMapper.toLucid(payload)
+    const old = await Model.query().where('id', data.id).firstOrFail()
+    const updated = await old.merge(data).save()
+    return UserMapper.toDomain(updated)
+  }
+
+  async authenticate(payload: User): Promise<{ token?: string }> {
+    const data = UserMapper.toLucid(payload)
+    const authenticate = await Model.tokens.create(data)
+    const { token } = authenticate?.toJSON()
+    return { token }
+  }
 }

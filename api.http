@@ -1,11 +1,14 @@
 @baseUrl = http://localhost:3333
-@token = oat_MQ.SENueFoxdmEzRzRNNEROVjBjZTE4SWVPbk84cmZEU0dPWVVCd2dDbTMyMTMxMzI1ODE
+@token = {{authentication_sign_in.response.body.token}}
 
-POST {{baseUrl}}/authentication/send-link
+###
+# @name authentication_sign_in
+POST {{baseUrl}}/authentication/sign-in
 Content-Type: application/json
 
 {
-  "email": "administrador@adacaibs.com"
+  "email": "administrador@adacaibs.com",
+  "password": "10203040"
 }
 
 ###
@@ -19,3 +22,9 @@ Authorization: Bearer {{token}}
   "email": "user1@adacaibs.com",
   "role": "EDITOR"
 }
+
+###
+# @name user_paginate
+GET {{baseUrl}}/user/paginate
+Content-Type: application/json
+Authorization: Bearer {{token}}
