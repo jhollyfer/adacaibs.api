@@ -1,21 +1,30 @@
-import { UniqueEntityId } from '#core/unique-entity-id'
+import { UserRole, UserStatus } from '#core/constant'
 
-export abstract class Entity<Props> {
-  private _id: UniqueEntityId
-  protected props: Props
+export interface User {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role: UserRole
+  status: UserStatus
+  createdAt?: Date
+  updatedAt?: Date | null
+}
 
-  get id(): UniqueEntityId {
-    return this._id
-  }
+interface Meta {
+  total: number
+  page: number
+  perPage: number
+  currentPage: string | null
+  lastPage: number
+  firstPage: number
+  lastPageUrl: string | null
+  firstPageUrl: string | null
+  nextPageUrl: string | null
+  previousPageUrl: string | null
+}
 
-  protected constructor(props: Props, id?: UniqueEntityId) {
-    this.props = props
-    this._id = id ?? new UniqueEntityId()
-  }
-
-  public equals(entity: Entity<any>): boolean {
-    if (entity === this || entity.id === this._id) return true
-
-    return false
-  }
+export interface Paginated<Entity> {
+  data: Entity
+  meta: Meta
 }

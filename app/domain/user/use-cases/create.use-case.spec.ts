@@ -1,5 +1,5 @@
 import { UserRole, UserStatus } from '#core/constant'
-import UserCreateUseCase from '#domain/user/application/use-cases/create.use-case'
+import UserCreateUseCase from '#domain/user/use-cases/create.use-case'
 import UserInMemoryRepository from '#tests/repositories/user'
 import { test } from '@japa/runner'
 

@@ -1,5 +1,5 @@
-import { UserContractRepository } from '#domain/user/application/repositories/user'
-import { User } from '#domain/user/enterprise/entities/user'
+import { Paginated, User } from '#core/entity'
+import { UserContractRepository } from '#domain/user/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 
 export default class UserInMemoryRepository implements UserContractRepository {
@@ -15,17 +15,18 @@ export default class UserInMemoryRepository implements UserContractRepository {
     return user || null
   }
 
-  async paginate(payload: PaginationQuery): Promise<{ data: User[] }> {
+  async paginate(payload: PaginationQuery): Promise<Paginated<User[]>> {
+    const page = Number(payload.page ?? 1)
+    const perPage = Number(payload.perPage ?? 10)
     const users = this.items
       .filter(
         (u) => u.name.includes(payload.search ?? '') || u.email.includes(payload.search ?? '')
       )
-      .slice((payload.page - 1) * payload.per_page, payload.page * payload.per_page)
+      .slice((page - 1) * perPage, page * perPage)
 
-    console.log({ users: users.length })
-
-    const result = {
+    const result: Paginated<User[]> = {
       data: users,
+      meta: {},
     }
 
     return result
@@ -40,7 +41,6 @@ export default class UserInMemoryRepository implements UserContractRepository {
   }
 
   async authenticate(payload: User): Promise<{ token: string }> {
-    console.log({ payload })
     return {
       token: 'token',
     }

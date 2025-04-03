@@ -1,9 +1,10 @@
 import { Either, right } from '#core/either'
-import { UserContractRepository } from '#domain/user/application/repositories/user'
+import { Paginated, User } from '#core/entity'
+import { UserContractRepository } from '#domain/user/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { inject } from '@adonisjs/core'
 
-type Result = Either<{}, any>
+type Result = Either<null, Paginated<User[]>>
 
 @inject()
 export default class UserPaginateUseCase {

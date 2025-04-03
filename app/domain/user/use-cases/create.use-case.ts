@@ -1,7 +1,7 @@
 import { UserStatus } from '#core/constant'
 import { Either, left, right } from '#core/either'
-import { UserContractRepository } from '#domain/user/application/repositories/user'
-import { User } from '#domain/user/enterprise/entities/user'
+import { User } from '#core/entity'
+import { UserContractRepository } from '#domain/user/repository'
 import { UserSchema } from '#infra/http/validators/user.validator'
 import { inject } from '@adonisjs/core'
 import hash from '@adonisjs/core/services/hash'
@@ -23,11 +23,11 @@ export default class UserCreateUseCase {
     const random = Math.floor(Math.random() * 1000)?.toString()
     const passwordHashed = await hash.make(random)
 
-    const user = User.create({
+    const user: User = {
       ...payload,
       password: passwordHashed,
       status: UserStatus.ACTIVE,
-    })
+    }
 
     await this.userRepository.create(user)
     return right(user)

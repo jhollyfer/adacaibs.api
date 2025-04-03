@@ -1,5 +1,5 @@
 import { Either, left, right } from '#core/either'
-import { UserContractRepository } from '#domain/user/application/repositories/user'
+import { UserContractRepository } from '#domain/user/repository'
 import { UserSchema } from '#infra/http/validators/user.validator'
 import { inject } from '@adonisjs/core'
 import hash from '@adonisjs/core/services/hash'

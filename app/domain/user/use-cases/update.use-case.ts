@@ -1,6 +1,6 @@
 import { Either, left, right } from '#core/either'
-import { UserContractRepository } from '#domain/user/application/repositories/user'
-import { User } from '#domain/user/enterprise/entities/user'
+import { User } from '#core/entity'
+import { UserContractRepository } from '#domain/user/repository'
 import { UserSchema } from '#infra/http/validators/user.validator'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
