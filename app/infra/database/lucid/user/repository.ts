@@ -18,11 +18,14 @@ export default class UserLucidRepository implements UserContractRepository {
   }
 
   async paginate(payload: PaginationQuery): Promise<Paginated<User[]>> {
+    const page = Number(payload.page ?? 1)
+    const perPage = Number(payload.perPage ?? 10)
+
     const result = await Model.query()
       .if(payload?.search, (q) =>
         q.whereILike('name', payload?.search!).orWhereILike('email', payload?.search!)
       )
-      .paginate(payload.page, payload.perPage)
+      .paginate(page, perPage)
 
     const json = result?.toJSON()
 

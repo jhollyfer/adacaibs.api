@@ -15,7 +15,7 @@ interface Meta {
   total: number
   page: number
   perPage: number
-  currentPage: string | null
+  currentPage: number | null
   lastPage: number
   firstPage: number
   lastPageUrl: string | null

@@ -26,7 +26,18 @@ export default class UserInMemoryRepository implements UserContractRepository {
 
     const result: Paginated<User[]> = {
       data: users,
-      meta: {},
+      meta: {
+        total: this.items.length,
+        page,
+        perPage,
+        currentPage: page,
+        lastPage: Math.ceil(this.items.length / perPage),
+        firstPage: 1,
+        firstPageUrl: null,
+        lastPageUrl: null,
+        nextPageUrl: null,
+        previousPageUrl: null,
+      },
     }
 
     return result
@@ -42,7 +53,7 @@ export default class UserInMemoryRepository implements UserContractRepository {
 
   async authenticate(payload: User): Promise<{ token: string }> {
     return {
-      token: 'token',
+      token: 'token to '.concat(payload.id || ''),
     }
   }
 }
