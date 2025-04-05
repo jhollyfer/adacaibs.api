@@ -21,6 +21,7 @@ test.group('User > Paginate > Use Case', (group) => {
         role: UserRole.ADMINISTRATOR,
         status: UserStatus.ACTIVE,
         password: '123123123',
+        avatar: null,
       }
       await userRepository.create(user)
     }

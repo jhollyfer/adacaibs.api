@@ -158,6 +158,48 @@ paths:
               email: "example@adacaibs.com"
               name: "John Doe"
               role: "ADMINISTRATOR"
+  /user/{id}:
+    patch:
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/users/update.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - ":ID"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/users/remove.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - ":ID"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
   /user/paginate:
     get:
       summary: "Lista de Usuários Paginada (handle)"
@@ -258,5 +300,7 @@ tags:
     description: "Everything related to AUTENTICAÇÃO"
   - name: "USUÁRIOS"
     description: "Everything related to USUÁRIOS"
+  - name: ":ID"
+    description: "Everything related to :ID"
   - name: "USUÁRIOS"
     description: "Everything related to USUÁRIOS"

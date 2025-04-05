@@ -18,13 +18,12 @@ export default class UserSignInController {
    * @responseBody 500 - {"message": "Erro ao gerar token"}
    */
   async handle(context: HttpContext): Promise<void> {
-    const { body } = UserValidator['sign-in']
-    const payload = await body.validate(context.request.body())
+    const validator = UserValidator['sign-in']
+    const payload = await validator['body'].validate(context.request.body())
     const result = await this.useCase.execute(payload)
 
     if (result.isLeft()) {
       const error = result.value
-      console.error(error.message)
 
       switch (error.message) {
         case 'Credencial inválida':

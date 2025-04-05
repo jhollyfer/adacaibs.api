@@ -1,17 +1,45 @@
 import { Paginated, User } from '#core/entity'
 import { UserContractRepository } from '#domain/user/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
+import { randomUUID } from 'node:crypto'
 
 export default class UserInMemoryRepository implements UserContractRepository {
   public items: User[] = []
 
+  async authenticate(payload: User): Promise<{ token: string }> {
+    return {
+      token: 'token to '.concat(payload.id || ''),
+    }
+  }
+
   async create(payload: User): Promise<User> {
-    this.items.push(payload)
-    return payload
+    const id = randomUUID()
+    this.items.push({
+      id,
+      ...payload,
+    })
+    return { id, ...payload }
+  }
+
+  async save(user: User): Promise<User> {
+    const itemIndex = this.items.findIndex((item) => item.id === user.id)
+
+    this.items[itemIndex] = user
+
+    return user
+  }
+
+  async delete(id: string): Promise<void> {
+    this.items = this.items.filter((item) => item.id !== id)
   }
 
   async findByEmail(email: string): Promise<User | null> {
     const user = this.items.find((u) => u.email === email)
+    return user || null
+  }
+
+  async findById(id: string): Promise<User | null> {
+    const user = this.items.find((u) => u.id === id)
     return user || null
   }
 
@@ -41,19 +69,5 @@ export default class UserInMemoryRepository implements UserContractRepository {
     }
 
     return result
-  }
-
-  async save(user: User): Promise<User> {
-    const itemIndex = this.items.findIndex((item) => item.id === user.id)
-
-    this.items[itemIndex] = user
-
-    return user
-  }
-
-  async authenticate(payload: User): Promise<{ token: string }> {
-    return {
-      token: 'token to '.concat(payload.id || ''),
-    }
   }
 }

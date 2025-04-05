@@ -9,7 +9,7 @@ import { randomUUID } from 'node:crypto'
 let userRepository: UserInMemoryRepository
 let sut: UserSignInUseCase
 
-test.group('User > Paginate > Use Case', (group) => {
+test.group('User > Sign In > Use Case', (group) => {
   group.each.setup(async () => {
     userRepository = new UserInMemoryRepository()
     sut = new UserSignInUseCase(userRepository)
@@ -25,6 +25,7 @@ test.group('User > Paginate > Use Case', (group) => {
       role: UserRole.ADMINISTRATOR,
       status: UserStatus.ACTIVE,
       password: hashedPassword,
+      avatar: null,
     }
 
     await userRepository.create(user)

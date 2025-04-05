@@ -13,6 +13,9 @@ const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
 
 export default class User extends compose(BaseModel, AuthFinder) {
   @column()
+  declare avatar: string | null
+
+  @column()
   declare name: string
 
   @column()

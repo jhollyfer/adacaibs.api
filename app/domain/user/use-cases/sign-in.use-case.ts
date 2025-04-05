@@ -4,8 +4,8 @@ import { UserSchema } from '#infra/http/validators/user.validator'
 import { inject } from '@adonisjs/core'
 import hash from '@adonisjs/core/services/hash'
 import { Infer } from '@vinejs/vine/types'
-type Payload = Infer<(typeof UserSchema)['sign-in']['body']>
 
+type Payload = Infer<(typeof UserSchema)['sign-in']['body']>
 type Result = Either<Error, { token: string }>
 
 @inject()

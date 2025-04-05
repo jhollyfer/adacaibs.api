@@ -17,16 +17,15 @@ export default class UserCreateController {
    */
 
   async handle(context: HttpContext): Promise<void> {
-    const { body } = UserValidator.create
-    const payload = await body.validate(context.request.body())
+    const validator = UserValidator['create']
+    const payload = await validator['body'].validate(context.request.body())
     const result = await this.useCase.execute(payload)
 
     if (result.isLeft()) {
       const error = result.value
-      console.error(error.message)
       switch (error.message) {
         case 'Usuário já cadastrado':
-          return context.response.badRequest({ message: error.message })
+          return context.response.conflict({ message: error.message })
         default:
           return context.response.internalServerError({ message: error.message })
       }

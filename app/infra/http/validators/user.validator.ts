@@ -14,6 +14,7 @@ export const UserSchema = {
       name: vine.string().trim(),
       email: vine.string().trim().email(),
       role: vine.enum(UserRole),
+      avatar: vine.string().trim().nullable(),
     }),
   },
   'update': {
@@ -21,6 +22,14 @@ export const UserSchema = {
       name: vine.string().trim().optional(),
       email: vine.string().trim().email(),
       role: vine.enum(UserRole).optional(),
+    }),
+    params: vine.object({
+      id: vine.string().trim(),
+    }),
+  },
+  'remove': {
+    params: vine.object({
+      id: vine.string().trim(),
     }),
   },
   'paginate': {
@@ -30,12 +39,19 @@ export const UserSchema = {
 
 export const UserValidator = {
   'sign-in': {
-    body: vine.compile(UserSchema['sign-in'].body),
+    body: vine.compile(UserSchema['sign-in']['body']),
   },
   'create': {
-    body: vine.compile(UserSchema.create.body),
+    body: vine.compile(UserSchema['create']['body']),
+  },
+  'update': {
+    body: vine.compile(UserSchema['update']['body']),
+    params: vine.compile(UserSchema['update']['params']),
+  },
+  'remove': {
+    params: vine.compile(UserSchema['remove']['params']),
   },
   'paginate': {
-    query: vine.compile(UserSchema.paginate.query),
+    query: vine.compile(UserSchema['paginate']['query']),
   },
 }

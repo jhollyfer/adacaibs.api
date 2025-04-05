@@ -17,6 +17,7 @@ test.group('User > Create > Use Case', (group) => {
       name: 'John Doe',
       email: 'john.doe@adacaibs.com',
       role: UserRole.ADMINISTRATOR,
+      avatar: null,
     })
 
     expect(result.isRight()).toBe(true)
@@ -35,12 +36,14 @@ test.group('User > Create > Use Case', (group) => {
       name: 'John Doe',
       email: 'john.doe@adacaibs.com',
       role: UserRole.ADMINISTRATOR,
+      avatar: null,
     })
 
     const result = await sut.execute({
       name: 'John Doe',
       email: 'john.doe@adacaibs.com',
       role: UserRole.ADMINISTRATOR,
+      avatar: null,
     })
 
     expect(result.isLeft()).toBe(true)

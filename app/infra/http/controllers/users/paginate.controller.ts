@@ -19,8 +19,12 @@ export default class UserPaginateController {
    * @responseBody 401 - {"message": "Não autorizado"}
    */
   async handle(context: HttpContext): Promise<void> {
-    const { query } = UserValidator.paginate
-    const { page = 1, perPage = 10, search } = await query.validate(context.request.qs())
+    const validator = UserValidator['paginate']
+    const {
+      page = 1,
+      perPage = 10,
+      search,
+    } = await validator['query'].validate(context.request.qs())
     const result = await this.useCase.execute({ page, perPage, search })
     return context.response.ok(result.value)
   }
