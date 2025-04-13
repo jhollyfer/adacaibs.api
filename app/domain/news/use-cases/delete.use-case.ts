@@ -7,7 +7,7 @@ import { Infer } from '@vinejs/vine/types'
 type Result = Either<Error, null>
 type Payload = Infer<(typeof NewsSchema)['delete']['params']>
 @inject()
-export default class NewsRemoveUserCase {
+export default class NewsDeleteUserCase {
   constructor(private readonly newsRepository: NewsContractRepository) {}
   async execute(payload: Payload): Promise<Result> {
     const user = await this.newsRepository.findById(payload.id)

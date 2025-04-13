@@ -27,7 +27,7 @@ export const UserSchema = {
       id: vine.string().trim(),
     }),
   },
-  'remove': {
+  'delete': {
     params: vine.object({
       id: vine.string().trim(),
     }),
@@ -48,8 +48,8 @@ export const UserValidator = {
     body: vine.compile(UserSchema['update']['body']),
     params: vine.compile(UserSchema['update']['params']),
   },
-  'remove': {
-    params: vine.compile(UserSchema['remove']['params']),
+  'delete': {
+    params: vine.compile(UserSchema['delete']['params']),
   },
   'paginate': {
     query: vine.compile(UserSchema['paginate']['query']),

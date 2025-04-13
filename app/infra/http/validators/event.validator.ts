@@ -34,7 +34,7 @@ export const EventSchema = {
       id: vine.string().trim(),
     }),
   },
-  findById: {
+  show: {
     params: vine.object({
       id: vine.string().trim(),
     }),
@@ -57,8 +57,8 @@ export const EventValidator = {
     body: vine.compile(EventSchema['update']['body']),
     params: vine.compile(EventSchema['update']['params']),
   },
-  findById: {
-    params: vine.compile(EventSchema['findById']['params']),
+  show: {
+    params: vine.compile(EventSchema['show']['params']),
   },
   delete: {
     params: vine.compile(EventSchema['delete']['params']),

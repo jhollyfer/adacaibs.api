@@ -1,11 +1,11 @@
-import NewsRemoveUserCase from '#domain/news/use-cases/remove.use-case'
+import NewsDeleteUserCase from '#domain/news/use-cases/delete.use-case'
 import { NewsValidator } from '#infra/http/validators/news.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
-export default class NewsRemoveController {
-  constructor(private readonly useCase: NewsRemoveUserCase) {}
+export default class NewsDeleteController {
+  constructor(private readonly useCase: NewsDeleteUserCase) {}
 
   /**
    * @handle
