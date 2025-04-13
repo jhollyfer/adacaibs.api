@@ -561,6 +561,54 @@ paths:
       security:
         - BearerAuth:
             - "access"
+  /events:
+    post:
+      summary: "Create Event (handle)"
+      description: "18:00\", \"location\": \"Centro de Convenções\", \"address\": \"Av. Principal, 1000, Centro\", \"category\": \"WORKSHOP\", \"capacity\": 50, \"description\": \"Workshop prático sobre programação\", \"detailedContent\": \"Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.\", \"cover\": \"https://exemplo.com/imagem.jpg\", \"createdAt\": \"2025-04-13T12:34:56.789Z\", \"updatedAt\": \"2025-04-13T12:34:56.789Z\"}\n\n _app/infra/http/controllers/events/create.controller.ts_ - **handle**"
+      parameters: []
+      tags:
+        - "EVENTS"
+      responses:
+        201:
+          content:
+            text/plain:
+              example: "{\"id\": \"1\", \"title\": \"Workshop de Programação\", \"date\": \"15/05/2025\", \"hour\": \"14:00"
+          description: "18:00\", \"location\": \"Centro de Convenções\", \"address\": \"Av. Principal, 1000, Centro\", \"category\": \"WORKSHOP\", \"capacity\": 50, \"description\": \"Workshop prático sobre programação\", \"detailedContent\": \"Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.\", \"cover\": \"https://exemplo.com/imagem.jpg\", \"createdAt\": \"2025-04-13T12:34:56.789Z\", \"updatedAt\": \"2025-04-13T12:34:56.789Z\"}"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: "Workshop de Programação"
+                date: "15/05/2025"
+                hour: "14:00 - 18:00"
+                location: "Centro de Convenções"
+                address: "Av. Principal, 1000, Centro"
+                category: "WORKSHOP"
+                capacity: 50
+                description: "Workshop prático sobre programação"
+                detailedContent:
+                  $ref: "#/components/schemas/br"
+                cover: "https://exemplo.com/imagem.jpg"
+            example:
+              title: "Workshop de Programação"
+              date: "15/05/2025"
+              hour: "14:00 - 18:00"
+              location: "Centro de Convenções"
+              address: "Av. Principal, 1000, Centro"
+              category: "WORKSHOP"
+              capacity: 50
+              description: "Workshop prático sobre programação"
+              detailedContent: {}
+              cover: "https://exemplo.com/imagem.jpg"
   /documentation:
     get:
       summary: "route"
@@ -602,3 +650,5 @@ tags:
     description: "Everything related to NOTICIAS"
   - name: "NOTICIAS"
     description: "Everything related to NOTICIAS"
+  - name: "EVENTS"
+    description: "Everything related to EVENTS"
