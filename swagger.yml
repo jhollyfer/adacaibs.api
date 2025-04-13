@@ -73,6 +73,230 @@ components:
           example: "/?page=5"
           nullable: false
 paths:
+  /album:
+    post:
+      summary: "Criação de Album (handle)"
+      description: "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/album/create.controller.ts_ - **handle**"
+      parameters: []
+      tags:
+        - "ALBUMS"
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Video"
+              example: {}
+          description: "Returns **201** (Created) as **application/json**"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: "Como usar TypeScript"
+                date: "2025-04-13"
+                duration: "01:23:45"
+                instructor: "John Doe"
+                url: "https://example.com/videos/typescript"
+                description: "Tutorial completo de TypeScript"
+                thumbnail: "https://example.com/thumbs/typescript.jpg"
+            example:
+              title: "Como usar TypeScript"
+              date: "2025-04-13"
+              duration: "01:23:45"
+              instructor: "John Doe"
+              url: "https://example.com/videos/typescript"
+              description: "Tutorial completo de TypeScript"
+              thumbnail: "https://example.com/thumbs/typescript.jpg"
+  /album/{id}:
+    patch:
+      summary: "Update Album (handle)"
+      description: "Updates an existing Album\n\n _app/infra/http/controllers/album/update.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID of the video to update"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "ALBUMS"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id: "123"
+                  title: "TypeScript Avançado"
+                  date: "13/04/2025"
+                  duration: "01:45:30"
+                  instructor: "Jane Smith"
+                  url: "https://exemplo.com/videos/typescript-avancado"
+                  description: "Curso atualizado de TypeScript avançado"
+                  thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                  createdAt: "2025-01-01T00:00:00.000Z"
+                  updatedAt: "2025-04-13T15:30:00.000Z"
+              example:
+                id: "123"
+                title: "TypeScript Avançado"
+                date: "13/04/2025"
+                duration: "01:45:30"
+                instructor: "Jane Smith"
+                url: "https://exemplo.com/videos/typescript-avancado"
+                description: "Curso atualizado de TypeScript avançado"
+                thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                createdAt: "2025-01-01T00:00:00.000Z"
+                updatedAt: "2025-04-13T15:30:00.000Z"
+          description: "Returns **200** (OK) as **application/json**"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+        404:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Video não encontrado"
+              example:
+                message: "Video não encontrado"
+          description: "Returns **404** (Not Found) as **application/json**"
+        500:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Mensagem de erro interno"
+              example:
+                message: "Mensagem de erro interno"
+          description: "Returns **500** (Internal Server Error) as **application/json**"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: "TypeScript Avançado"
+                date: "13/04/2025"
+                duration: "01:45:30"
+                instructor: "Jane Smith"
+                url: "https://exemplo.com/videos/typescript-avancado"
+                description: "Curso atualizado de TypeScript avançado"
+                thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+            example:
+              title: "TypeScript Avançado"
+              date: "13/04/2025"
+              duration: "01:45:30"
+              instructor: "Jane Smith"
+              url: "https://exemplo.com/videos/typescript-avancado"
+              description: "Curso atualizado de TypeScript avançado"
+              thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+    delete:
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/album/delete.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - ":ID"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /album/paginate:
+    get:
+      summary: "Lista de Albums Paginada (handle)"
+      description: "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/album/paginate.controller.ts_ - **handle**"
+      parameters:
+        - in: "query"
+          name: "page"
+          description: "Número da página"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "perPage"
+          description: "Quantidade de registros por página"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "search"
+          description: "Termo de busca"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "ALBUMS"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  data:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Album"
+                  meta:
+                    $ref: "#/components/schemas/PaginationMeta"
+              example:
+                data:
+                  - {}
+                meta:
+                  total: 100
+                  page: 2
+                  perPage: 10
+                  currentPage: 3
+                  lastPage: 10
+                  firstPage: 1
+                  lastPageUrl: "/?page=10"
+                  firstPageUrl: "/?page=1"
+                  nextPageUrl: "/?page=6"
+                  previousPageUrl: "/?page=5"
+          description: "Returns **200** (OK) as **application/json**"
+        401:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Não autorizado"
+              example:
+                message: "Não autorizado"
+          description: "Returns **401** (Unauthorized) as **application/json**"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
   /authentication/sign-in:
     post:
       summary: "Autenticação de Usuário (handle)"
@@ -1197,12 +1421,18 @@ paths:
             application/json: {}
       security: []
 tags:
+  - name: "ALBUMS"
+    description: "Everything related to ALBUMS"
+  - name: ":ID"
+    description: "Everything related to :ID"
+  - name: "ALBUMS"
+    description: "Everything related to ALBUMS"
+  - name: "ALBUMS"
+    description: "Everything related to ALBUMS"
   - name: "AUTENTICAÇÃO"
     description: "Everything related to AUTENTICAÇÃO"
   - name: "EVENTOS"
     description: "Everything related to EVENTOS"
-  - name: ":ID"
-    description: "Everything related to :ID"
   - name: "EVENTOS"
     description: "Everything related to EVENTOS"
   - name: "EVENTOS"
