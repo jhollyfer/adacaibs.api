@@ -411,6 +411,432 @@
         ]
       }
     },
+    "/news": {
+      "post": {
+        "summary": "Criação de Noticia (handle)",
+        "description": "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/news/create.controller.ts_ - **handle**",
+        "parameters": [],
+        "tags": [
+          "NOTICIAS"
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": "Notícia importante",
+                    "category": "EDUCATION",
+                    "status": "DRAFT",
+                    "resume": "Um breve resumo da notícia",
+                    "content": "Conteúdo completo da notícia",
+                    "cover": "https://exemplo.com/imagem.jpg",
+                    "tags": {
+                      "type": "object",
+                      "properties": {
+                        "0": "educação",
+                        "1": "tecnologia"
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "title": "Notícia importante",
+                  "category": "EDUCATION",
+                  "status": "DRAFT",
+                  "resume": "Um breve resumo da notícia",
+                  "content": "Conteúdo completo da notícia",
+                  "cover": "https://exemplo.com/imagem.jpg",
+                  "tags": [
+                    "educação",
+                    "tecnologia"
+                  ]
+                }
+              }
+            },
+            "description": "Returns **201** (Created) as **application/json**"
+          },
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": "Notícia importante",
+                  "category": "EDUCATION",
+                  "status": "DRAFT",
+                  "resume": "Um breve resumo da notícia",
+                  "content": "Conteúdo completo da notícia",
+                  "cover": "https://exemplo.com/imagem.jpg",
+                  "tags": {
+                    "type": "object",
+                    "properties": {
+                      "0": "educação",
+                      "1": "tecnologia"
+                    }
+                  }
+                }
+              },
+              "example": {
+                "title": "Notícia importante",
+                "category": "EDUCATION",
+                "status": "DRAFT",
+                "resume": "Um breve resumo da notícia",
+                "content": "Conteúdo completo da notícia",
+                "cover": "https://exemplo.com/imagem.jpg",
+                "tags": [
+                  "educação",
+                  "tecnologia"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/{id}": {
+      "patch": {
+        "summary": "Atualização de Notícia (handle)",
+        "description": "Atualiza os dados de uma notícia existente\n\n _app/infra/http/controllers/news/update.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID da notícia a ser atualizada",
+            "schema": {
+              "example": "",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "NOTICIAS"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": "123",
+                    "title": "Notícia atualizada",
+                    "category": "EDUCATION",
+                    "status": "PUBLISHED",
+                    "resume": "Resumo atualizado",
+                    "content": "Conteúdo atualizado",
+                    "cover": "https://exemplo.com/nova-imagem.jpg",
+                    "tags": {
+                      "type": "object",
+                      "properties": {
+                        "0": "educação",
+                        "1": "atualização"
+                      }
+                    },
+                    "createdAt": "2023-01-01T00:00:00.000Z",
+                    "updatedAt": "2023-01-02T00:00:00.000Z"
+                  }
+                },
+                "example": {
+                  "id": "123",
+                  "title": "Notícia atualizada",
+                  "category": "EDUCATION",
+                  "status": "PUBLISHED",
+                  "resume": "Resumo atualizado",
+                  "content": "Conteúdo atualizado",
+                  "cover": "https://exemplo.com/nova-imagem.jpg",
+                  "tags": [
+                    "educação",
+                    "atualização"
+                  ],
+                  "createdAt": "2023-01-01T00:00:00.000Z",
+                  "updatedAt": "2023-01-02T00:00:00.000Z"
+                }
+              }
+            },
+            "description": "Returns **200** (OK) as **application/json**"
+          },
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Noticia não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Noticia não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Mensagem de erro interno"
+                  }
+                },
+                "example": {
+                  "message": "Mensagem de erro interno"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": "Notícia atualizada",
+                  "category": "EDUCATION",
+                  "status": "PUBLISHED",
+                  "resume": "Resumo atualizado",
+                  "content": "Conteúdo atualizado",
+                  "cover": "https://exemplo.com/nova-imagem.jpg",
+                  "tags": {
+                    "type": "object",
+                    "properties": {
+                      "0": "educação",
+                      "1": "atualização"
+                    }
+                  }
+                }
+              },
+              "example": {
+                "title": "Notícia atualizada",
+                "category": "EDUCATION",
+                "status": "PUBLISHED",
+                "resume": "Resumo atualizado",
+                "content": "Conteúdo atualizado",
+                "cover": "https://exemplo.com/nova-imagem.jpg",
+                "tags": [
+                  "educação",
+                  "atualização"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remoção de Notícia (handle)",
+        "description": "Remove uma notícia específica pelo ID\n\n _app/infra/http/controllers/news/remove.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID da notícia a ser removida",
+            "schema": {
+              "example": "",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "NOTICIAS"
+        ],
+        "responses": {
+          "204": {
+            "content": {
+              "text/plain": {
+                "example": "Sem conteúdo"
+              }
+            },
+            "description": "Returns **204** (No Content) as **text/plain**"
+          },
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Noticia não encontrada"
+                  }
+                },
+                "example": {
+                  "message": "Noticia não encontrada"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Mensagem de erro interno"
+                  }
+                },
+                "example": {
+                  "message": "Mensagem de erro interno"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ]
+      }
+    },
+    "/news/paginate": {
+      "get": {
+        "summary": "Lista de Noticias Paginada (handle)",
+        "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/news/paginate.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Número da página",
+            "schema": {
+              "example": "",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "description": "Quantidade de registros por página",
+            "schema": {
+              "example": "",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "description": "Termo de busca",
+            "schema": {
+              "example": "",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "NOTICIAS"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/News"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/PaginationMeta"
+                    }
+                  }
+                },
+                "example": {
+                  "data": [
+                    {}
+                  ],
+                  "meta": {
+                    "total": 100,
+                    "page": 2,
+                    "perPage": 10,
+                    "currentPage": 3,
+                    "lastPage": 10,
+                    "firstPage": 1,
+                    "lastPageUrl": "/?page=10",
+                    "firstPageUrl": "/?page=1",
+                    "nextPageUrl": "/?page=6",
+                    "previousPageUrl": "/?page=5"
+                  }
+                }
+              }
+            },
+            "description": "Returns **200** (OK) as **application/json**"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Não autorizado"
+                  }
+                },
+                "example": {
+                  "message": "Não autorizado"
+                }
+              }
+            },
+            "description": "Returns **401** (Unauthorized) as **application/json**"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ]
+      }
+    },
     "/documentation": {
       "get": {
         "summary": "route",
@@ -462,6 +888,22 @@
     {
       "name": "USUÁRIOS",
       "description": "Everything related to USUÁRIOS"
+    },
+    {
+      "name": "NOTICIAS",
+      "description": "Everything related to NOTICIAS"
+    },
+    {
+      "name": "NOTICIAS",
+      "description": "Everything related to NOTICIAS"
+    },
+    {
+      "name": "NOTICIAS",
+      "description": "Everything related to NOTICIAS"
+    },
+    {
+      "name": "NOTICIAS",
+      "description": "Everything related to NOTICIAS"
     }
   ]
 }

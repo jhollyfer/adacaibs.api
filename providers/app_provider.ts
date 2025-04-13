@@ -1,5 +1,7 @@
+import { EventsContractRepository } from '#domain/event/repository'
 import { NewsContractRepository } from '#domain/news/repository'
 import { UserContractRepository } from '#domain/user/repository'
+import EventsLucidRepository from '#infra/database/lucid/event/repository'
 import NewsLucidRepository from '#infra/database/lucid/news/repository'
 import type { ApplicationService } from '@adonisjs/core/types'
 
@@ -22,6 +24,9 @@ export default class AppProvider {
     })
     this.app.container.bind(NewsContractRepository, () => {
       return this.app.container.make(NewsLucidRepository)
+    })
+    this.app.container.bind(EventsContractRepository, () => {
+      return this.app.container.make(EventsLucidRepository)
     })
   }
 

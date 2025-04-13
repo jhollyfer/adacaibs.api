@@ -1,4 +1,4 @@
-import type { NewsCategory, NewsStatus, UserRole, UserStatus } from '#core/constant'
+import type { EventCategory, NewsCategory, NewsStatus, UserRole, UserStatus } from '#core/constant'
 
 interface Base {
   id?: string
@@ -25,16 +25,16 @@ export interface News extends Base {
   tags: string[]
 }
 
-export interface Event extends Base {
+export interface Events extends Base {
   title: string
   date: string
-  hour: string
-  locality: string
+  hour: string // Format: "HH:MM - HH:MM" (e.g., "14:00 - 18:00")
+  location: string
   address: string
-  category: string
+  category: EventCategory
   capacity: number
   description: string
-  content: string
+  detailedContent: string // Can contain HTML
   cover: string | null
 }
 

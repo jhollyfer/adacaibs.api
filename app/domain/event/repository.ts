@@ -1,0 +1,10 @@
+import { Events, Paginated } from '#core/entity'
+import { PaginationQuery } from '#infra/http/validators/query.validator'
+
+export abstract class EventsContractRepository {
+  abstract create(payload: Events): Promise<Events>
+  abstract findById(id: string): Promise<Events | null>
+  abstract paginate(payload: PaginationQuery): Promise<Paginated<Events[]>>
+  abstract save(payload: Events): Promise<Events>
+  abstract delete(id: string): Promise<void>
+}
