@@ -948,6 +948,230 @@ paths:
       security:
         - BearerAuth:
             - "access"
+  /video:
+    post:
+      summary: "Criação de Video (handle)"
+      description: "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/video/create.controller.ts_ - **handle**"
+      parameters: []
+      tags:
+        - "VIDEOS"
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Video"
+              example: {}
+          description: "Returns **201** (Created) as **application/json**"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: "Como usar TypeScript"
+                date: "2025-04-13"
+                duration: "01:23:45"
+                instructor: "John Doe"
+                url: "https://example.com/videos/typescript"
+                description: "Tutorial completo de TypeScript"
+                thumbnail: "https://example.com/thumbs/typescript.jpg"
+            example:
+              title: "Como usar TypeScript"
+              date: "2025-04-13"
+              duration: "01:23:45"
+              instructor: "John Doe"
+              url: "https://example.com/videos/typescript"
+              description: "Tutorial completo de TypeScript"
+              thumbnail: "https://example.com/thumbs/typescript.jpg"
+  /video/{id}:
+    patch:
+      summary: "Update Video (handle)"
+      description: "Updates an existing video\n\n _app/infra/http/controllers/video/update.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID of the video to update"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "VIDEOS"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id: "123"
+                  title: "TypeScript Avançado"
+                  date: "13/04/2025"
+                  duration: "01:45:30"
+                  instructor: "Jane Smith"
+                  url: "https://exemplo.com/videos/typescript-avancado"
+                  description: "Curso atualizado de TypeScript avançado"
+                  thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                  createdAt: "2025-01-01T00:00:00.000Z"
+                  updatedAt: "2025-04-13T15:30:00.000Z"
+              example:
+                id: "123"
+                title: "TypeScript Avançado"
+                date: "13/04/2025"
+                duration: "01:45:30"
+                instructor: "Jane Smith"
+                url: "https://exemplo.com/videos/typescript-avancado"
+                description: "Curso atualizado de TypeScript avançado"
+                thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                createdAt: "2025-01-01T00:00:00.000Z"
+                updatedAt: "2025-04-13T15:30:00.000Z"
+          description: "Returns **200** (OK) as **application/json**"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+        404:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Video não encontrado"
+              example:
+                message: "Video não encontrado"
+          description: "Returns **404** (Not Found) as **application/json**"
+        500:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Mensagem de erro interno"
+              example:
+                message: "Mensagem de erro interno"
+          description: "Returns **500** (Internal Server Error) as **application/json**"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: "TypeScript Avançado"
+                date: "13/04/2025"
+                duration: "01:45:30"
+                instructor: "Jane Smith"
+                url: "https://exemplo.com/videos/typescript-avancado"
+                description: "Curso atualizado de TypeScript avançado"
+                thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+            example:
+              title: "TypeScript Avançado"
+              date: "13/04/2025"
+              duration: "01:45:30"
+              instructor: "Jane Smith"
+              url: "https://exemplo.com/videos/typescript-avancado"
+              description: "Curso atualizado de TypeScript avançado"
+              thumbnail: "https://exemplo.com/thumbs/typescript-avancado.jpg"
+    delete:
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/video/delete.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - ":ID"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /video/paginate:
+    get:
+      summary: "Lista de Videos Paginada (handle)"
+      description: "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/video/paginate.controller.ts_ - **handle**"
+      parameters:
+        - in: "query"
+          name: "page"
+          description: "Número da página"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "perPage"
+          description: "Quantidade de registros por página"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "search"
+          description: "Termo de busca"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "VIDEOS"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  data:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Video"
+                  meta:
+                    $ref: "#/components/schemas/PaginationMeta"
+              example:
+                data:
+                  - {}
+                meta:
+                  total: 100
+                  page: 2
+                  perPage: 10
+                  currentPage: 3
+                  lastPage: 10
+                  firstPage: 1
+                  lastPageUrl: "/?page=10"
+                  firstPageUrl: "/?page=1"
+                  nextPageUrl: "/?page=6"
+                  previousPageUrl: "/?page=5"
+          description: "Returns **200** (OK) as **application/json**"
+        401:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Não autorizado"
+              example:
+                message: "Não autorizado"
+          description: "Returns **401** (Unauthorized) as **application/json**"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
   /documentation:
     get:
       summary: "route"
@@ -1001,3 +1225,9 @@ tags:
     description: "Everything related to USUÁRIOS"
   - name: "USUÁRIOS"
     description: "Everything related to USUÁRIOS"
+  - name: "VIDEOS"
+    description: "Everything related to VIDEOS"
+  - name: "VIDEOS"
+    description: "Everything related to VIDEOS"
+  - name: "VIDEOS"
+    description: "Everything related to VIDEOS"
