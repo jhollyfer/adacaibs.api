@@ -14,6 +14,7 @@ import '#infra/http/routes/event.route'
 import '#infra/http/routes/news.route'
 import '#infra/http/routes/podcast.route'
 import '#infra/http/routes/user.route'
+import '#infra/http/routes/video.route'
 
 import swagger from '#config/swagger'
 import AutoSwagger from 'adonis-autoswagger'
