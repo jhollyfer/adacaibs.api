@@ -1,7 +1,9 @@
 import PodcastUpdateUseCase from '#domain/podcast/use-cases/update.use-case'
 import { PodcastValidator } from '#infra/http/validators/podcast.validator'
+import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
+@inject()
 export default class PodcastUpdateController {
   constructor(private readonly useCase: PodcastUpdateUseCase) {}
 

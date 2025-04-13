@@ -2,6 +2,8 @@ import { EventsContractRepository } from '#domain/event/repository'
 import { NewsContractRepository } from '#domain/news/repository'
 import { PodcastContractRepository } from '#domain/podcast/repository'
 import { UserContractRepository } from '#domain/user/repository'
+import { VideoContractRepository } from '#domain/video/repository'
+import VideoLucidRepository from '#infra/database/lucid/video/repository'
 import type { ApplicationService } from '@adonisjs/core/types'
 
 export default class AppProvider {
@@ -36,6 +38,9 @@ export default class AppProvider {
     })
     this.app.container.bind(PodcastContractRepository, () => {
       return this.app.container.make(PodcastLucidRepository)
+    })
+    this.app.container.bind(VideoContractRepository, () => {
+      return this.app.container.make(VideoLucidRepository)
     })
   }
 
