@@ -59,7 +59,7 @@ export interface Video extends Base {
   thumbnail: string | null
 }
 
-export interface Album extends Base {
+export interface Gallery extends Base {
   title: string
   date: string
   description: string
