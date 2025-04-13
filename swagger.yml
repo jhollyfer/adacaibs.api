@@ -1024,21 +1024,14 @@ paths:
       security:
         - BearerAuth:
             - "access"
-  /user:
+  /testimonial:
     post:
-      summary: "Criação de Usuário (handle)"
-      description: "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/user/create.controller.ts_ - **handle**"
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/testimonial/create.controller.ts_ - **handle**"
       parameters: []
       tags:
-        - "USUÁRIOS"
+        - ""
       responses:
-        201:
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
-              example: {}
-          description: "Returns **201** (Created) as **application/json**"
         401:
           description: "Returns **401** (Unauthorized)"
         403:
@@ -1048,21 +1041,11 @@ paths:
             - "access"
       requestBody:
         content:
-          application/json:
-            schema:
-              type: "object"
-              properties:
-                email: "example@adacaibs.com"
-                name: "John Doe"
-                role: "ADMINISTRATOR"
-            example:
-              email: "example@adacaibs.com"
-              name: "John Doe"
-              role: "ADMINISTRATOR"
-  /user/{id}:
+          application/json: {}
+  /testimonial/{id}:
     patch:
       summary: " (handle)"
-      description: "\n\n _app/infra/http/controllers/user/update.controller.ts_ - **handle**"
+      description: "\n\n _app/infra/http/controllers/testimonial/update.controller.ts_ - **handle**"
       parameters:
         - in: "path"
           name: "id"
@@ -1084,7 +1067,7 @@ paths:
           application/json: {}
     delete:
       summary: " (handle)"
-      description: "\n\n _app/infra/http/controllers/user/delete.controller.ts_ - **handle**"
+      description: "\n\n _app/infra/http/controllers/testimonial/delete.controller.ts_ - **handle**"
       parameters:
         - in: "path"
           name: "id"
@@ -1101,72 +1084,16 @@ paths:
       security:
         - BearerAuth:
             - "access"
-  /user/paginate:
+  /testimonial/paginate:
     get:
-      summary: "Lista de Usuários Paginada (handle)"
-      description: "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/user/paginate.controller.ts_ - **handle**"
-      parameters:
-        - in: "query"
-          name: "page"
-          description: "Número da página"
-          schema:
-            example: ""
-            type: "number"
-          required: false
-        - in: "query"
-          name: "perPage"
-          description: "Quantidade de registros por página"
-          schema:
-            example: ""
-            type: "number"
-          required: false
-        - in: "query"
-          name: "search"
-          description: "Termo de busca"
-          schema:
-            example: ""
-            type: "string"
-          required: false
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/testimonial/paginate.controller.ts_ - **handle**"
+      parameters: []
       tags:
-        - "USUÁRIOS"
+        - "PAGINATE"
       responses:
-        200:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                properties:
-                  data:
-                    type: "array"
-                    items:
-                      $ref: "#/components/schemas/User"
-                  meta:
-                    $ref: "#/components/schemas/PaginationMeta"
-              example:
-                data:
-                  - {}
-                meta:
-                  total: 100
-                  page: 2
-                  perPage: 10
-                  currentPage: 3
-                  lastPage: 10
-                  firstPage: 1
-                  lastPageUrl: "/?page=10"
-                  firstPageUrl: "/?page=1"
-                  nextPageUrl: "/?page=6"
-                  previousPageUrl: "/?page=5"
-          description: "Returns **200** (OK) as **application/json**"
         401:
-          content:
-            application/json:
-              schema:
-                type: "object"
-                properties:
-                  message: "Não autorizado"
-              example:
-                message: "Não autorizado"
-          description: "Returns **401** (Unauthorized) as **application/json**"
+          description: "Returns **401** (Unauthorized)"
         403:
           description: "Returns **403** (Forbidden)"
       security:
@@ -1396,6 +1323,154 @@ paths:
       security:
         - BearerAuth:
             - "access"
+  /user:
+    post:
+      summary: "Criação de Usuário (handle)"
+      description: "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/user/create.controller.ts_ - **handle**"
+      parameters: []
+      tags:
+        - "USUÁRIOS"
+      responses:
+        201:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+              example: {}
+          description: "Returns **201** (Created) as **application/json**"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                email: "example@adacaibs.com"
+                name: "John Doe"
+                role: "ADMINISTRATOR"
+            example:
+              email: "example@adacaibs.com"
+              name: "John Doe"
+              role: "ADMINISTRATOR"
+  /user/{id}:
+    patch:
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/user/update.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - ":ID"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json: {}
+    delete:
+      summary: " (handle)"
+      description: "\n\n _app/infra/http/controllers/user/delete.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - ":ID"
+      responses:
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
+  /user/paginate:
+    get:
+      summary: "Lista de Usuários Paginada (handle)"
+      description: "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/user/paginate.controller.ts_ - **handle**"
+      parameters:
+        - in: "query"
+          name: "page"
+          description: "Número da página"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "perPage"
+          description: "Quantidade de registros por página"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "search"
+          description: "Termo de busca"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "USUÁRIOS"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  data:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/User"
+                  meta:
+                    $ref: "#/components/schemas/PaginationMeta"
+              example:
+                data:
+                  - {}
+                meta:
+                  total: 100
+                  page: 2
+                  perPage: 10
+                  currentPage: 3
+                  lastPage: 10
+                  firstPage: 1
+                  lastPageUrl: "/?page=10"
+                  firstPageUrl: "/?page=1"
+                  nextPageUrl: "/?page=6"
+                  previousPageUrl: "/?page=5"
+          description: "Returns **200** (OK) as **application/json**"
+        401:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Não autorizado"
+              example:
+                message: "Não autorizado"
+          description: "Returns **401** (Unauthorized) as **application/json**"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
   /documentation:
     get:
       summary: "route"
@@ -1427,6 +1502,8 @@ tags:
     description: "Everything related to :ID"
   - name: "ALBUMS"
     description: "Everything related to ALBUMS"
+  - name: "PAGINATE"
+    description: "Everything related to PAGINATE"
   - name: "ALBUMS"
     description: "Everything related to ALBUMS"
   - name: "AUTENTICAÇÃO"
@@ -1451,13 +1528,13 @@ tags:
     description: "Everything related to PODCASTS"
   - name: "PODCASTS"
     description: "Everything related to PODCASTS"
+  - name: "VIDEOS"
+    description: "Everything related to VIDEOS"
+  - name: "VIDEOS"
+    description: "Everything related to VIDEOS"
+  - name: "VIDEOS"
+    description: "Everything related to VIDEOS"
   - name: "USUÁRIOS"
     description: "Everything related to USUÁRIOS"
   - name: "USUÁRIOS"
     description: "Everything related to USUÁRIOS"
-  - name: "VIDEOS"
-    description: "Everything related to VIDEOS"
-  - name: "VIDEOS"
-    description: "Everything related to VIDEOS"
-  - name: "VIDEOS"
-    description: "Everything related to VIDEOS"
