@@ -1,8 +1,8 @@
 import { News, Paginated } from '#core/entity'
 import { NewsContractRepository } from '#domain/news/repository'
-import { PaginationQuery } from '#infra/http/validators/query.validator'
-import { NewsMapper } from './mapper.js'
+import { NewsMapper } from '#infra/database/lucid/news/mapper'
 import Model from '#infra/database/lucid/news/model'
+import { PaginationQuery } from '#infra/http/validators/query.validator'
 
 export default class NewsLucidRepository implements NewsContractRepository {
   async create(payload: News): Promise<News> {
@@ -43,7 +43,7 @@ export default class NewsLucidRepository implements NewsContractRepository {
 
     const json = result?.toJSON()
 
-    const data = json?.data?.map((item) => NewsMapper.toDomain(item))
+    const data = json?.data?.map(NewsMapper.toDomain)
 
     return { meta: json?.meta, data }
   }

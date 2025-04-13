@@ -1,6 +1,6 @@
-import { column } from '@adonisjs/lucid/orm'
-import BaseModel from '../model-base.js'
 import { EventCategory } from '#core/constant'
+import BaseModel from '#infra/database/lucid/model-base'
+import { column } from '@adonisjs/lucid/orm'
 
 // tive que mudar de event para events, pq tem uma propriedade do próprio js que pode acabar confundindo futuramente
 export default class Events extends BaseModel {

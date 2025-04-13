@@ -53,7 +53,7 @@ export default class UserLucidRepository implements UserContractRepository {
 
     const json = result?.toJSON()
 
-    const data = json?.data?.map((item) => UserMapper.toDomain(item))
+    const data = json?.data?.map(UserMapper.toDomain)
 
     return { meta: json?.meta, data }
   }

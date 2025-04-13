@@ -31,6 +31,7 @@ export default class extends BaseSchema {
   }
 
   async down(): Promise<void> {
+    this.schema.raw('DROP TYPE IF EXISTS "event_category" CASCADE')
     this.schema.dropTable(this.tableName)
   }
 }

@@ -36,6 +36,8 @@ export default class extends BaseSchema {
   }
 
   async down(): Promise<void> {
+    this.schema.raw('DROP TYPE IF EXISTS "news_category" CASCADE')
+    this.schema.raw('DROP TYPE IF EXISTS "news_status" CASCADE')
     this.schema.dropTable(this.tableName)
   }
 }

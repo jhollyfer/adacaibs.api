@@ -1,9 +1,9 @@
 import { Either, left, right } from '#core/either'
 import { News } from '#core/entity'
+import { NewsContractRepository } from '#domain/news/repository'
 import { NewsSchema } from '#infra/http/validators/news.validator'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
-import { NewsContractRepository } from '../repository.js'
 
 type Body = Infer<(typeof NewsSchema)['update']['body']>
 type Params = Infer<(typeof NewsSchema)['update']['params']>

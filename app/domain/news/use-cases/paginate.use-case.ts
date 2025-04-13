@@ -1,8 +1,8 @@
 import { Either, right } from '#core/either'
-import { Paginated, News } from '#core/entity'
+import { News, Paginated } from '#core/entity'
+import { NewsContractRepository } from '#domain/news/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { inject } from '@adonisjs/core'
-import { NewsContractRepository } from '../repository.js'
 
 type Result = Either<null, Paginated<News[]>>
 

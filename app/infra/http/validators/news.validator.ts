@@ -28,7 +28,7 @@ export const NewsSchema = {
       id: vine.string().trim(),
     }),
   },
-  findById: {
+  show: {
     params: vine.object({
       id: vine.string().trim(),
     }),
@@ -51,8 +51,8 @@ export const NewsValidator = {
     body: vine.compile(NewsSchema['update']['body']),
     params: vine.compile(NewsSchema['update']['params']),
   },
-  findById: {
-    params: vine.compile(NewsSchema['findById']['params']),
+  show: {
+    params: vine.compile(NewsSchema['show']['params']),
   },
   delete: {
     params: vine.compile(NewsSchema['delete']['params']),
