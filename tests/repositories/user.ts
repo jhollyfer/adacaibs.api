@@ -23,10 +23,8 @@ export default class UserInMemoryRepository implements UserContractRepository {
 
   async save(user: User): Promise<User> {
     const itemIndex = this.items.findIndex((item) => item.id === user.id)
-
     this.items[itemIndex] = user
-
-    return user
+    return this.items[itemIndex]
   }
 
   async delete(id: string): Promise<void> {

@@ -51,10 +51,8 @@ export default class PodcastInMemoryRepository implements PodcastContractReposit
 
   async save(payload: Podcast): Promise<Podcast> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
-
     this.items[itemIndex] = payload
-
-    return payload
+    return this.items[itemIndex]
   }
 
   async delete(id: string): Promise<void> {
