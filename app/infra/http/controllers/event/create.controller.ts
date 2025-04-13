@@ -1,11 +1,11 @@
-import EventsCreateUseCase from '#domain/event/use-cases/create.use-case'
+import EventCreateUseCase from '#domain/event/use-cases/create.use-case'
 import { EventValidator } from '#infra/http/validators/event.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
-export default class EventsCreateController {
-  constructor(private readonly useCase: EventsCreateUseCase) {}
+export default class EventCreateController {
+  constructor(private readonly useCase: EventCreateUseCase) {}
 
   /**
    * @handle

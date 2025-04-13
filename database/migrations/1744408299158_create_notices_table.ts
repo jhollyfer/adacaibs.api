@@ -1,10 +1,10 @@
-import { NewsCategory, NewsStatus } from '#core/constant'
+import { NoticeCategory, NoticeStatus } from '#core/constant'
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
 export default class extends BaseSchema {
-  protected tableName = 'news'
-  private categories = Object.values(NewsCategory)
-  private status = Object.values(NewsStatus)
+  protected tableName = 'notices'
+  private categories = Object.values(NoticeCategory)
+  private status = Object.values(NoticeStatus)
 
   async up(): Promise<void> {
     this.schema.createTable(this.tableName, (table) => {
@@ -13,18 +13,18 @@ export default class extends BaseSchema {
       table.string('title').notNullable()
       table
         .enu('category', this.categories, {
-          enumName: 'news_category',
+          enumName: 'notice_category',
           useNative: true,
         })
         .notNullable()
-        .defaultTo(NewsCategory.EDUCATION)
+        .defaultTo(NoticeCategory.EDUCATION)
       table
         .enu('status', this.status, {
-          enumName: 'news_status',
+          enumName: 'notice_status',
           useNative: true,
         })
         .notNullable()
-        .defaultTo(NewsStatus.DRAFT)
+        .defaultTo(NoticeStatus.DRAFT)
       table.text('resume').notNullable()
       table.text('content').notNullable()
       table.string('cover').nullable() // tem que ver o bucket para colocar a imagem, ou algo assim
@@ -36,8 +36,8 @@ export default class extends BaseSchema {
   }
 
   async down(): Promise<void> {
-    this.schema.raw('DROP TYPE IF EXISTS "news_category" CASCADE')
-    this.schema.raw('DROP TYPE IF EXISTS "news_status" CASCADE')
+    this.schema.raw('DROP TYPE IF EXISTS "notice_category" CASCADE')
+    this.schema.raw('DROP TYPE IF EXISTS "notice_status" CASCADE')
     this.schema.dropTable(this.tableName)
   }
 }

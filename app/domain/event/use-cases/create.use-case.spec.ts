@@ -1,33 +1,44 @@
-import AlbumCreateUseCase from '#domain/album/use-cases/create.use-case'
-import AlbumInMemoryRepository from '#tests/repositories/album'
+import { EventCategory } from '#core/constant'
+import EventCreateUseCase from '#domain/event/use-cases/create.use-case'
+import EventInMemoryRepository from '#tests/repositories/event'
 import { test } from '@japa/runner'
 
-let userRepository: AlbumInMemoryRepository
-let sut: AlbumCreateUseCase
+let eventRepository: EventInMemoryRepository
+let sut: EventCreateUseCase
 
 test.group('Event > Create > Use Case', (group) => {
   group.each.setup(async () => {
-    userRepository = new AlbumInMemoryRepository()
-    sut = new AlbumCreateUseCase(userRepository)
+    eventRepository = new EventInMemoryRepository()
+    sut = new EventCreateUseCase(eventRepository)
   })
 
-  test('it should be able to create a album', async ({ expect }) => {
+  test('it should be able to create a event', async ({ expect }) => {
     const result = await sut.execute({
-      cover: 'Capa do album',
+      address: 'Endereço do evento',
+      capacity: 100,
+      category: EventCategory.COMMUNITY,
+      cover: 'Capa do evento',
       date: '2023-01-01',
-      description: 'Descrição completo do album',
-      images: ['Imagem 1', 'Imagem 2'],
-      title: 'Titulo do album',
+      description: 'Descrição completa do evento',
+      detailedContent: 'Conteúdo detalhado do evento',
+      hour: '10:00 - 14:00',
+      location: 'Local do evento',
+      title: 'Titulo do evento',
     })
 
     expect(result.isRight()).toBe(true)
     expect(result.value).toEqual(
       expect.objectContaining({
-        cover: 'Capa do album',
+        address: 'Endereço do evento',
+        capacity: 100,
+        category: EventCategory.COMMUNITY,
+        cover: 'Capa do evento',
         date: '2023-01-01',
-        description: 'Descrição completo do album',
-        images: ['Imagem 1', 'Imagem 2'],
-        title: 'Titulo do album',
+        description: 'Descrição completa do evento',
+        detailedContent: 'Conteúdo detalhado do evento',
+        hour: '10:00 - 14:00',
+        location: 'Local do evento',
+        title: 'Titulo do evento',
       })
     )
   })

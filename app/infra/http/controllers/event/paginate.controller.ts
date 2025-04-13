@@ -1,11 +1,11 @@
-import EventsPaginateUseCase from '#domain/event/use-cases/paginate.use-case'
+import EventPaginateUseCase from '#domain/event/use-cases/paginate.use-case'
 import { EventValidator } from '#infra/http/validators/event.validator'
 import { inject } from '@adonisjs/core'
 import { HttpContext } from '@adonisjs/core/http'
 
 @inject()
-export default class EventsPaginateController {
-  constructor(private readonly useCase: EventsPaginateUseCase) {}
+export default class EventPaginateController {
+  constructor(private readonly useCase: EventPaginateUseCase) {}
 
   /**
    * @handle

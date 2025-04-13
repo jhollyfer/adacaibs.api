@@ -1,13 +1,13 @@
-import { NewsCategory, NewsStatus } from '#core/constant'
+import { NoticeCategory, NoticeStatus } from '#core/constant'
 import { PaginationQuerySchema } from '#infra/http/validators/query.validator'
 import vine from '@vinejs/vine'
 
-export const NewsSchema = {
+export const NoticeSchema = {
   create: {
     body: vine.object({
       title: vine.string().trim(),
-      category: vine.enum(NewsCategory),
-      status: vine.enum(NewsStatus),
+      category: vine.enum(NoticeCategory),
+      status: vine.enum(NoticeStatus),
       resume: vine.string().trim(),
       content: vine.string().trim(),
       cover: vine.string().trim().nullable(),
@@ -17,8 +17,8 @@ export const NewsSchema = {
   update: {
     body: vine.object({
       title: vine.string().trim().optional(),
-      category: vine.enum(NewsCategory).optional(),
-      status: vine.enum(NewsStatus).optional(),
+      category: vine.enum(NoticeCategory).optional(),
+      status: vine.enum(NoticeStatus).optional(),
       resume: vine.string().trim().optional(),
       content: vine.string().trim().optional(),
       cover: vine.string().trim().nullable(),
@@ -43,21 +43,21 @@ export const NewsSchema = {
   },
 }
 
-export const NewsValidator = {
+export const NoticeValidator = {
   create: {
-    body: vine.compile(NewsSchema['create']['body']),
+    body: vine.compile(NoticeSchema['create']['body']),
   },
   update: {
-    body: vine.compile(NewsSchema['update']['body']),
-    params: vine.compile(NewsSchema['update']['params']),
+    body: vine.compile(NoticeSchema['update']['body']),
+    params: vine.compile(NoticeSchema['update']['params']),
   },
   show: {
-    params: vine.compile(NewsSchema['show']['params']),
+    params: vine.compile(NoticeSchema['show']['params']),
   },
   delete: {
-    params: vine.compile(NewsSchema['delete']['params']),
+    params: vine.compile(NoticeSchema['delete']['params']),
   },
   paginate: {
-    query: vine.compile(NewsSchema['paginate']['query']),
+    query: vine.compile(NoticeSchema['paginate']['query']),
   },
 }

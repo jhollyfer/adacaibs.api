@@ -1,16 +1,16 @@
+import type { NoticeCategory, NoticeStatus } from '#core/constant'
 import BaseModel from '#infra/database/lucid/model-base'
-import { column, beforeSave } from '@adonisjs/lucid/orm'
-import type { NewsCategory, NewsStatus } from '#core/constant'
+import { beforeSave, column } from '@adonisjs/lucid/orm'
 
-export default class News extends BaseModel {
+export default class Notice extends BaseModel {
   @column()
   declare title: string
 
   @column()
-  declare category: NewsCategory
+  declare category: NoticeCategory
 
   @column()
-  declare status: NewsStatus
+  declare status: NoticeStatus
 
   @column()
   declare resume: string
@@ -28,9 +28,9 @@ export default class News extends BaseModel {
   declare tags: string[]
 
   @beforeSave()
-  static async prepareTags(news: News): Promise<void> {
-    if (!Array.isArray(news.tags)) {
-      news.tags = []
+  static async prepareTags(notice: Notice): Promise<void> {
+    if (!Array.isArray(notice.tags)) {
+      notice.tags = []
     }
   }
 }

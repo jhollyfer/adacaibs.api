@@ -1,6 +1,6 @@
 import { AlbumContractRepository } from '#domain/album/repository'
-import { EventsContractRepository } from '#domain/event/repository'
-import { NewsContractRepository } from '#domain/news/repository'
+import { EventContractRepository } from '#domain/event/repository'
+import { NoticeContractRepository } from '#domain/notice/repository'
 import { PodcastContractRepository } from '#domain/podcast/repository'
 import { TestimonialContractRepository } from '#domain/testimonial/repository'
 import { UserContractRepository } from '#domain/user/repository'
@@ -25,18 +25,18 @@ export default class AppProvider {
       return this.app.container.make(UserLucidRepository)
     })
 
-    const { default: NewsLucidRepository } = await import('#infra/database/lucid/news/repository')
-
-    this.app.container.bind(NewsContractRepository, () => {
-      return this.app.container.make(NewsLucidRepository)
-    })
-
-    const { default: EventsLucidRepository } = await import(
-      '#infra/database/lucid/event/repository'
+    const { default: NoticeLucidRepository } = await import(
+      '#infra/database/lucid/notice/repository'
     )
 
-    this.app.container.bind(EventsContractRepository, () => {
-      return this.app.container.make(EventsLucidRepository)
+    this.app.container.bind(NoticeContractRepository, () => {
+      return this.app.container.make(NoticeLucidRepository)
+    })
+
+    const { default: EventLucidRepository } = await import('#infra/database/lucid/event/repository')
+
+    this.app.container.bind(EventContractRepository, () => {
+      return this.app.container.make(EventLucidRepository)
     })
 
     const { default: PodcastLucidRepository } = await import(

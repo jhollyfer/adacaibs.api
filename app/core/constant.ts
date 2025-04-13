@@ -8,7 +8,7 @@ export enum UserStatus {
   INACTIVE = 'INACTIVE',
 }
 
-export enum NewsCategory {
+export enum NoticeCategory {
   EVENTS = 'EVENTS',
   EDUCATION = 'EDUCATION',
   SPORTS = 'SPORTS',
@@ -16,7 +16,7 @@ export enum NewsCategory {
   INSTITUTIONAL = 'INSTITUTIONAL',
 }
 
-export enum NewsStatus {
+export enum NoticeStatus {
   DRAFT = 'DRAFT',
   PUBLISHED = 'PUBLISHED',
   SCHEDULED = 'SCHEDULED',

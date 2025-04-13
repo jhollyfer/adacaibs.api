@@ -2,17 +2,17 @@ import { Either, left, right } from '#core/either'
 import { EventSchema } from '#infra/http/validators/event.validator'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
-import { EventsContractRepository } from '../repository.js'
+import { EventContractRepository } from '../repository.js'
 
 type Result = Either<Error, null>
 type Payload = Infer<(typeof EventSchema)['delete']['params']>
 @inject()
-export default class EventsDeleteUseCase {
-  constructor(private readonly eventsRepository: EventsContractRepository) {}
+export default class EventDeleteUseCase {
+  constructor(private readonly eventRepository: EventContractRepository) {}
   async execute(payload: Payload): Promise<Result> {
-    const event = await this.eventsRepository.findById(payload.id)
+    const event = await this.eventRepository.findById(payload.id)
     if (!event) return left(new Error('Evento não encontrada'))
-    await this.eventsRepository.delete(payload.id)
+    await this.eventRepository.delete(payload.id)
     return right(null)
   }
 }

@@ -1,11 +1,11 @@
-import EventsDeleteUseCase from '#domain/event/use-cases/delete.use-case'
+import EventDeleteUseCase from '#domain/event/use-cases/delete.use-case'
 import { EventValidator } from '#infra/http/validators/event.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
-export default class EventsDeleteController {
-  constructor(private readonly useCase: EventsDeleteUseCase) {}
+export default class EventDeleteController {
+  constructor(private readonly useCase: EventDeleteUseCase) {}
 
   /**
    * @handle

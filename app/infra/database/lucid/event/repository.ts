@@ -1,21 +1,21 @@
 import { Events, Paginated } from '#core/entity'
-import { EventsContractRepository } from '#domain/event/repository'
-import { EventsMapper } from './mapper.js'
+import { EventContractRepository } from '#domain/event/repository'
 import Model from '#infra/database/lucid/event/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
+import { EventMapper } from './mapper.js'
 
-export default class EventsLucidRepository implements EventsContractRepository {
+export default class EventLucidRepository implements EventContractRepository {
   async create(payload: Events): Promise<Events> {
-    const parsed = EventsMapper.toLucid(payload)
+    const parsed = EventMapper.toLucid(payload)
     const event = await Model.create(parsed)
-    return EventsMapper.toDomain(event)
+    return EventMapper.toDomain(event)
   }
 
   async save(payload: Events): Promise<Events> {
-    const parsed = EventsMapper.toLucid(payload)
+    const parsed = EventMapper.toLucid(payload)
     const old = await Model.query().where('id', parsed.id).firstOrFail()
     const updated = await old.merge(parsed).save()
-    return EventsMapper.toDomain(updated)
+    return EventMapper.toDomain(updated)
   }
 
   async delete(id: string): Promise<void> {
@@ -25,7 +25,7 @@ export default class EventsLucidRepository implements EventsContractRepository {
   async findById(id: string): Promise<Events | null> {
     const event = await Model.query().where('id', id).first()
     if (!event) return null
-    return EventsMapper.toDomain(event)
+    return EventMapper.toDomain(event)
   }
 
   async paginate(payload: PaginationQuery): Promise<Paginated<Events[]>> {
@@ -38,7 +38,7 @@ export default class EventsLucidRepository implements EventsContractRepository {
 
     const json = result?.toJSON()
 
-    const data = json?.data?.map((item) => EventsMapper.toDomain(item))
+    const data = json?.data?.map((item) => EventMapper.toDomain(item))
 
     return { meta: json?.meta, data }
   }

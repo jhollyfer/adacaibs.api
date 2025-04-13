@@ -1,7 +1,7 @@
 import type {
   EventCategory,
-  NewsCategory,
-  NewsStatus,
+  NoticeCategory,
+  NoticeStatus,
   TestimonialStatus,
   UserRole,
   UserStatus,
@@ -22,10 +22,10 @@ export interface User extends Base {
   status: UserStatus
 }
 
-export interface News extends Base {
+export interface Notice extends Base {
   title: string
-  category: NewsCategory
-  status: NewsStatus
+  category: NoticeCategory
+  status: NoticeStatus
   resume: string
   content: string
   cover: string | null

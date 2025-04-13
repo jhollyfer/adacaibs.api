@@ -1,8 +1,8 @@
-import { News as Domain } from '#core/entity'
-import Model from '#infra/database/lucid/news/model'
+import { Notice as Domain } from '#core/entity'
+import Model from '#infra/database/lucid/notice/model'
 import { ModelObject } from '@adonisjs/lucid/types/model'
 
-export class NewsMapper {
+export class NoticeMapper {
   static toDomain(raw: Model | ModelObject): Domain {
     return {
       id: raw.id,

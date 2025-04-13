@@ -1,11 +1,11 @@
-import NewsDeleteUserCase from '#domain/news/use-cases/delete.use-case'
-import { NewsValidator } from '#infra/http/validators/news.validator'
+import NoticeDeleteUserCase from '#domain/notice/use-cases/delete.use-case'
+import { NoticeValidator } from '#infra/http/validators/notice.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
-export default class NewsDeleteController {
-  constructor(private readonly useCase: NewsDeleteUserCase) {}
+export default class NoticeDeleteController {
+  constructor(private readonly useCase: NoticeDeleteUserCase) {}
 
   /**
    * @handle
@@ -18,7 +18,7 @@ export default class NewsDeleteController {
    * @responseBody 500 - {"message": "Mensagem de erro interno"}
    */
   async handle(context: HttpContext): Promise<void> {
-    const validator = NewsValidator['delete']
+    const validator = NoticeValidator['delete']
     const params = await validator['params'].validate(context.request.params())
     const result = await this.useCase.execute({ ...params })
 

@@ -2,7 +2,7 @@ import { Events as Domain } from '#core/entity'
 import Model from '#infra/database/lucid/event/model'
 import { ModelObject } from '@adonisjs/lucid/types/model'
 
-export class EventsMapper {
+export class EventMapper {
   static toDomain(raw: Model | ModelObject): Domain {
     return {
       id: raw.id,

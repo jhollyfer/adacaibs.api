@@ -1,6 +1,6 @@
 import { Either, right } from '#core/either'
 import { Events } from '#core/entity'
-import { EventsContractRepository } from '#domain/event/repository'
+import { EventContractRepository } from '#domain/event/repository'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
 
@@ -11,8 +11,8 @@ type Payload = Infer<(typeof EventSchema)['create']['body']>
 type Result = Either<Error, Events>
 
 @inject()
-export default class EventsCreateUseCase {
-  constructor(private readonly eventRepository: EventsContractRepository) {}
+export default class EventCreateUseCase {
+  constructor(private readonly eventRepository: EventContractRepository) {}
 
   async execute(payload: Payload): Promise<Result> {
     const event: Events = payload

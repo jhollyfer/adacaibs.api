@@ -1,9 +1,9 @@
-import NewsUpdateUseCase from '#domain/news/use-cases/update.use-case'
-import { NewsValidator } from '#infra/http/validators/news.validator'
+import NoticeUpdateUseCase from '#domain/notice/use-cases/update.use-case'
+import { NoticeValidator } from '#infra/http/validators/notice.validator'
 import type { HttpContext } from '@adonisjs/core/http'
 
-export default class NewsUpdateController {
-  constructor(private readonly useCase: NewsUpdateUseCase) {}
+export default class NoticeUpdateController {
+  constructor(private readonly useCase: NoticeUpdateUseCase) {}
 
   /**
    * @handle
@@ -17,7 +17,7 @@ export default class NewsUpdateController {
    * @responseBody 500 - {"message": "Mensagem de erro interno"}
    */
   async handle(context: HttpContext): Promise<void> {
-    const validator = NewsValidator['update']
+    const validator = NoticeValidator['update']
     const body = await validator['body'].validate(context.request.body())
     const params = await validator['params'].validate(context.request.params())
     const result = await this.useCase.execute({ ...body, ...params })
