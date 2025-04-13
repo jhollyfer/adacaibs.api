@@ -180,11 +180,11 @@
     },
     "/events": {
       "post": {
-        "summary": "Create Event (handle)",
+        "summary": "Criar Evento (handle)",
         "description": "18:00\", \"location\": \"Centro de Convenções\", \"address\": \"Av. Principal, 1000, Centro\", \"category\": \"WORKSHOP\", \"capacity\": 50, \"description\": \"Workshop prático sobre programação\", \"detailedContent\": \"Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.\", \"cover\": \"https://exemplo.com/imagem.jpg\", \"createdAt\": \"2025-04-13T12:34:56.789Z\", \"updatedAt\": \"2025-04-13T12:34:56.789Z\"}\n\n _app/infra/http/controllers/event/create.controller.ts_ - **handle**",
         "parameters": [],
         "tags": [
-          "EVENTS"
+          "EVENTOS"
         ],
         "responses": {
           "201": {
@@ -248,8 +248,8 @@
     },
     "/events/{id}": {
       "patch": {
-        "summary": "Update Event (handle)",
-        "description": "Updates an existing event\n\n _app/infra/http/controllers/event/update.controller.ts_ - **handle**",
+        "summary": "Atualizar Evento (handle)",
+        "description": "Atualizar um evento existente\n\n _app/infra/http/controllers/event/update.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
@@ -263,7 +263,7 @@
           }
         ],
         "tags": [
-          "EVENTS"
+          "EVENTOS"
         ],
         "responses": {
           "200": {
@@ -355,8 +355,8 @@
         }
       },
       "delete": {
-        "summary": "Remoção de Eventos (handle)",
-        "description": "Remove um evento específica pelo ID\n\n _app/infra/http/controllers/event/delete.controller.ts_ - **handle**",
+        "summary": "Excluir Evento (handle)",
+        "description": "Excluir um evento específico pelo ID\n\n _app/infra/http/controllers/event/delete.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
@@ -370,7 +370,7 @@
           }
         ],
         "tags": [
-          "EVENTS"
+          "EVENTOS"
         ],
         "responses": {
           "204": {
@@ -431,7 +431,7 @@
     },
     "/events/paginate": {
       "get": {
-        "summary": "Paginated Events List (handle)",
+        "summary": "Lista Paginada de Eventos (handle)",
         "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/event/paginate.controller.ts_ - **handle**",
         "parameters": [
           {
@@ -466,7 +466,7 @@
           }
         ],
         "tags": [
-          "EVENTS"
+          "EVENTOS"
         ],
         "responses": {
           "200": {
@@ -1469,24 +1469,24 @@
       "description": "Everything related to AUTENTICAÇÃO"
     },
     {
-      "name": "EVENTS",
-      "description": "Everything related to EVENTS"
+      "name": "EVENTOS",
+      "description": "Everything related to EVENTOS"
     },
     {
       "name": ":ID",
       "description": "Everything related to :ID"
     },
     {
-      "name": "EVENTS",
-      "description": "Everything related to EVENTS"
+      "name": "EVENTOS",
+      "description": "Everything related to EVENTOS"
     },
     {
-      "name": "EVENTS",
-      "description": "Everything related to EVENTS"
+      "name": "EVENTOS",
+      "description": "Everything related to EVENTOS"
     },
     {
-      "name": "EVENTS",
-      "description": "Everything related to EVENTS"
+      "name": "EVENTOS",
+      "description": "Everything related to EVENTOS"
     },
     {
       "name": "NOTICIAS",
