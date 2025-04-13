@@ -609,6 +609,197 @@ paths:
               description: "Workshop prático sobre programação"
               detailedContent: {}
               cover: "https://exemplo.com/imagem.jpg"
+  /events/{id}:
+    patch:
+      summary: "Update Event (handle)"
+      description: "Updates an existing event\n\n _app/infra/http/controllers/events/update.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID of the event to update"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "EVENTS"
+      responses:
+        200:
+          content:
+            text/plain:
+              example: "{\"id\": \"123\", \"title\": \"Workshop Atualizado\", \"date\": \"20/05/2025\", \"hour\": \"10:00"
+          description: "14:00\", \"location\": \"Centro de Eventos\", \"address\": \"Rua Nova, 200, Centro\", \"category\": \"WORKSHOP\", \"capacity\": 75, \"description\": \"Descrição atualizada do workshop\", \"detailedContent\": \"Conteúdo detalhado atualizado\", \"cover\": \"https://exemplo.com/nova-imagem.jpg\", \"createdAt\": \"2025-01-01T00:00:00.000Z\", \"updatedAt\": \"2025-04-13T15:30:00.000Z\"}"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+        404:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Evento não encontrado"
+              example:
+                message: "Evento não encontrado"
+          description: "Returns **404** (Not Found) as **application/json**"
+        500:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Mensagem de erro interno"
+              example:
+                message: "Mensagem de erro interno"
+          description: "Returns **500** (Internal Server Error) as **application/json**"
+      security:
+        - BearerAuth:
+            - "access"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: "object"
+              properties:
+                title: "Workshop Atualizado"
+                date: "20/05/2025"
+                hour: "10:00 - 14:00"
+                location: "Centro de Eventos"
+                address: "Rua Nova, 200, Centro"
+                category: "WORKSHOP"
+                capacity: 75
+                description: "Descrição atualizada do workshop"
+                detailedContent: "Conteúdo detalhado atualizado"
+                cover: "https://exemplo.com/nova-imagem.jpg"
+            example:
+              title: "Workshop Atualizado"
+              date: "20/05/2025"
+              hour: "10:00 - 14:00"
+              location: "Centro de Eventos"
+              address: "Rua Nova, 200, Centro"
+              category: "WORKSHOP"
+              capacity: 75
+              description: "Descrição atualizada do workshop"
+              detailedContent: "Conteúdo detalhado atualizado"
+              cover: "https://exemplo.com/nova-imagem.jpg"
+    delete:
+      summary: "Remoção de Eventos (handle)"
+      description: "Remove um evento específica pelo ID\n\n _app/infra/http/controllers/events/delete.controller.ts_ - **handle**"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "ID do evento a ser removido"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "EVENTS"
+      responses:
+        204:
+          content:
+            text/plain:
+              example: "Sem conteúdo"
+          description: "Returns **204** (No Content) as **text/plain**"
+        401:
+          description: "Returns **401** (Unauthorized)"
+        403:
+          description: "Returns **403** (Forbidden)"
+        404:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Evento não encontrada"
+              example:
+                message: "Evento não encontrada"
+          description: "Returns **404** (Not Found) as **application/json**"
+        500:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Mensagem de erro interno"
+              example:
+                message: "Mensagem de erro interno"
+          description: "Returns **500** (Internal Server Error) as **application/json**"
+      security:
+        - BearerAuth:
+            - "access"
+  /events/paginate:
+    get:
+      summary: "Paginated Events List (handle)"
+      description: "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/events/paginate.controller.ts_ - **handle**"
+      parameters:
+        - in: "query"
+          name: "page"
+          description: "Page number"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "perPage"
+          description: "Number of records per page"
+          schema:
+            example: ""
+            type: "number"
+          required: false
+        - in: "query"
+          name: "search"
+          description: "Search term"
+          schema:
+            example: ""
+            type: "string"
+          required: false
+      tags:
+        - "EVENTS"
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  data:
+                    type: "array"
+                    items:
+                      $ref: "#/components/schemas/Event"
+                  meta:
+                    $ref: "#/components/schemas/PaginationMeta"
+              example:
+                data:
+                  - {}
+                meta:
+                  total: 100
+                  page: 2
+                  perPage: 10
+                  currentPage: 3
+                  lastPage: 10
+                  firstPage: 1
+                  lastPageUrl: "/?page=10"
+                  firstPageUrl: "/?page=1"
+                  nextPageUrl: "/?page=6"
+                  previousPageUrl: "/?page=5"
+          description: "Returns **200** (OK) as **application/json**"
+        401:
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: "Not authorized"
+              example:
+                message: "Not authorized"
+          description: "Returns **401** (Unauthorized) as **application/json**"
+        403:
+          description: "Returns **403** (Forbidden)"
+      security:
+        - BearerAuth:
+            - "access"
   /documentation:
     get:
       summary: "route"
@@ -650,5 +841,11 @@ tags:
     description: "Everything related to NOTICIAS"
   - name: "NOTICIAS"
     description: "Everything related to NOTICIAS"
+  - name: "EVENTS"
+    description: "Everything related to EVENTS"
+  - name: "EVENTS"
+    description: "Everything related to EVENTS"
+  - name: "EVENTS"
+    description: "Everything related to EVENTS"
   - name: "EVENTS"
     description: "Everything related to EVENTS"
