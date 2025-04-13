@@ -1,4 +1,11 @@
-import type { EventCategory, NewsCategory, NewsStatus, UserRole, UserStatus } from '#core/constant'
+import type {
+  EventCategory,
+  NewsCategory,
+  NewsStatus,
+  TestimonialStatus,
+  UserRole,
+  UserStatus,
+} from '#core/constant'
 
 interface Base {
   id?: string
@@ -65,6 +72,15 @@ export interface Album extends Base {
   description: string
   cover: string | null
   images: string[]
+}
+
+export interface Testimonial extends Base {
+  name: string
+  position: string
+  rating: string
+  testimonial: string
+  photo: string | null
+  status: TestimonialStatus
 }
 
 interface Meta {

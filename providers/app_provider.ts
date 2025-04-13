@@ -2,8 +2,14 @@ import { AlbumContractRepository } from '#domain/album/repository'
 import { EventsContractRepository } from '#domain/event/repository'
 import { NewsContractRepository } from '#domain/news/repository'
 import { PodcastContractRepository } from '#domain/podcast/repository'
+import { TestimonialContractRepository } from '#domain/testimonial/repository'
 import { UserContractRepository } from '#domain/user/repository'
 import { VideoContractRepository } from '#domain/video/repository'
+<<<<<<< HEAD
+=======
+import TestimonialLucidRepository from '#infra/database/lucid/testimonial/repository'
+import VideoLucidRepository from '#infra/database/lucid/video/repository'
+>>>>>>> fb7eb1d (fix: autoswagger problem)
 import type { ApplicationService } from '@adonisjs/core/types'
 
 export default class AppProvider {
@@ -51,11 +57,16 @@ export default class AppProvider {
     this.app.container.bind(VideoContractRepository, () => {
       return this.app.container.make(VideoLucidRepository)
     })
+<<<<<<< HEAD
 
     const { default: AlbumLucidRepository } = await import('#infra/database/lucid/album/repository')
 
     this.app.container.bind(AlbumContractRepository, () => {
       return this.app.container.make(AlbumLucidRepository)
+=======
+    this.app.container.bind(TestimonialContractRepository, () => {
+      return this.app.container.make(TestimonialLucidRepository)
+>>>>>>> fb7eb1d (fix: autoswagger problem)
     })
   }
 
