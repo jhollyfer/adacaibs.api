@@ -1,7 +1,7 @@
 import { Paginated, Podcast } from '#core/entity'
 import { PodcastContractRepository } from '#domain/podcast/repository'
 import { PodcastMapper } from '#infra/database/lucid/podcast/mapper'
-import Model from '#infra/database/lucid/user/model'
+import Model from '#infra/database/lucid/podcast/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 
 export default class PodcastLucidRepository implements PodcastContractRepository {

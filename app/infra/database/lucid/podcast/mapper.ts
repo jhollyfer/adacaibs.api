@@ -1,5 +1,4 @@
 import { Podcast as Domain } from '#core/entity'
-// import { UniqueEntityId } from '#core/unique-entity-id'
 import Model from '#infra/database/lucid/podcast/model'
 import { ModelObject } from '@adonisjs/lucid/types/model'
 
