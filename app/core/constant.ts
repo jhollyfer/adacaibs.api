@@ -30,3 +30,9 @@ export enum EventCategory {
   COMMUNITY = 'COMMUNITY',
   ART = 'ART',
 }
+
+export enum TestimonialStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+}

@@ -1,8 +1,10 @@
 import { EventsContractRepository } from '#domain/event/repository'
 import { NewsContractRepository } from '#domain/news/repository'
 import { PodcastContractRepository } from '#domain/podcast/repository'
+import { TestimonialContractRepository } from '#domain/testimonial/repository'
 import { UserContractRepository } from '#domain/user/repository'
 import { VideoContractRepository } from '#domain/video/repository'
+import TestimonialLucidRepository from '#infra/database/lucid/testimonial/repository'
 import VideoLucidRepository from '#infra/database/lucid/video/repository'
 import type { ApplicationService } from '@adonisjs/core/types'
 
@@ -41,6 +43,9 @@ export default class AppProvider {
     })
     this.app.container.bind(VideoContractRepository, () => {
       return this.app.container.make(VideoLucidRepository)
+    })
+    this.app.container.bind(TestimonialContractRepository, () => {
+      return this.app.container.make(TestimonialLucidRepository)
     })
   }
 
