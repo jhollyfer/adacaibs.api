@@ -1,5 +1,5 @@
-import { Paginated, User } from '#core/entity'
-import { PaginationQuery } from '#infra/http/validators/query.validator'
+import type { Paginated, User } from '#core/entity'
+import type { PaginationQuery } from '#infra/http/validators/query.validator'
 
 export abstract class UserContractRepository {
   abstract authenticate(payload: User): Promise<{ token?: string }>

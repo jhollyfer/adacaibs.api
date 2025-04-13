@@ -9,11 +9,11 @@ services:
     expose:
       - 5432
     volumes:
-      - postgres_data:/bitnami/postgresql
+      - storage_db:/var/lib/postgres/data
     environment:
       POSTGRESQL_USERNAME: ${DB_USERNAME}
       POSTGRESQL_PASSWORD: ${DB_PASSWORD}
       POSTGRESQL_DATABASE: ${DB_DATABASE}
 
 volumes:
-  postgres_data:
+  storage_db:

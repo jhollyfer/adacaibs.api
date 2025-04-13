@@ -1,4 +1,4 @@
-import { UserRole, UserStatus } from '#core/constant'
+import type { NewsCategory, NewsStatus, UserRole, UserStatus } from '#core/constant'
 
 interface Base {
   id?: string
@@ -15,10 +15,10 @@ export interface User extends Base {
   status: UserStatus
 }
 
-export interface New extends Base {
+export interface News extends Base {
   title: string
-  category: string
-  status: string
+  category: NewsCategory
+  status: NewsStatus
   resume: string
   content: string
   cover: string | null
