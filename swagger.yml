@@ -183,7 +183,7 @@ paths:
           application/json: {}
     delete:
       summary: " (handle)"
-      description: "\n\n _app/infra/http/controllers/users/remove.controller.ts_ - **handle**"
+      description: "\n\n _app/infra/http/controllers/users/delete.controller.ts_ - **handle**"
       parameters:
         - in: "path"
           name: "id"
@@ -446,7 +446,7 @@ paths:
                 - "atualização"
     delete:
       summary: "Remoção de Notícia (handle)"
-      description: "Remove uma notícia específica pelo ID\n\n _app/infra/http/controllers/news/remove.controller.ts_ - **handle**"
+      description: "Remove uma notícia específica pelo ID\n\n _app/infra/http/controllers/news/delete.controller.ts_ - **handle**"
       parameters:
         - in: "path"
           name: "id"
