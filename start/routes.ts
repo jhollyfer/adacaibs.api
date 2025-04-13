@@ -10,9 +10,10 @@
 import router from '@adonisjs/core/services/router'
 
 import '#infra/http/routes/authentication.route'
-import '#infra/http/routes/user.route'
-import '#infra/http/routes/news.route'
 import '#infra/http/routes/event.route'
+import '#infra/http/routes/news.route'
+import '#infra/http/routes/podcast.route'
+import '#infra/http/routes/user.route'
 
 import swagger from '#config/swagger'
 import AutoSwagger from 'adonis-autoswagger'

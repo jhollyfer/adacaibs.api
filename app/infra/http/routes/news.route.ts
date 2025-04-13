@@ -2,10 +2,10 @@
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
-const NewsCreateController = () => import('#infra/http/controllers/news/create.controller')
-const NewsPaginateController = () => import('#infra/http/controllers/news/paginate.controller')
-const NewsUpdateController = () => import('#infra/http/controllers/news/update.controller')
-const NewsDeleteController = () => import('#infra/http/controllers/news/delete.controller')
+const NewsCreateController = () => import('#infra/http/controllers/new/create.controller')
+const NewsPaginateController = () => import('#infra/http/controllers/new/paginate.controller')
+const NewsUpdateController = () => import('#infra/http/controllers/new/update.controller')
+const NewsDeleteController = () => import('#infra/http/controllers/new/delete.controller')
 
 router
   .group(() => {

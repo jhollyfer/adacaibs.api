@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-const UserCreateController = () => import('#infra/http/controllers/users/create.controller')
+const UserCreateController = () => import('#infra/http/controllers/user/create.controller')
 
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
-const UserDeleteController = () => import('#infra/http/controllers/users/delete.controller')
-const UserUpdateController = () => import('#infra/http/controllers/users/update.controller')
-const UserPaginateController = () => import('#infra/http/controllers/users/paginate.controller')
+const UserDeleteController = () => import('#infra/http/controllers/user/delete.controller')
+const UserUpdateController = () => import('#infra/http/controllers/user/update.controller')
+const UserPaginateController = () => import('#infra/http/controllers/user/paginate.controller')
 
 router
   .group(() => {

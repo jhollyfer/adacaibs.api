@@ -2,7 +2,7 @@
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
-const EventCreateController = () => import('#infra/http/controllers/events/create.controller')
+const EventCreateController = () => import('#infra/http/controllers/event/create.controller')
 
 router
   .group(() => {

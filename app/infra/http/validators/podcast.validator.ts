@@ -32,6 +32,11 @@ export const PodcastSchema = {
   paginate: {
     query: PaginationQuerySchema,
   },
+  delete: {
+    params: vine.object({
+      id: vine.string().trim(),
+    }),
+  },
 }
 
 export const PodcastValidator = {
@@ -44,5 +49,8 @@ export const PodcastValidator = {
   },
   paginate: {
     query: vine.compile(PodcastSchema['paginate']['query']),
+  },
+  delete: {
+    params: vine.compile(PodcastSchema['delete']['params']),
   },
 }
