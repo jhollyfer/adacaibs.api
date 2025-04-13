@@ -9,9 +9,9 @@ export default class EventsUpdateController {
 
   /**
    * @handle
-   * @tag Events
-   * @summary Update Event
-   * @description Updates an existing event
+   * @tag Eventos
+   * @summary Atualizar Evento
+   * @description Atualizar um evento existente
    * @paramPath id - ID of the event to update - @type(string)
    * @requestBody {"title": "Workshop Atualizado", "date": "20/05/2025", "hour": "10:00 - 14:00", "location": "Centro de Eventos", "address": "Rua Nova, 200, Centro", "category": "WORKSHOP", "capacity": 75, "description": "Descrição atualizada do workshop", "detailedContent": "Conteúdo detalhado atualizado", "cover": "https://exemplo.com/nova-imagem.jpg"}
    * @responseBody 200 - {"id": "123", "title": "Workshop Atualizado", "date": "20/05/2025", "hour": "10:00 - 14:00", "location": "Centro de Eventos", "address": "Rua Nova, 200, Centro", "category": "WORKSHOP", "capacity": 75, "description": "Descrição atualizada do workshop", "detailedContent": "Conteúdo detalhado atualizado", "cover": "https://exemplo.com/nova-imagem.jpg", "createdAt": "2025-01-01T00:00:00.000Z", "updatedAt": "2025-04-13T15:30:00.000Z"}

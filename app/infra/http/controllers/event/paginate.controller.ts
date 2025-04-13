@@ -9,9 +9,9 @@ export default class EventsPaginateController {
 
   /**
    * @handle
-   * @tag Events
-   * @summary Paginated Events List
-   * @description Paginated Events List
+   * @tag Eventos
+   * @summary Lista Paginada de Eventos
+   * @description Lista Paginada de Eventos
    * @paramQuery page - Page number - @type(number)
    * @paramQuery perPage - Number of records per page - @type(number)
    * @paramQuery search - Search term - @type(string)

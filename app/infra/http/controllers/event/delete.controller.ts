@@ -9,9 +9,9 @@ export default class EventsDeleteController {
 
   /**
    * @handle
-   * @tag Events
-   * @summary Remoção de Eventos
-   * @description Remove um evento específica pelo ID
+   * @tag Eventos
+   * @summary Excluir Evento
+   * @description Excluir um evento específico pelo ID
    * @paramPath id - ID do evento a ser removido - @type(string)
    * @responseBody 204 - Sem conteúdo
    * @responseBody 404 - {"message": "Evento não encontrada"}
