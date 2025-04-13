@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 
+import '#infra/http/routes/album.route'
 import '#infra/http/routes/authentication.route'
 import '#infra/http/routes/event.route'
 import '#infra/http/routes/news.route'
