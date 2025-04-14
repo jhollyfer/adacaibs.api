@@ -1,11 +1,11 @@
-import UserDeleteUserCase from '#domain/user/use-cases/delete.use-case'
+import UserDeleteUseCase from '#domain/user/use-cases/delete.use-case'
 import { UserValidator } from '#infra/http/validators/user.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class UserDeleteController {
-  constructor(private readonly useCase: UserDeleteUserCase) {}
+  constructor(private readonly useCase: UserDeleteUseCase) {}
   async handle(context: HttpContext): Promise<void> {
     const validator = UserValidator['delete']
     const params = await validator['params'].validate(context.request.params())

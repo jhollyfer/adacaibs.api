@@ -1,8 +1,8 @@
 import { Album, Paginated } from '#core/entity'
 import { AlbumContractRepository } from '#domain/album/repository'
+import { AlbumMapper } from '#infra/database/lucid/album/mapper'
 import Model from '#infra/database/lucid/video/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
-import { AlbumMapper } from './mapper.js'
 
 export default class AlbumLucidRepository implements AlbumContractRepository {
   async create(payload: Album): Promise<Album> {

@@ -1,8 +1,8 @@
 import { Either, left, right } from '#core/either'
+import { EventContractRepository } from '#domain/event/repository'
 import { EventSchema } from '#infra/http/validators/event.validator'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
-import { EventContractRepository } from '../repository.js'
 
 type Result = Either<Error, null>
 type Payload = Infer<(typeof EventSchema)['delete']['params']>

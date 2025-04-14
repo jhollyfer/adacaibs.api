@@ -1,15 +1,15 @@
 import { UserRole, UserStatus } from '#core/constant'
-import UserDeleteUserCase from '#domain/user/use-cases/delete.use-case'
+import UserDeleteUseCase from '#domain/user/use-cases/delete.use-case'
 import UserInMemoryRepository from '#tests/repositories/user'
 import { test } from '@japa/runner'
 
 let userRepository: UserInMemoryRepository
-let sut: UserDeleteUserCase
+let sut: UserDeleteUseCase
 
 test.group('User > Delete > Use Case', (group) => {
   group.each.setup(async () => {
     userRepository = new UserInMemoryRepository()
-    sut = new UserDeleteUserCase(userRepository)
+    sut = new UserDeleteUseCase(userRepository)
   })
 
   test('it should be able to delete a user', async ({ expect }) => {

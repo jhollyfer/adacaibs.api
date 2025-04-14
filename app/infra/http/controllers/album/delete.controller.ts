@@ -1,11 +1,11 @@
-import AlbumDeleteUserCase from '#domain/album/use-cases/delete.use-case'
+import AlbumDeleteUseCase from '#domain/album/use-cases/delete.use-case'
 import { AlbumValidator } from '#infra/http/validators/album.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class AlbumDeleteController {
-  constructor(private readonly useCase: AlbumDeleteUserCase) {}
+  constructor(private readonly useCase: AlbumDeleteUseCase) {}
 
   async handle(context: HttpContext): Promise<void> {
     const validator = AlbumValidator['delete']

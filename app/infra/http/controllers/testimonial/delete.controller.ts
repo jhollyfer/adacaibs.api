@@ -1,11 +1,11 @@
-import TestimonialDeleteUserCase from '#domain/testimonial/use-case/delete.use-case'
+import TestimonialDeleteUseCase from '#domain/testimonial/use-case/delete.use-case'
 import { TestimonialValidator } from '#infra/http/validators/testimonial.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class TestimonialDeleteController {
-  constructor(private readonly useCase: TestimonialDeleteUserCase) {}
+  constructor(private readonly useCase: TestimonialDeleteUseCase) {}
 
   // /**
   //  * @handle

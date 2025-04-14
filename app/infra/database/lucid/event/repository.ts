@@ -1,8 +1,8 @@
 import { Events, Paginated } from '#core/entity'
 import { EventContractRepository } from '#domain/event/repository'
+import { EventMapper } from '#infra/database/lucid/event/mapper'
 import Model from '#infra/database/lucid/event/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
-import { EventMapper } from './mapper.js'
 
 export default class EventLucidRepository implements EventContractRepository {
   async create(payload: Events): Promise<Events> {

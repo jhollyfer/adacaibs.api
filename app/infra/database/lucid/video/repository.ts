@@ -1,8 +1,8 @@
 import { Paginated, Video } from '#core/entity'
 import { VideoContractRepository } from '#domain/video/repository'
+import { VideoMapper } from '#infra/database/lucid/video/mapper'
 import Model from '#infra/database/lucid/video/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
-import { VideoMapper } from './mapper.js'
 
 export default class VideoLucidRepository implements VideoContractRepository {
   async create(payload: Video): Promise<Video> {

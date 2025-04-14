@@ -3,8 +3,8 @@ import { Testimonial } from '#core/entity'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
 
+import { TestimonialContractRepository } from '#domain/testimonial/repository'
 import { TestimonialSchema } from '#infra/http/validators/testimonial.validator'
-import { TestimonialContractRepository } from '../repository.js'
 
 type Payload = Infer<(typeof TestimonialSchema)['create']['body']>
 

@@ -1,8 +1,8 @@
 import { Paginated, Testimonial } from '#core/entity'
 import { TestimonialContractRepository } from '#domain/testimonial/repository'
+import { TestimonialMapper } from '#infra/database/lucid/testimonial/mapper'
 import Model from '#infra/database/lucid/testimonial/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
-import { TestimonialMapper } from './mapper.js'
 
 export default class TestimonialLucidRepository implements TestimonialContractRepository {
   async create(payload: Testimonial): Promise<Testimonial> {

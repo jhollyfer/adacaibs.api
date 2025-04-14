@@ -1,9 +1,9 @@
 import { Either, left, right } from '#core/either'
 import { Events } from '#core/entity'
+import { EventContractRepository } from '#domain/event/repository'
 import { EventSchema } from '#infra/http/validators/event.validator'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
-import { EventContractRepository } from '../repository.js'
 
 type Body = Infer<(typeof EventSchema)['update']['body']>
 type Params = Infer<(typeof EventSchema)['update']['params']>

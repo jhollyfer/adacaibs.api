@@ -2,13 +2,13 @@ import AlbumCreateUseCase from '#domain/album/use-cases/create.use-case'
 import AlbumInMemoryRepository from '#tests/repositories/album'
 import { test } from '@japa/runner'
 
-let userRepository: AlbumInMemoryRepository
+let albumRepository: AlbumInMemoryRepository
 let sut: AlbumCreateUseCase
 
 test.group('Album > Create > Use Case', (group) => {
   group.each.setup(async () => {
-    userRepository = new AlbumInMemoryRepository()
-    sut = new AlbumCreateUseCase(userRepository)
+    albumRepository = new AlbumInMemoryRepository()
+    sut = new AlbumCreateUseCase(albumRepository)
   })
 
   test('it should be able to create a album', async ({ expect }) => {

@@ -1,9 +1,9 @@
 import { Either, left, right } from '#core/either'
 import { Testimonial } from '#core/entity'
+import { TestimonialContractRepository } from '#domain/testimonial/repository'
 import { TestimonialSchema } from '#infra/http/validators/testimonial.validator'
 import { inject } from '@adonisjs/core'
 import { Infer } from '@vinejs/vine/types'
-import { TestimonialContractRepository } from '../repository.js'
 
 type Body = Infer<(typeof TestimonialSchema)['update']['body']>
 type Params = Infer<(typeof TestimonialSchema)['update']['params']>

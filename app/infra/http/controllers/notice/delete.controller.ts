@@ -1,11 +1,11 @@
-import NoticeDeleteUserCase from '#domain/notice/use-cases/delete.use-case'
+import NoticeDeleteUseCase from '#domain/notice/use-cases/delete.use-case'
 import { NoticeValidator } from '#infra/http/validators/notice.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class NoticeDeleteController {
-  constructor(private readonly useCase: NoticeDeleteUserCase) {}
+  constructor(private readonly useCase: NoticeDeleteUseCase) {}
 
   /**
    * @handle

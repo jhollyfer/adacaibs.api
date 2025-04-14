@@ -1,8 +1,8 @@
 import { UserRole, UserStatus } from '#core/constant'
 import { User } from '#core/entity'
+import UserPaginateUseCase from '#domain/user/use-cases/paginate.use-case'
 import UserInMemoryRepository from '#tests/repositories/user'
 import { test } from '@japa/runner'
-import UserPaginateUseCase from './paginate.use-case.js'
 
 let userRepository: UserInMemoryRepository
 let sut: UserPaginateUseCase

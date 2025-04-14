@@ -1,8 +1,8 @@
 import { Either, right } from '#core/either'
 import { Events, Paginated } from '#core/entity'
+import { EventContractRepository } from '#domain/event/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { inject } from '@adonisjs/core'
-import { EventContractRepository } from '../repository.js'
 
 type Result = Either<null, Paginated<Events[]>>
 

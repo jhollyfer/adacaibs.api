@@ -1,11 +1,11 @@
-import VideoDeleteUserCase from '#domain/video/use-case/delete.use-case'
+import VideoDeleteUseCase from '#domain/video/use-case/delete.use-case'
 import { VideoValidator } from '#infra/http/validators/video.validator'
 import { inject } from '@adonisjs/core'
 import type { HttpContext } from '@adonisjs/core/http'
 
 @inject()
 export default class VideoDeleteController {
-  constructor(private readonly useCase: VideoDeleteUserCase) {}
+  constructor(private readonly useCase: VideoDeleteUseCase) {}
 
   async handle(context: HttpContext): Promise<void> {
     const validator = VideoValidator['delete']

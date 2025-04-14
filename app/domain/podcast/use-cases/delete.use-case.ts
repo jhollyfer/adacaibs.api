@@ -8,7 +8,7 @@ type Result = Either<Error, null>
 type Payload = Infer<(typeof PodcastSchema)['delete']['params']>
 
 @inject()
-export default class PodcastDeleteUserCase {
+export default class PodcastDeleteUseCase {
   constructor(private readonly podcastRepository: PodcastContractRepository) {}
   async execute(payload: Payload): Promise<Result> {
     const podcast = await this.podcastRepository.findById(payload.id)

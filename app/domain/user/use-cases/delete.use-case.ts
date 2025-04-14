@@ -8,7 +8,7 @@ type Result = Either<Error, null>
 type Payload = Infer<(typeof UserSchema)['delete']['params']>
 
 @inject()
-export default class UserDeleteUserCase {
+export default class UserDeleteUseCase {
   constructor(private readonly userRepository: UserContractRepository) {}
   async execute(payload: Payload): Promise<Result> {
     const user = await this.userRepository.findById(payload.id)

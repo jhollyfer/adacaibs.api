@@ -1,18 +1,18 @@
-import AlbumDeleteUserCase from '#domain/album/use-cases/delete.use-case'
+import AlbumDeleteUseCase from '#domain/album/use-cases/delete.use-case'
 import AlbumInMemoryRepository from '#tests/repositories/album'
 import { test } from '@japa/runner'
 
-let userRepository: AlbumInMemoryRepository
-let sut: AlbumDeleteUserCase
+let albumRepository: AlbumInMemoryRepository
+let sut: AlbumDeleteUseCase
 
 test.group('Album > Delete > Use Case', (group) => {
   group.each.setup(async () => {
-    userRepository = new AlbumInMemoryRepository()
-    sut = new AlbumDeleteUserCase(userRepository)
+    albumRepository = new AlbumInMemoryRepository()
+    sut = new AlbumDeleteUseCase(albumRepository)
   })
 
   test('it should be able to delete a album', async ({ expect }) => {
-    const created = await userRepository.create({
+    const created = await albumRepository.create({
       cover: 'Capa do album',
       date: '2023-01-01',
       description: 'Descrição completo do album',
@@ -23,7 +23,7 @@ test.group('Album > Delete > Use Case', (group) => {
     const result = await sut.execute({ id: created.id! })
     expect(result.isRight()).toBe(true)
 
-    const user = await userRepository.findById(created.id!)
+    const user = await albumRepository.findById(created.id!)
     expect(user).toBeNull()
   })
 })

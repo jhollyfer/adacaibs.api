@@ -8,7 +8,7 @@ type Result = Either<Error, null>
 type Payload = Infer<(typeof AlbumSchema)['delete']['params']>
 
 @inject()
-export default class AlbumDeleteUserCase {
+export default class AlbumDeleteUseCase {
   constructor(private readonly albumRepository: AlbumContractRepository) {}
   async execute(payload: Payload): Promise<Result> {
     const album = await this.albumRepository.findById(payload.id)
