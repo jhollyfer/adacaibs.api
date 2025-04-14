@@ -11,9 +11,9 @@ export default class AlbumCreateController {
    * @handle
    * @tag Albums
    * @summary Criação de Album
-   * @description Criação de Album
-   * @requestBody {"title": "Como usar TypeScript", "date": "2025-04-13", "duration": "01:23:45", "instructor": "John Doe", "url": "https://example.com/videos/typescript", "description": "Tutorial completo de TypeScript", "thumbnail": "https://example.com/thumbs/typescript.jpg"}
-   * @responseBody 201 - <Video>
+   * @description Endpoint para criação de um novo álbum com dados básicos
+   * @requestBody {"title": "Meu Album", "date": "2024-04-13", "description": "Descrição do album", "cover": "https://example.com/cover.jpg", "images": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"]}
+   * @responseBody 201 - {"id": 1, "title": "Meu Album", "date": "2024-04-13", "description": "Descrição do album", "cover": "https://example.com/cover.jpg", "images": ["https://example.com/image1.jpg", "https://example.com/image2.jpg"]}
    */
 
   async handle(context: HttpContext): Promise<void> {

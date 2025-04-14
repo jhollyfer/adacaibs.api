@@ -10,13 +10,13 @@ export default class AlbumUpdateController {
   /**
    * @handle
    * @tag Albums
-   * @summary Update Album
-   * @description Updates an existing Album
-   * @paramPath id - ID of the video to update - @type(string)
-   * @requestBody {"title": "TypeScript Avançado", "date": "13/04/2025", "duration": "01:45:30", "instructor": "Jane Smith", "url": "https://exemplo.com/videos/typescript-avancado", "description": "Curso atualizado de TypeScript avançado", "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg"}
-   * @responseBody 200 - {"id": "123", "title": "TypeScript Avançado", "date": "13/04/2025", "duration": "01:45:30", "instructor": "Jane Smith", "url": "https://exemplo.com/videos/typescript-avancado", "description": "Curso atualizado de TypeScript avançado", "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg", "createdAt": "2025-01-01T00:00:00.000Z", "updatedAt": "2025-04-13T15:30:00.000Z"}
-   * @responseBody 404 - {"message": "Video não encontrado"}
-   * @responseBody 500 - {"message": "Mensagem de erro interno"}
+   * @summary Atualizar Álbum
+   * @description Endpoint para atualizar um álbum existente
+   * @paramPath id - ID do álbum a ser atualizado - @type(string)
+   * @requestBody {"title": "Meu Album Atualizado", "date": "2024-04-15", "description": "Nova descrição", "cover": "https://exemplo.com/nova-capa.jpg", "images": ["https://exemplo.com/nova-imagem1.jpg"]}
+   * @responseBody 200 - {"id": "123", "title": "Meu Album Atualizado", "date": "2024-04-15", "description": "Nova descrição", "cover": "https://exemplo.com/nova-capa.jpg", "images": ["https://exemplo.com/nova-imagem1.jpg"], "createdAt": "2024-01-01T00:00:00.000Z", "updatedAt": "2024-04-15T12:30:00.000Z"}
+   * @responseBody 404 - {"message": "Album não encontrado"}
+   * @responseBody 500 - {"message": "Erro interno no servidor"}
    */
   async handle(context: HttpContext): Promise<void> {
     const validator = AlbumValidator['update']
