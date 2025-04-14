@@ -11,9 +11,10 @@ export default class EventCreateController {
    * @handle
    * @tag Eventos
    * @summary Criar Evento
-   * @description Criar um novo exemplo
-   * @requestBody {"title": "Workshop de Programação", "date": "15/05/2025", "hour": "14:00 - 18:00", "location": "Centro de Convenções", "address": "Av. Principal, 1000, Centro", "category": "WORKSHOP", "capacity": 50, "description": "Workshop prático sobre programação", "detailedContent": "Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.", "cover": "https://exemplo.com/imagem.jpg"}
-   * @responseBody 201 - {"id": "1", "title": "Workshop de Programação", "date": "15/05/2025", "hour": "14:00 - 18:00", "location": "Centro de Convenções", "address": "Av. Principal, 1000, Centro", "category": "WORKSHOP", "capacity": 50, "description": "Workshop prático sobre programação", "detailedContent": "Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.", "cover": "https://exemplo.com/imagem.jpg", "createdAt": "2025-04-13T12:34:56.789Z", "updatedAt": "2025-04-13T12:34:56.789Z"}
+   * @description Endpoint para criação de um novo evento com todos os detalhes necessários
+   * @requestBody {"title": "Workshop de TypeScript", "date": "2025-05-15", "hour": "14:00", "location": "Centro de Tecnologia", "address": "Rua das Inovações, 123", "category": "WORKSHOP", "capacity": 100, "description": "Introdução prática ao TypeScript", "detailedContent": "Conteúdo detalhado com exemplos práticos...", "cover": "https://exemplo.com/capa-evento.jpg"}
+   * @responseBody 201 - {"id": "550e8400-e29b-41d4-a716-446655440000", "title": "Workshop de TypeScript", "date": "2025-05-15", "hour": "14:00", "location": "Centro de Tecnologia", "address": "Rua das Inovações, 123", "category": "WORKSHOP", "capacity": 100, "description": "Introdução prática ao TypeScript", "detailedContent": "Conteúdo detalhado com exemplos práticos...", "cover": "https://exemplo.com/capa-evento.jpg", "createdAt": "2025-05-01T10:00:00.000Z", "updatedAt": "2025-05-01T10:00:00.000Z"}
+   * @responseBody 500 - {"message": "Erro interno no servidor"}
    */
   async handle(context: HttpContext): Promise<void> {
     const validator = EventValidator['create']

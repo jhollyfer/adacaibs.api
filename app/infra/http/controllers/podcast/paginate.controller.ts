@@ -10,13 +10,13 @@ export default class PodcastPaginateController {
   /**
    * @handle
    * @tag Podcasts
-   * @summary Lista de Podcast Paginada
-   * @description Lista de Podcast Paginada
-   * @paramQuery page - Número da página - @type(number)
-   * @paramQuery perPage - Quantidade de registros por página - @type(number)
-   * @paramQuery search - Termo de busca - @type(string)
-   * @responseBody 200 - <User[]>.paginated()
-   * @responseBody 401 - {"message": "Não autorizado"}
+   * @summary Listagem Paginada de Podcasts
+   * @description Endpoint para listar podcasts com paginação e busca
+   * @paramQuery page - Número da página - @type(number) @example(1)
+   * @paramQuery perPage - Itens por página - @type(number) @example(10)
+   * @paramQuery search - Termo de busca - @type(string) @example("tecnologia")
+   * @responseBody 200 - {"meta":{"total":50,"currentPage":1,"perPage":10,"lastPage":5},"data":[{"id":"1","title":"Tendências Tech","date":"2024-05-15","duration":"01:00:00","presenters":["Ana Silva"],"guests":["Carlos Oliveira"],"description":"Discussão sobre inovações","cover":"https://exemplo.com/capa.jpg","content":"Conteúdo completo","createdAt":"2024-05-01T00:00:00.000Z","updatedAt":"2024-05-01T00:00:00.000Z"}]}
+   * @responseBody 401 - {"message":"Não autorizado"}
    */
   async handle(context: HttpContext): Promise<void> {
     const validator = PodcastValidator['paginate']

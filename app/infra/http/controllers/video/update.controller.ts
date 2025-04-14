@@ -9,15 +9,16 @@ export default class VideoUpdateController {
 
   /**
    * @handle
-   * @tag Videos
-   * @summary Update Video
-   * @description Updates an existing video
-   * @paramPath id - ID of the video to update - @type(string)
-   * @requestBody {"title": "TypeScript Avançado", "date": "13/04/2025", "duration": "01:45:30", "instructor": "Jane Smith", "url": "https://exemplo.com/videos/typescript-avancado", "description": "Curso atualizado de TypeScript avançado", "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg"}
-   * @responseBody 200 - {"id": "123", "title": "TypeScript Avançado", "date": "13/04/2025", "duration": "01:45:30", "instructor": "Jane Smith", "url": "https://exemplo.com/videos/typescript-avancado", "description": "Curso atualizado de TypeScript avançado", "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg", "createdAt": "2025-01-01T00:00:00.000Z", "updatedAt": "2025-04-13T15:30:00.000Z"}
-   * @responseBody 404 - {"message": "Video não encontrado"}
-   * @responseBody 500 - {"message": "Mensagem de erro interno"}
+   * @tag Vídeos
+   * @summary Atualizar Vídeo
+   * @description Endpoint para atualizar os dados de um vídeo existente
+   * @paramPath id - ID único do vídeo - @type(string) @example("550e8400-e29b-41d4-a716-446655440000")
+   * @requestBody {"title":"TypeScript Avançado","date":"2024-05-25","duration":"02:00:00","instructor":"John Doe","url":"https://exemplo.com/videos/typescript-avancado","description":"Conteúdo atualizado","thumbnail":"https://exemplo.com/novo-thumbnail.jpg"}
+   * @responseBody 200 - {"id":"1","title":"TypeScript Avançado","date":"2024-05-25","duration":"02:00:00","instructor":"John Doe","url":"https://exemplo.com/videos/typescript-avancado","description":"Conteúdo atualizado","thumbnail":"https://exemplo.com/novo-thumbnail.jpg","createdAt":"2024-05-01T00:00:00.000Z","updatedAt":"2024-05-25T15:30:00.000Z"}
+   * @responseBody 404 - {"message":"Video não encontrado"}
+   * @responseBody 500 - {"message":"Erro ao atualizar vídeo"}
    */
+
   async handle(context: HttpContext): Promise<void> {
     const validator = VideoValidator['update']
     const body = await validator['body'].validate(context.request.body())

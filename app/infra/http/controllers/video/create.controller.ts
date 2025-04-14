@@ -9,11 +9,12 @@ export default class VideoCreateController {
 
   /**
    * @handle
-   * @tag Videos
-   * @summary Criação de Video
-   * @description Criação de Video
-   * @requestBody {"title": "Como usar TypeScript", "date": "2025-04-13", "duration": "01:23:45", "instructor": "John Doe", "url": "https://example.com/videos/typescript", "description": "Tutorial completo de TypeScript", "thumbnail": "https://example.com/thumbs/typescript.jpg"}
-   * @responseBody 201 - <Video>
+   * @tag Vídeos
+   * @summary Criar Vídeo
+   * @description Endpoint para cadastrar um novo vídeo educacional
+   * @requestBody {"title":"Introdução ao TypeScript","date":"2024-05-20","duration":"01:23:45","instructor":"John Doe","url":"https://exemplo.com/videos/typescript","description":"Tutorial completo de TypeScript","thumbnail":"https://exemplo.com/thumbs/typescript.jpg"}
+   * @responseBody 201 - {"id":"1","title":"Introdução ao TypeScript","date":"2024-05-20","duration":"01:23:45","instructor":"John Doe","url":"https://exemplo.com/videos/typescript","description":"Tutorial completo de TypeScript","thumbnail":"https://exemplo.com/thumbs/typescript.jpg","createdAt":"2024-05-15T10:00:00.000Z","updatedAt":"2024-05-15T10:00:00.000Z"}
+   * @responseBody 500 - {"message":"Erro interno no servidor"}
    */
 
   async handle(context: HttpContext): Promise<void> {

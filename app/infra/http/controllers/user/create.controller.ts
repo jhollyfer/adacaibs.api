@@ -10,10 +10,12 @@ export default class UserCreateController {
   /**
    * @handle
    * @tag Usuários
-   * @summary Criação de Usuário
-   * @description Criação de Usuário
-   * @requestBody {"email": "example@adacaibs.com", "name": "John Doe", "role": "ADMINISTRATOR"}
-   * @responseBody 201 - <User>
+   * @summary Criar Usuário
+   * @description Endpoint para criação de novos usuários no sistema
+   * @requestBody {"name":"João Silva","email":"joao.silva@exemplo.com","role":"ADMINISTRATOR","avatar":"https://exemplo.com/avatar.jpg"}
+   * @responseBody 201 - {"id":"550e8400-e29b-41d4-a716-446655440000","name":"João Silva","email":"joao.silva@exemplo.com","role":"ADMINISTRATOR","avatar":"https://exemplo.com/avatar.jpg","createdAt":"2024-05-20T10:00:00.000Z","updatedAt":"2024-05-20T10:00:00.000Z"}
+   * @responseBody 409 - {"message":"Usuário já cadastrado"}
+   * @responseBody 500 - {"message":"Erro interno no servidor"}
    */
 
   async handle(context: HttpContext): Promise<void> {

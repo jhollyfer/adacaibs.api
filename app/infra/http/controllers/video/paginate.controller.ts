@@ -9,14 +9,14 @@ export default class VideoPaginateController {
 
   /**
    * @handle
-   * @tag Videos
-   * @summary Lista de Videos Paginada
-   * @description Lista de Videos Paginada
-   * @paramQuery page - Número da página - @type(number)
-   * @paramQuery perPage - Quantidade de registros por página - @type(number)
-   * @paramQuery search - Termo de busca - @type(string)
-   * @responseBody 200 - <Video[]>.paginated()
-   * @responseBody 401 - {"message": "Não autorizado"}
+   * @tag Vídeos
+   * @summary Listagem Paginada de Vídeos
+   * @description Endpoint para listar vídeos com paginação e busca
+   * @paramQuery page - Número da página - @type(number) @example(1)
+   * @paramQuery perPage - Itens por página - @type(number) @example(10)
+   * @paramQuery search - Termo de busca - @type(string) @example("TypeScript")
+   * @responseBody 200 - {"meta":{"total":100,"currentPage":1,"perPage":10,"lastPage":10},"data":[{"id":"1","title":"Introdução ao TypeScript","date":"2024-05-20","duration":"01:23:45","instructor":"John Doe","url":"https://exemplo.com/videos/typescript","description":"Tutorial completo","thumbnail":"https://exemplo.com/thumbs/typescript.jpg","createdAt":"2024-05-15T10:00:00.000Z","updatedAt":"2024-05-15T10:00:00.000Z"}]}
+   * @responseBody 401 - {"message":"Não autorizado"}
    */
   async handle(context: HttpContext): Promise<void> {
     const validator = VideoValidator['paginate']
