@@ -1,4 +1,4 @@
-import { Paginated, User } from '#core/entity'
+import { Paginated, Payload, User } from '#core/entity'
 import { UserContractRepository } from '#domain/user/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -12,7 +12,7 @@ export default class UserInMemoryRepository implements UserContractRepository {
     }
   }
 
-  async create(payload: User): Promise<User> {
+  async create(payload: Payload<User>): Promise<User> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -21,7 +21,7 @@ export default class UserInMemoryRepository implements UserContractRepository {
     return { id, ...payload }
   }
 
-  async save(user: User): Promise<User> {
+  async save(user: Payload<User>): Promise<User> {
     const itemIndex = this.items.findIndex((item) => item.id === user.id)
     this.items[itemIndex] = user
     return this.items[itemIndex]

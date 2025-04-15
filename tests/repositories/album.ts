@@ -1,4 +1,4 @@
-import { Album, Paginated } from '#core/entity'
+import { Album, Paginated, Payload } from '#core/entity'
 import { AlbumContractRepository } from '#domain/album/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 export default class AlbumInMemoryRepository implements AlbumContractRepository {
   public items: Album[] = []
 
-  async create(payload: Album): Promise<Album> {
+  async create(payload: Payload<Album>): Promise<Album> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -15,7 +15,7 @@ export default class AlbumInMemoryRepository implements AlbumContractRepository 
     return { id, ...payload }
   }
 
-  async save(payload: Album): Promise<Album> {
+  async save(payload: Payload<Album>): Promise<Album> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
     this.items[itemIndex] = payload
     return this.items[itemIndex]

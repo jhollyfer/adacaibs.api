@@ -1,4 +1,4 @@
-import { Paginated, Podcast } from '#core/entity'
+import { Paginated, Payload, Podcast } from '#core/entity'
 import { PodcastContractRepository } from '#domain/podcast/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 export default class PodcastInMemoryRepository implements PodcastContractRepository {
   public items: Podcast[] = []
 
-  async create(payload: Podcast): Promise<Podcast> {
+  async create(payload: Payload<Podcast>): Promise<Podcast> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -49,7 +49,7 @@ export default class PodcastInMemoryRepository implements PodcastContractReposit
     return result
   }
 
-  async save(payload: Podcast): Promise<Podcast> {
+  async save(payload: Payload<Podcast>): Promise<Podcast> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
     this.items[itemIndex] = payload
     return this.items[itemIndex]

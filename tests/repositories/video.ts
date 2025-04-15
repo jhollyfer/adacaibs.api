@@ -1,4 +1,4 @@
-import { Paginated, Video } from '#core/entity'
+import { Paginated, Payload, Video } from '#core/entity'
 import { VideoContractRepository } from '#domain/video/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 export default class VideoInMemoryRepository implements VideoContractRepository {
   public items: Video[] = []
 
-  async create(payload: Video): Promise<Video> {
+  async create(payload: Payload<Video>): Promise<Video> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -15,7 +15,7 @@ export default class VideoInMemoryRepository implements VideoContractRepository 
     return { id, ...payload }
   }
 
-  async save(payload: Video): Promise<Video> {
+  async save(payload: Payload<Video>): Promise<Video> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
     this.items[itemIndex] = payload
     return this.items[itemIndex]

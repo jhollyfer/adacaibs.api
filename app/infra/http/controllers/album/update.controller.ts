@@ -12,7 +12,7 @@ export default class AlbumUpdateController {
    * @tag Albums
    * @summary Atualizar Álbum
    * @description Endpoint para atualizar um álbum existente
-   * @paramPath id - ID do álbum a ser atualizado - @type(string)
+   * @paramPath id - ID do álbum a ser atualizado - @type(string) @required @format(uuid)
    * @requestBody {"title": "Meu Album Atualizado", "date": "2024-04-15", "description": "Nova descrição", "cover": "https://exemplo.com/nova-capa.jpg", "images": ["https://exemplo.com/nova-imagem1.jpg"]}
    * @responseBody 200 - {"id": "123", "title": "Meu Album Atualizado", "date": "2024-04-15", "description": "Nova descrição", "cover": "https://exemplo.com/nova-capa.jpg", "images": ["https://exemplo.com/nova-imagem1.jpg"], "createdAt": "2024-01-01T00:00:00.000Z", "updatedAt": "2024-04-15T12:30:00.000Z"}
    * @responseBody 404 - {"message": "Album não encontrado"}
@@ -22,6 +22,9 @@ export default class AlbumUpdateController {
     const validator = AlbumValidator['update']
     const body = await validator['body'].validate(context.request.body())
     const params = await validator['params'].validate(context.request.params())
+    console.log(context.request.params())
+    console.log({ ...body, ...params })
+
     const result = await this.useCase.execute({ ...body, ...params })
 
     if (result.isLeft()) {

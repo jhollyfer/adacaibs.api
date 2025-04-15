@@ -1,4 +1,4 @@
-import { Notice, Paginated } from '#core/entity'
+import { Notice, Paginated, Payload } from '#core/entity'
 import { NoticeContractRepository } from '#domain/notice/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 export default class NoticeInMemoryRepository implements NoticeContractRepository {
   public items: Notice[] = []
 
-  async create(payload: Notice): Promise<Notice> {
+  async create(payload: Payload<Notice>): Promise<Notice> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -15,7 +15,7 @@ export default class NoticeInMemoryRepository implements NoticeContractRepositor
     return { id, ...payload }
   }
 
-  async save(payload: Notice): Promise<Notice> {
+  async save(payload: Payload<Notice>): Promise<Notice> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
     this.items[itemIndex] = payload
     return this.items[itemIndex]

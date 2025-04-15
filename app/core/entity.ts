@@ -6,11 +6,12 @@ import type {
   UserRole,
   UserStatus,
 } from '#core/constant'
+import { DateTime } from 'luxon'
 
 interface Base {
   id?: string
-  createdAt?: Date
-  updatedAt?: Date | null
+  createdAt?: Date | DateTime
+  updatedAt?: Date | DateTime | null
 }
 
 export interface User extends Base {
@@ -100,3 +101,5 @@ export interface Paginated<Entity> {
   data: Entity
   meta: Meta
 }
+
+export type Payload<T extends Base> = Omit<T, 'createdAt' | 'updatedAt'>

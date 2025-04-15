@@ -1,4 +1,4 @@
-import { Events, Paginated } from '#core/entity'
+import { Events, Paginated, Payload } from '#core/entity'
 import { EventContractRepository } from '#domain/event/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 export default class EventInMemoryRepository implements EventContractRepository {
   public items: Events[] = []
 
-  async create(payload: Events): Promise<Events> {
+  async create(payload: Payload<Events>): Promise<Events> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -15,7 +15,7 @@ export default class EventInMemoryRepository implements EventContractRepository 
     return { id, ...payload }
   }
 
-  async save(payload: Events): Promise<Events> {
+  async save(payload: Payload<Events>): Promise<Events> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
     this.items[itemIndex] = payload
     return this.items[itemIndex]

@@ -7,8 +7,8 @@ export default class Album extends BaseModel {
   @column()
   declare date: string
 
-  @column()
-  declare duration: string
+  // @column()
+  // declare duration: string
 
   @column()
   declare description: string

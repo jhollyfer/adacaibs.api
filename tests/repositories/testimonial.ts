@@ -1,4 +1,4 @@
-import { Paginated, Testimonial } from '#core/entity'
+import { Paginated, Payload, Testimonial } from '#core/entity'
 import { TestimonialContractRepository } from '#domain/testimonial/repository'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 import { randomUUID } from 'node:crypto'
@@ -6,7 +6,7 @@ import { randomUUID } from 'node:crypto'
 export default class TestimonialInMemoryRepository implements TestimonialContractRepository {
   public items: Testimonial[] = []
 
-  async create(payload: Testimonial): Promise<Testimonial> {
+  async create(payload: Payload<Testimonial>): Promise<Testimonial> {
     const id = randomUUID()
     this.items.push({
       id,
@@ -15,7 +15,7 @@ export default class TestimonialInMemoryRepository implements TestimonialContrac
     return { id, ...payload }
   }
 
-  async save(payload: Testimonial): Promise<Testimonial> {
+  async save(payload: Payload<Testimonial>): Promise<Testimonial> {
     const itemIndex = this.items.findIndex((item) => item.id === payload.id)
     this.items[itemIndex] = payload
     return this.items[itemIndex]

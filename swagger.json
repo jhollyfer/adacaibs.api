@@ -611,7 +611,7 @@
     "/event": {
       "post": {
         "summary": "Criar Evento (handle)",
-        "description": "18:00\", \"location\": \"Centro de Convenções\", \"address\": \"Av. Principal, 1000, Centro\", \"category\": \"WORKSHOP\", \"capacity\": 50, \"description\": \"Workshop prático sobre programação\", \"detailedContent\": \"Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.\", \"cover\": \"https://exemplo.com/imagem.jpg\", \"createdAt\": \"2025-04-13T12:34:56.789Z\", \"updatedAt\": \"2025-04-13T12:34:56.789Z\"}\n\n _app/infra/http/controllers/event/create.controller.ts_ - **handle**",
+        "description": "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/event/create.controller.ts_ - **handle**",
         "parameters": [],
         "tags": [
           "EVENTOS"
@@ -619,17 +619,65 @@
         "responses": {
           "201": {
             "content": {
-              "text/plain": {
-                "example": "{\"id\": \"1\", \"title\": \"Workshop de Programação\", \"date\": \"15/05/2025\", \"hour\": \"14:00"
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "title": "Workshop de TypeScript",
+                    "date": "2025-05-15",
+                    "hour": "14:00",
+                    "location": "Centro de Tecnologia",
+                    "address": "Rua das Inovações, 123",
+                    "category": "WORKSHOP",
+                    "capacity": 100,
+                    "description": "Introdução prática ao TypeScript",
+                    "detailedContent": "Conteúdo detalhado com exemplos práticos...",
+                    "cover": "https://exemplo.com/capa-evento.jpg",
+                    "createdAt": "2025-05-01T10:00:00.000Z",
+                    "updatedAt": "2025-05-01T10:00:00.000Z"
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Workshop de TypeScript",
+                  "date": "2025-05-15",
+                  "hour": "14:00",
+                  "location": "Centro de Tecnologia",
+                  "address": "Rua das Inovações, 123",
+                  "category": "WORKSHOP",
+                  "capacity": 100,
+                  "description": "Introdução prática ao TypeScript",
+                  "detailedContent": "Conteúdo detalhado com exemplos práticos...",
+                  "cover": "https://exemplo.com/capa-evento.jpg",
+                  "createdAt": "2025-05-01T10:00:00.000Z",
+                  "updatedAt": "2025-05-01T10:00:00.000Z"
+                }
               }
             },
-            "description": "18:00\", \"location\": \"Centro de Convenções\", \"address\": \"Av. Principal, 1000, Centro\", \"category\": \"WORKSHOP\", \"capacity\": 50, \"description\": \"Workshop prático sobre programação\", \"detailedContent\": \"Neste workshop você aprenderá as bases da programação moderna.<br>Traga seu computador.\", \"cover\": \"https://exemplo.com/imagem.jpg\", \"createdAt\": \"2025-04-13T12:34:56.789Z\", \"updatedAt\": \"2025-04-13T12:34:56.789Z\"}"
+            "description": "Returns **201** (Created) as **application/json**"
           },
           "401": {
             "description": "Returns **401** (Unauthorized)"
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno no servidor"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno no servidor"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -645,31 +693,29 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": "Workshop de Programação",
-                  "date": "15/05/2025",
-                  "hour": "14:00 - 18:00",
-                  "location": "Centro de Convenções",
-                  "address": "Av. Principal, 1000, Centro",
+                  "title": "Workshop de TypeScript",
+                  "date": "2025-05-15",
+                  "hour": "14:00",
+                  "location": "Centro de Tecnologia",
+                  "address": "Rua das Inovações, 123",
                   "category": "WORKSHOP",
-                  "capacity": 50,
-                  "description": "Workshop prático sobre programação",
-                  "detailedContent": {
-                    "$ref": "#/components/schemas/br"
-                  },
-                  "cover": "https://exemplo.com/imagem.jpg"
+                  "capacity": 100,
+                  "description": "Introdução prática ao TypeScript",
+                  "detailedContent": "Conteúdo detalhado com exemplos práticos...",
+                  "cover": "https://exemplo.com/capa-evento.jpg"
                 }
               },
               "example": {
-                "title": "Workshop de Programação",
-                "date": "15/05/2025",
-                "hour": "14:00 - 18:00",
-                "location": "Centro de Convenções",
-                "address": "Av. Principal, 1000, Centro",
+                "title": "Workshop de TypeScript",
+                "date": "2025-05-15",
+                "hour": "14:00",
+                "location": "Centro de Tecnologia",
+                "address": "Rua das Inovações, 123",
                 "category": "WORKSHOP",
-                "capacity": 50,
-                "description": "Workshop prático sobre programação",
-                "detailedContent": {},
-                "cover": "https://exemplo.com/imagem.jpg"
+                "capacity": 100,
+                "description": "Introdução prática ao TypeScript",
+                "detailedContent": "Conteúdo detalhado com exemplos práticos...",
+                "cover": "https://exemplo.com/capa-evento.jpg"
               }
             }
           }
@@ -861,15 +907,15 @@
     },
     "/event/paginate": {
       "get": {
-        "summary": "Lista Paginada de Eventos (handle)",
+        "summary": "Listagem Paginada de Eventos (handle)",
         "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/event/paginate.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "query",
             "name": "page",
-            "description": "Page number",
+            "description": "Número da página",
             "schema": {
-              "example": "",
+              "example": "1",
               "type": "number"
             },
             "required": false
@@ -877,9 +923,9 @@
           {
             "in": "query",
             "name": "perPage",
-            "description": "Number of records per page",
+            "description": "Itens por página",
             "schema": {
-              "example": "",
+              "example": "10",
               "type": "number"
             },
             "required": false
@@ -887,9 +933,9 @@
           {
             "in": "query",
             "name": "search",
-            "description": "Search term",
+            "description": "Termo para filtragem",
             "schema": {
-              "example": "",
+              "example": "\"Workshop\"",
               "type": "string"
             },
             "required": false
@@ -905,33 +951,64 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Event"
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "total": 50,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 5
                       }
                     },
-                    "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "1",
+                            "title": "Workshop de TypeScript",
+                            "date": "2025-05-15",
+                            "hour": "14:00",
+                            "location": "Sala de Conferências",
+                            "address": "Av. Tech, 456",
+                            "category": "WORKSHOP",
+                            "capacity": 100,
+                            "description": "Descrição resumida",
+                            "detailedContent": "Conteúdo detalhado do evento...",
+                            "cover": "https://exemplo.com/capa.jpg",
+                            "createdAt": "2025-05-01T00:00:00.000Z",
+                            "updatedAt": "2025-05-01T00:00:00.000Z"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
-                  "data": [
-                    {}
-                  ],
                   "meta": {
-                    "total": 100,
-                    "page": 2,
+                    "total": 50,
+                    "currentPage": 1,
                     "perPage": 10,
-                    "currentPage": 3,
-                    "lastPage": 10,
-                    "firstPage": 1,
-                    "lastPageUrl": "/?page=10",
-                    "firstPageUrl": "/?page=1",
-                    "nextPageUrl": "/?page=6",
-                    "previousPageUrl": "/?page=5"
-                  }
+                    "lastPage": 5
+                  },
+                  "data": [
+                    {
+                      "id": "1",
+                      "title": "Workshop de TypeScript",
+                      "date": "2025-05-15",
+                      "hour": "14:00",
+                      "location": "Sala de Conferências",
+                      "address": "Av. Tech, 456",
+                      "category": "WORKSHOP",
+                      "capacity": 100,
+                      "description": "Descrição resumida",
+                      "detailedContent": "Conteúdo detalhado do evento...",
+                      "cover": "https://exemplo.com/capa.jpg",
+                      "createdAt": "2025-05-01T00:00:00.000Z",
+                      "updatedAt": "2025-05-01T00:00:00.000Z"
+                    }
+                  ]
                 }
               }
             },
@@ -943,11 +1020,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": "Not authorized"
+                    "message": "Não autorizado"
                   }
                 },
                 "example": {
-                  "message": "Not authorized"
+                  "message": "Não autorizado"
                 }
               }
             },
@@ -1287,7 +1364,7 @@
     },
     "/notice/paginate": {
       "get": {
-        "summary": "Lista de Noticias Paginada (handle)",
+        "summary": "Listagem Paginada de Notícias (handle)",
         "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/notice/paginate.controller.ts_ - **handle**",
         "parameters": [
           {
@@ -1295,7 +1372,7 @@
             "name": "page",
             "description": "Número da página",
             "schema": {
-              "example": "",
+              "example": "1",
               "type": "number"
             },
             "required": false
@@ -1303,9 +1380,9 @@
           {
             "in": "query",
             "name": "perPage",
-            "description": "Quantidade de registros por página",
+            "description": "Itens por página",
             "schema": {
-              "example": "",
+              "example": "10",
               "type": "number"
             },
             "required": false
@@ -1315,7 +1392,7 @@
             "name": "search",
             "description": "Termo de busca",
             "schema": {
-              "example": "",
+              "example": "\"atualizações\"",
               "type": "string"
             },
             "required": false
@@ -1331,33 +1408,67 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Notice"
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "total": 100,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 10
                       }
                     },
-                    "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "1",
+                            "title": "Novidades Tecnológicas",
+                            "category": "TECH",
+                            "status": "PUBLISHED",
+                            "resume": "Resumo das últimas atualizações",
+                            "content": "Conteúdo detalhado...",
+                            "cover": "https://exemplo.com/capa.jpg",
+                            "tags": {
+                              "type": "object",
+                              "properties": {
+                                "0": "tech",
+                                "1": "inovação"
+                              }
+                            },
+                            "createdAt": "2024-05-01T00:00:00.000Z",
+                            "updatedAt": "2024-05-01T00:00:00.000Z"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
-                  "data": [
-                    {}
-                  ],
                   "meta": {
                     "total": 100,
-                    "page": 2,
+                    "currentPage": 1,
                     "perPage": 10,
-                    "currentPage": 3,
-                    "lastPage": 10,
-                    "firstPage": 1,
-                    "lastPageUrl": "/?page=10",
-                    "firstPageUrl": "/?page=1",
-                    "nextPageUrl": "/?page=6",
-                    "previousPageUrl": "/?page=5"
-                  }
+                    "lastPage": 10
+                  },
+                  "data": [
+                    {
+                      "id": "1",
+                      "title": "Novidades Tecnológicas",
+                      "category": "TECH",
+                      "status": "PUBLISHED",
+                      "resume": "Resumo das últimas atualizações",
+                      "content": "Conteúdo detalhado...",
+                      "cover": "https://exemplo.com/capa.jpg",
+                      "tags": [
+                        "tech",
+                        "inovação"
+                      ],
+                      "createdAt": "2024-05-01T00:00:00.000Z",
+                      "updatedAt": "2024-05-01T00:00:00.000Z"
+                    }
+                  ]
                 }
               }
             },
@@ -1394,7 +1505,7 @@
     },
     "/podcast": {
       "post": {
-        "summary": "Criação de Podcast (handle)",
+        "summary": "Criar Podcast (handle)",
         "description": "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/podcast/create.controller.ts_ - **handle**",
         "parameters": [],
         "tags": [
@@ -1405,9 +1516,50 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": "1",
+                    "title": "Tecnologia na Atualidade",
+                    "date": "2024-05-20",
+                    "duration": "01:30:00",
+                    "presenters": {
+                      "type": "object",
+                      "properties": {
+                        "0": "Apresentador 1",
+                        "1": "Apresentador 2"
+                      }
+                    },
+                    "guests": {
+                      "type": "object",
+                      "properties": {
+                        "0": "Especialista Convidado"
+                      }
+                    },
+                    "description": "Discussão sobre tendências tech",
+                    "cover": "https://exemplo.com/capa.jpg",
+                    "content": "Conteúdo detalhado do episódio...",
+                    "createdAt": "2024-05-15T12:00:00.000Z",
+                    "updatedAt": "2024-05-15T12:00:00.000Z"
+                  }
                 },
-                "example": {}
+                "example": {
+                  "id": "1",
+                  "title": "Tecnologia na Atualidade",
+                  "date": "2024-05-20",
+                  "duration": "01:30:00",
+                  "presenters": [
+                    "Apresentador 1",
+                    "Apresentador 2"
+                  ],
+                  "guests": [
+                    "Especialista Convidado"
+                  ],
+                  "description": "Discussão sobre tendências tech",
+                  "cover": "https://exemplo.com/capa.jpg",
+                  "content": "Conteúdo detalhado do episódio...",
+                  "createdAt": "2024-05-15T12:00:00.000Z",
+                  "updatedAt": "2024-05-15T12:00:00.000Z"
+                }
               }
             },
             "description": "Returns **201** (Created) as **application/json**"
@@ -1417,6 +1569,22 @@
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno no servidor"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno no servidor"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -1432,15 +1600,41 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": "example@adacaibs.com",
-                  "name": "John Doe",
-                  "role": "ADMINISTRATOR"
+                  "title": "Tecnologia na Atualidade",
+                  "date": "2024-05-20",
+                  "duration": "01:30:00",
+                  "presenters": {
+                    "type": "object",
+                    "properties": {
+                      "0": "Apresentador 1",
+                      "1": "Apresentador 2"
+                    }
+                  },
+                  "guests": {
+                    "type": "object",
+                    "properties": {
+                      "0": "Especialista Convidado"
+                    }
+                  },
+                  "description": "Discussão sobre tendências tech",
+                  "cover": "https://exemplo.com/capa.jpg",
+                  "content": "Conteúdo detalhado do episódio..."
                 }
               },
               "example": {
-                "email": "example@adacaibs.com",
-                "name": "John Doe",
-                "role": "ADMINISTRATOR"
+                "title": "Tecnologia na Atualidade",
+                "date": "2024-05-20",
+                "duration": "01:30:00",
+                "presenters": [
+                  "Apresentador 1",
+                  "Apresentador 2"
+                ],
+                "guests": [
+                  "Especialista Convidado"
+                ],
+                "description": "Discussão sobre tendências tech",
+                "cover": "https://exemplo.com/capa.jpg",
+                "content": "Conteúdo detalhado do episódio..."
               }
             }
           }
@@ -1449,106 +1643,15 @@
     },
     "/podcast/{id}": {
       "patch": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/podcast/update.controller.ts_ - **handle**",
+        "summary": "Atualizar Podcast (handle)",
+        "description": "Endpoint para atualizar um episódio de podcast existente\n\n _app/infra/http/controllers/podcast/update.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
+            "description": "ID único do podcast",
             "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "tags": [
-          ":ID"
-        ],
-        "responses": {
-          "401": {
-            "description": "Returns **401** (Unauthorized)"
-          },
-          "403": {
-            "description": "Returns **403** (Forbidden)"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": [
-              "access"
-            ]
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        }
-      },
-      "delete": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/podcast/delete.controller.ts_ - **handle**",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "tags": [
-          ":ID"
-        ],
-        "responses": {
-          "401": {
-            "description": "Returns **401** (Unauthorized)"
-          },
-          "403": {
-            "description": "Returns **403** (Forbidden)"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": [
-              "access"
-            ]
-          }
-        ]
-      }
-    },
-    "/podcast/paginate": {
-      "get": {
-        "summary": "Lista de Podcast Paginada (handle)",
-        "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/podcast/paginate.controller.ts_ - **handle**",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page",
-            "description": "Número da página",
-            "schema": {
-              "example": "",
-              "type": "number"
-            },
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "perPage",
-            "description": "Quantidade de registros por página",
-            "schema": {
-              "example": "",
-              "type": "number"
-            },
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "search",
-            "description": "Termo de busca",
-            "schema": {
-              "example": "",
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
             "required": false
@@ -1564,33 +1667,321 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/User"
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "title": "Atualização Tech",
+                    "date": "2024-05-25",
+                    "duration": "01:15:00",
+                    "presenters": {
+                      "type": "object",
+                      "properties": {
+                        "0": "Novo Apresentador"
                       }
                     },
+                    "guests": {
+                      "type": "object",
+                      "properties": {
+                        "0": "Novo Convidado"
+                      }
+                    },
+                    "description": "Descrição atualizada",
+                    "cover": "https://exemplo.com/nova-capa.jpg",
+                    "content": "Conteúdo revisado",
+                    "createdAt": "2024-05-01T00:00:00.000Z",
+                    "updatedAt": "2024-05-25T15:30:00.000Z"
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "title": "Atualização Tech",
+                  "date": "2024-05-25",
+                  "duration": "01:15:00",
+                  "presenters": [
+                    "Novo Apresentador"
+                  ],
+                  "guests": [
+                    "Novo Convidado"
+                  ],
+                  "description": "Descrição atualizada",
+                  "cover": "https://exemplo.com/nova-capa.jpg",
+                  "content": "Conteúdo revisado",
+                  "createdAt": "2024-05-01T00:00:00.000Z",
+                  "updatedAt": "2024-05-25T15:30:00.000Z"
+                }
+              }
+            },
+            "description": "Returns **200** (OK) as **application/json**"
+          },
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Podcast não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Podcast não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro ao atualizar podcast"
+                  }
+                },
+                "example": {
+                  "message": "Erro ao atualizar podcast"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": "Atualização Tech",
+                  "date": "2024-05-25",
+                  "duration": "01:15:00",
+                  "presenters": {
+                    "type": "object",
+                    "properties": {
+                      "0": "Novo Apresentador"
+                    }
+                  },
+                  "guests": {
+                    "type": "object",
+                    "properties": {
+                      "0": "Novo Convidado"
+                    }
+                  },
+                  "description": "Descrição atualizada",
+                  "cover": "https://exemplo.com/nova-capa.jpg",
+                  "content": "Conteúdo revisado"
+                }
+              },
+              "example": {
+                "title": "Atualização Tech",
+                "date": "2024-05-25",
+                "duration": "01:15:00",
+                "presenters": [
+                  "Novo Apresentador"
+                ],
+                "guests": [
+                  "Novo Convidado"
+                ],
+                "description": "Descrição atualizada",
+                "cover": "https://exemplo.com/nova-capa.jpg",
+                "content": "Conteúdo revisado"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir Podcast (handle)",
+        "description": "Endpoint para excluir permanentemente um episódio de podcast\n\n _app/infra/http/controllers/podcast/delete.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID único do podcast",
+            "schema": {
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "PODCASTS"
+        ],
+        "responses": {
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Podcast não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Podcast não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno ao excluir podcast"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno ao excluir podcast"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ]
+      }
+    },
+    "/podcast/paginate": {
+      "get": {
+        "summary": "Listagem Paginada de Podcasts (handle)",
+        "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/podcast/paginate.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Número da página",
+            "schema": {
+              "example": "1",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "description": "Itens por página",
+            "schema": {
+              "example": "10",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "description": "Termo de busca",
+            "schema": {
+              "example": "\"tecnologia\"",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "PODCASTS"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
                     "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                      "type": "object",
+                      "properties": {
+                        "total": 50,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 5
+                      }
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "1",
+                            "title": "Tendências Tech",
+                            "date": "2024-05-15",
+                            "duration": "01:00:00",
+                            "presenters": {
+                              "type": "object",
+                              "properties": {
+                                "0": "Ana Silva"
+                              }
+                            },
+                            "guests": {
+                              "type": "object",
+                              "properties": {
+                                "0": "Carlos Oliveira"
+                              }
+                            },
+                            "description": "Discussão sobre inovações",
+                            "cover": "https://exemplo.com/capa.jpg",
+                            "content": "Conteúdo completo",
+                            "createdAt": "2024-05-01T00:00:00.000Z",
+                            "updatedAt": "2024-05-01T00:00:00.000Z"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
-                  "data": [
-                    {}
-                  ],
                   "meta": {
-                    "total": 100,
-                    "page": 2,
+                    "total": 50,
+                    "currentPage": 1,
                     "perPage": 10,
-                    "currentPage": 3,
-                    "lastPage": 10,
-                    "firstPage": 1,
-                    "lastPageUrl": "/?page=10",
-                    "firstPageUrl": "/?page=1",
-                    "nextPageUrl": "/?page=6",
-                    "previousPageUrl": "/?page=5"
-                  }
+                    "lastPage": 5
+                  },
+                  "data": [
+                    {
+                      "id": "1",
+                      "title": "Tendências Tech",
+                      "date": "2024-05-15",
+                      "duration": "01:00:00",
+                      "presenters": [
+                        "Ana Silva"
+                      ],
+                      "guests": [
+                        "Carlos Oliveira"
+                      ],
+                      "description": "Discussão sobre inovações",
+                      "cover": "https://exemplo.com/capa.jpg",
+                      "content": "Conteúdo completo",
+                      "createdAt": "2024-05-01T00:00:00.000Z",
+                      "updatedAt": "2024-05-01T00:00:00.000Z"
+                    }
+                  ]
                 }
               }
             },
@@ -1627,18 +2018,66 @@
     },
     "/testimonial": {
       "post": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/testimonial/create.controller.ts_ - **handle**",
+        "summary": "Criar Depoimento (handle)",
+        "description": "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/testimonial/create.controller.ts_ - **handle**",
         "parameters": [],
         "tags": [
-          ""
+          "DEPOIMENTOS"
         ],
         "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": "1",
+                    "name": "João Silva",
+                    "position": "CEO",
+                    "rating": "5",
+                    "testimonial": "Excelente serviço!",
+                    "photo": "https://exemplo.com/foto.jpg",
+                    "status": "PUBLISHED",
+                    "createdAt": "2024-05-20T10:00:00.000Z",
+                    "updatedAt": "2024-05-20T10:00:00.000Z"
+                  }
+                },
+                "example": {
+                  "id": "1",
+                  "name": "João Silva",
+                  "position": "CEO",
+                  "rating": "5",
+                  "testimonial": "Excelente serviço!",
+                  "photo": "https://exemplo.com/foto.jpg",
+                  "status": "PUBLISHED",
+                  "createdAt": "2024-05-20T10:00:00.000Z",
+                  "updatedAt": "2024-05-20T10:00:00.000Z"
+                }
+              }
+            },
+            "description": "Returns **201** (Created) as **application/json**"
+          },
           "401": {
             "description": "Returns **401** (Unauthorized)"
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro ao criar depoimento"
+                  }
+                },
+                "example": {
+                  "message": "Erro ao criar depoimento"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -1650,34 +2089,120 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {}
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": "João Silva",
+                  "position": "CEO",
+                  "rating": "5",
+                  "testimonial": "Excelente serviço!",
+                  "photo": "https://exemplo.com/foto.jpg",
+                  "status": "PUBLISHED"
+                }
+              },
+              "example": {
+                "name": "João Silva",
+                "position": "CEO",
+                "rating": "5",
+                "testimonial": "Excelente serviço!",
+                "photo": "https://exemplo.com/foto.jpg",
+                "status": "PUBLISHED"
+              }
+            }
           }
         }
       }
     },
     "/testimonial/{id}": {
       "patch": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/testimonial/update.controller.ts_ - **handle**",
+        "summary": "Atualizar Depoimento (handle)",
+        "description": "Endpoint para atualizar um depoimento existente\n\n _app/infra/http/controllers/testimonial/update.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
+            "description": "ID único do depoimento",
             "schema": {
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
-            "required": true
+            "required": false
           }
         ],
         "tags": [
-          ":ID"
+          "DEPOIMENTOS"
         ],
         "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": "1",
+                    "name": "João Silva Atualizado",
+                    "position": "CEO & Founder",
+                    "rating": "5",
+                    "testimonial": "Serviço excepcional!",
+                    "photo": "https://exemplo.com/nova-foto.jpg",
+                    "status": "PUBLISHED",
+                    "createdAt": "2024-05-01T00:00:00.000Z",
+                    "updatedAt": "2024-05-20T15:30:00.000Z"
+                  }
+                },
+                "example": {
+                  "id": "1",
+                  "name": "João Silva Atualizado",
+                  "position": "CEO & Founder",
+                  "rating": "5",
+                  "testimonial": "Serviço excepcional!",
+                  "photo": "https://exemplo.com/nova-foto.jpg",
+                  "status": "PUBLISHED",
+                  "createdAt": "2024-05-01T00:00:00.000Z",
+                  "updatedAt": "2024-05-20T15:30:00.000Z"
+                }
+              }
+            },
+            "description": "Returns **200** (OK) as **application/json**"
+          },
           "401": {
             "description": "Returns **401** (Unauthorized)"
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Depoimento não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Depoimento não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro ao atualizar depoimento"
+                  }
+                },
+                "example": {
+                  "message": "Erro ao atualizar depoimento"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -1689,25 +2214,47 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {}
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": "João Silva Atualizado",
+                  "position": "CEO & Founder",
+                  "rating": "5",
+                  "testimonial": "Serviço excepcional!",
+                  "photo": "https://exemplo.com/nova-foto.jpg",
+                  "status": "PUBLISHED"
+                }
+              },
+              "example": {
+                "name": "João Silva Atualizado",
+                "position": "CEO & Founder",
+                "rating": "5",
+                "testimonial": "Serviço excepcional!",
+                "photo": "https://exemplo.com/nova-foto.jpg",
+                "status": "PUBLISHED"
+              }
+            }
           }
         }
       },
       "delete": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/testimonial/delete.controller.ts_ - **handle**",
+        "summary": "Excluir Depoimento (handle)",
+        "description": "Endpoint para remover permanentemente um depoimento\n\n _app/infra/http/controllers/testimonial/delete.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
+            "description": "ID único do depoimento",
             "schema": {
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
-            "required": true
+            "required": false
           }
         ],
         "tags": [
-          ":ID"
+          "DEPOIMENTOS"
         ],
         "responses": {
           "401": {
@@ -1715,6 +2262,38 @@
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Depoimento não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Depoimento não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno ao excluir depoimento"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno ao excluir depoimento"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -1728,15 +2307,120 @@
     },
     "/testimonial/paginate": {
       "get": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/testimonial/paginate.controller.ts_ - **handle**",
-        "parameters": [],
+        "summary": "Listagem Paginada de Depoimentos (handle)",
+        "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/testimonial/paginate.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Número da página",
+            "schema": {
+              "example": "1",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "description": "Itens por página",
+            "schema": {
+              "example": "10",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "description": "Termo de busca",
+            "schema": {
+              "example": "\"excelente\"",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
         "tags": [
-          "PAGINATE"
+          "DEPOIMENTOS"
         ],
         "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "total": 100,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 10
+                      }
+                    },
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "1",
+                            "name": "João Silva",
+                            "position": "CEO",
+                            "rating": "5",
+                            "testimonial": "Excelente serviço!",
+                            "photo": "https://exemplo.com/foto.jpg",
+                            "status": "PUBLISHED",
+                            "createdAt": "2024-05-01T00:00:00.000Z",
+                            "updatedAt": "2024-05-01T00:00:00.000Z"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "meta": {
+                    "total": 100,
+                    "currentPage": 1,
+                    "perPage": 10,
+                    "lastPage": 10
+                  },
+                  "data": [
+                    {
+                      "id": "1",
+                      "name": "João Silva",
+                      "position": "CEO",
+                      "rating": "5",
+                      "testimonial": "Excelente serviço!",
+                      "photo": "https://exemplo.com/foto.jpg",
+                      "status": "PUBLISHED",
+                      "createdAt": "2024-05-01T00:00:00.000Z",
+                      "updatedAt": "2024-05-01T00:00:00.000Z"
+                    }
+                  ]
+                }
+              }
+            },
+            "description": "Returns **200** (OK) as **application/json**"
+          },
           "401": {
-            "description": "Returns **401** (Unauthorized)"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Não autorizado"
+                  }
+                },
+                "example": {
+                  "message": "Não autorizado"
+                }
+              }
+            },
+            "description": "Returns **401** (Unauthorized) as **application/json**"
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
@@ -1753,7 +2437,7 @@
     },
     "/user": {
       "post": {
-        "summary": "Criação de Usuário (handle)",
+        "summary": "Criar Usuário (handle)",
         "description": "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/user/create.controller.ts_ - **handle**",
         "parameters": [],
         "tags": [
@@ -1764,9 +2448,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/User"
+                  "type": "object",
+                  "properties": {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "name": "João Silva",
+                    "email": "joao.silva@exemplo.com",
+                    "role": "ADMINISTRATOR",
+                    "avatar": "https://exemplo.com/avatar.jpg",
+                    "createdAt": "2024-05-20T10:00:00.000Z",
+                    "updatedAt": "2024-05-20T10:00:00.000Z"
+                  }
                 },
-                "example": {}
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "name": "João Silva",
+                  "email": "joao.silva@exemplo.com",
+                  "role": "ADMINISTRATOR",
+                  "avatar": "https://exemplo.com/avatar.jpg",
+                  "createdAt": "2024-05-20T10:00:00.000Z",
+                  "updatedAt": "2024-05-20T10:00:00.000Z"
+                }
               }
             },
             "description": "Returns **201** (Created) as **application/json**"
@@ -1776,6 +2477,38 @@
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Usuário já cadastrado"
+                  }
+                },
+                "example": {
+                  "message": "Usuário já cadastrado"
+                }
+              }
+            },
+            "description": "Returns **409** (Conflict) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno no servidor"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno no servidor"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -1791,15 +2524,17 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "email": "example@adacaibs.com",
-                  "name": "John Doe",
-                  "role": "ADMINISTRATOR"
+                  "name": "João Silva",
+                  "email": "joao.silva@exemplo.com",
+                  "role": "ADMINISTRATOR",
+                  "avatar": "https://exemplo.com/avatar.jpg"
                 }
               },
               "example": {
-                "email": "example@adacaibs.com",
-                "name": "John Doe",
-                "role": "ADMINISTRATOR"
+                "name": "João Silva",
+                "email": "joao.silva@exemplo.com",
+                "role": "ADMINISTRATOR",
+                "avatar": "https://exemplo.com/avatar.jpg"
               }
             }
           }
@@ -1808,106 +2543,15 @@
     },
     "/user/{id}": {
       "patch": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/user/update.controller.ts_ - **handle**",
+        "summary": "Atualizar Usuário (handle)",
+        "description": "Endpoint para atualizar os dados de um usuário existente\n\n _app/infra/http/controllers/user/update.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
+            "description": "ID único do usuário",
             "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "tags": [
-          ":ID"
-        ],
-        "responses": {
-          "401": {
-            "description": "Returns **401** (Unauthorized)"
-          },
-          "403": {
-            "description": "Returns **403** (Forbidden)"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": [
-              "access"
-            ]
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {}
-          }
-        }
-      },
-      "delete": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/user/delete.controller.ts_ - **handle**",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "tags": [
-          ":ID"
-        ],
-        "responses": {
-          "401": {
-            "description": "Returns **401** (Unauthorized)"
-          },
-          "403": {
-            "description": "Returns **403** (Forbidden)"
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": [
-              "access"
-            ]
-          }
-        ]
-      }
-    },
-    "/user/paginate": {
-      "get": {
-        "summary": "Lista de Usuários Paginada (handle)",
-        "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/user/paginate.controller.ts_ - **handle**",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "page",
-            "description": "Número da página",
-            "schema": {
-              "example": "",
-              "type": "number"
-            },
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "perPage",
-            "description": "Quantidade de registros por página",
-            "schema": {
-              "example": "",
-              "type": "number"
-            },
-            "required": false
-          },
-          {
-            "in": "query",
-            "name": "search",
-            "description": "Termo de busca",
-            "schema": {
-              "example": "",
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
             "required": false
@@ -1923,33 +2567,255 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/User"
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "name": "João Silva Atualizado",
+                    "email": "novo.email@exemplo.com",
+                    "role": "USER",
+                    "avatar": "https://exemplo.com/novo-avatar.jpg",
+                    "createdAt": "2024-05-20T10:00:00.000Z",
+                    "updatedAt": "2024-05-25T15:30:00.000Z"
+                  }
+                },
+                "example": {
+                  "id": "550e8400-e29b-41d4-a716-446655440000",
+                  "name": "João Silva Atualizado",
+                  "email": "novo.email@exemplo.com",
+                  "role": "USER",
+                  "avatar": "https://exemplo.com/novo-avatar.jpg",
+                  "createdAt": "2024-05-20T10:00:00.000Z",
+                  "updatedAt": "2024-05-25T15:30:00.000Z"
+                }
+              }
+            },
+            "description": "Returns **200** (OK) as **application/json**"
+          },
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Usuário não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Usuário não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro ao atualizar usuário"
+                  }
+                },
+                "example": {
+                  "message": "Erro ao atualizar usuário"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": "João Silva Atualizado",
+                  "email": "novo.email@exemplo.com",
+                  "role": "USER",
+                  "avatar": "https://exemplo.com/novo-avatar.jpg"
+                }
+              },
+              "example": {
+                "name": "João Silva Atualizado",
+                "email": "novo.email@exemplo.com",
+                "role": "USER",
+                "avatar": "https://exemplo.com/novo-avatar.jpg"
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir Usuário (handle)",
+        "description": "Endpoint para remover permanentemente um usuário do sistema\n\n _app/infra/http/controllers/user/delete.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "ID único do usuário",
+            "schema": {
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "USUÁRIOS"
+        ],
+        "responses": {
+          "401": {
+            "description": "Returns **401** (Unauthorized)"
+          },
+          "403": {
+            "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Usuário não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Usuário não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno ao excluir usuário"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno ao excluir usuário"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": [
+              "access"
+            ]
+          }
+        ]
+      }
+    },
+    "/user/paginate": {
+      "get": {
+        "summary": "Listagem Paginada de Usuários (handle)",
+        "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/user/paginate.controller.ts_ - **handle**",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Número da página",
+            "schema": {
+              "example": "1",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "perPage",
+            "description": "Itens por página",
+            "schema": {
+              "example": "10",
+              "type": "number"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "search",
+            "description": "Termo para filtragem",
+            "schema": {
+              "example": "\"admin\"",
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "tags": [
+          "USUÁRIOS"
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "total": 50,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 5
                       }
                     },
-                    "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "550e8400-e29b-41d4-a716-446655440000",
+                            "name": "João Silva",
+                            "email": "joao.silva@exemplo.com",
+                            "role": "ADMINISTRATOR",
+                            "avatar": "https://exemplo.com/avatar.jpg",
+                            "createdAt": "2024-05-20T10:00:00.000Z",
+                            "updatedAt": "2024-05-20T10:00:00.000Z"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
-                  "data": [
-                    {}
-                  ],
                   "meta": {
-                    "total": 100,
-                    "page": 2,
+                    "total": 50,
+                    "currentPage": 1,
                     "perPage": 10,
-                    "currentPage": 3,
-                    "lastPage": 10,
-                    "firstPage": 1,
-                    "lastPageUrl": "/?page=10",
-                    "firstPageUrl": "/?page=1",
-                    "nextPageUrl": "/?page=6",
-                    "previousPageUrl": "/?page=5"
-                  }
+                    "lastPage": 5
+                  },
+                  "data": [
+                    {
+                      "id": "550e8400-e29b-41d4-a716-446655440000",
+                      "name": "João Silva",
+                      "email": "joao.silva@exemplo.com",
+                      "role": "ADMINISTRATOR",
+                      "avatar": "https://exemplo.com/avatar.jpg",
+                      "createdAt": "2024-05-20T10:00:00.000Z",
+                      "updatedAt": "2024-05-20T10:00:00.000Z"
+                    }
+                  ]
                 }
               }
             },
@@ -1986,20 +2852,43 @@
     },
     "/video": {
       "post": {
-        "summary": "Criação de Video (handle)",
+        "summary": "Criar Vídeo (handle)",
         "description": "Returns **201** (Created) as **application/json**\n\n _app/infra/http/controllers/video/create.controller.ts_ - **handle**",
         "parameters": [],
         "tags": [
-          "VIDEOS"
+          "VÍDEOS"
         ],
         "responses": {
           "201": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Video"
+                  "type": "object",
+                  "properties": {
+                    "id": "1",
+                    "title": "Introdução ao TypeScript",
+                    "date": "2024-05-20",
+                    "duration": "01:23:45",
+                    "instructor": "John Doe",
+                    "url": "https://exemplo.com/videos/typescript",
+                    "description": "Tutorial completo de TypeScript",
+                    "thumbnail": "https://exemplo.com/thumbs/typescript.jpg",
+                    "createdAt": "2024-05-15T10:00:00.000Z",
+                    "updatedAt": "2024-05-15T10:00:00.000Z"
+                  }
                 },
-                "example": {}
+                "example": {
+                  "id": "1",
+                  "title": "Introdução ao TypeScript",
+                  "date": "2024-05-20",
+                  "duration": "01:23:45",
+                  "instructor": "John Doe",
+                  "url": "https://exemplo.com/videos/typescript",
+                  "description": "Tutorial completo de TypeScript",
+                  "thumbnail": "https://exemplo.com/thumbs/typescript.jpg",
+                  "createdAt": "2024-05-15T10:00:00.000Z",
+                  "updatedAt": "2024-05-15T10:00:00.000Z"
+                }
               }
             },
             "description": "Returns **201** (Created) as **application/json**"
@@ -2009,6 +2898,22 @@
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno no servidor"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno no servidor"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -2024,23 +2929,23 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": "Como usar TypeScript",
-                  "date": "2025-04-13",
+                  "title": "Introdução ao TypeScript",
+                  "date": "2024-05-20",
                   "duration": "01:23:45",
                   "instructor": "John Doe",
-                  "url": "https://example.com/videos/typescript",
+                  "url": "https://exemplo.com/videos/typescript",
                   "description": "Tutorial completo de TypeScript",
-                  "thumbnail": "https://example.com/thumbs/typescript.jpg"
+                  "thumbnail": "https://exemplo.com/thumbs/typescript.jpg"
                 }
               },
               "example": {
-                "title": "Como usar TypeScript",
-                "date": "2025-04-13",
+                "title": "Introdução ao TypeScript",
+                "date": "2024-05-20",
                 "duration": "01:23:45",
                 "instructor": "John Doe",
-                "url": "https://example.com/videos/typescript",
+                "url": "https://exemplo.com/videos/typescript",
                 "description": "Tutorial completo de TypeScript",
-                "thumbnail": "https://example.com/thumbs/typescript.jpg"
+                "thumbnail": "https://exemplo.com/thumbs/typescript.jpg"
               }
             }
           }
@@ -2049,22 +2954,22 @@
     },
     "/video/{id}": {
       "patch": {
-        "summary": "Update Video (handle)",
-        "description": "Updates an existing video\n\n _app/infra/http/controllers/video/update.controller.ts_ - **handle**",
+        "summary": "Atualizar Vídeo (handle)",
+        "description": "Endpoint para atualizar os dados de um vídeo existente\n\n _app/infra/http/controllers/video/update.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "ID of the video to update",
+            "description": "ID único do vídeo",
             "schema": {
-              "example": "",
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
             "required": false
           }
         ],
         "tags": [
-          "VIDEOS"
+          "VÍDEOS"
         ],
         "responses": {
           "200": {
@@ -2073,29 +2978,29 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "id": "123",
+                    "id": "1",
                     "title": "TypeScript Avançado",
-                    "date": "13/04/2025",
-                    "duration": "01:45:30",
-                    "instructor": "Jane Smith",
+                    "date": "2024-05-25",
+                    "duration": "02:00:00",
+                    "instructor": "John Doe",
                     "url": "https://exemplo.com/videos/typescript-avancado",
-                    "description": "Curso atualizado de TypeScript avançado",
-                    "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg",
-                    "createdAt": "2025-01-01T00:00:00.000Z",
-                    "updatedAt": "2025-04-13T15:30:00.000Z"
+                    "description": "Conteúdo atualizado",
+                    "thumbnail": "https://exemplo.com/novo-thumbnail.jpg",
+                    "createdAt": "2024-05-01T00:00:00.000Z",
+                    "updatedAt": "2024-05-25T15:30:00.000Z"
                   }
                 },
                 "example": {
-                  "id": "123",
+                  "id": "1",
                   "title": "TypeScript Avançado",
-                  "date": "13/04/2025",
-                  "duration": "01:45:30",
-                  "instructor": "Jane Smith",
+                  "date": "2024-05-25",
+                  "duration": "02:00:00",
+                  "instructor": "John Doe",
                   "url": "https://exemplo.com/videos/typescript-avancado",
-                  "description": "Curso atualizado de TypeScript avançado",
-                  "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg",
-                  "createdAt": "2025-01-01T00:00:00.000Z",
-                  "updatedAt": "2025-04-13T15:30:00.000Z"
+                  "description": "Conteúdo atualizado",
+                  "thumbnail": "https://exemplo.com/novo-thumbnail.jpg",
+                  "createdAt": "2024-05-01T00:00:00.000Z",
+                  "updatedAt": "2024-05-25T15:30:00.000Z"
                 }
               }
             },
@@ -2129,11 +3034,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": "Mensagem de erro interno"
+                    "message": "Erro ao atualizar vídeo"
                   }
                 },
                 "example": {
-                  "message": "Mensagem de erro interno"
+                  "message": "Erro ao atualizar vídeo"
                 }
               }
             },
@@ -2154,42 +3059,44 @@
                 "type": "object",
                 "properties": {
                   "title": "TypeScript Avançado",
-                  "date": "13/04/2025",
-                  "duration": "01:45:30",
-                  "instructor": "Jane Smith",
+                  "date": "2024-05-25",
+                  "duration": "02:00:00",
+                  "instructor": "John Doe",
                   "url": "https://exemplo.com/videos/typescript-avancado",
-                  "description": "Curso atualizado de TypeScript avançado",
-                  "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                  "description": "Conteúdo atualizado",
+                  "thumbnail": "https://exemplo.com/novo-thumbnail.jpg"
                 }
               },
               "example": {
                 "title": "TypeScript Avançado",
-                "date": "13/04/2025",
-                "duration": "01:45:30",
-                "instructor": "Jane Smith",
+                "date": "2024-05-25",
+                "duration": "02:00:00",
+                "instructor": "John Doe",
                 "url": "https://exemplo.com/videos/typescript-avancado",
-                "description": "Curso atualizado de TypeScript avançado",
-                "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                "description": "Conteúdo atualizado",
+                "thumbnail": "https://exemplo.com/novo-thumbnail.jpg"
               }
             }
           }
         }
       },
       "delete": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/video/delete.controller.ts_ - **handle**",
+        "summary": "Excluir Vídeo (handle)",
+        "description": "Endpoint para remover permanentemente um vídeo\n\n _app/infra/http/controllers/video/delete.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
+            "description": "ID único do vídeo",
             "schema": {
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
-            "required": true
+            "required": false
           }
         ],
         "tags": [
-          ":ID"
+          "VÍDEOS"
         ],
         "responses": {
           "401": {
@@ -2197,6 +3104,38 @@
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Video nao encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Video nao encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Erro interno ao excluir vídeo"
+                  }
+                },
+                "example": {
+                  "message": "Erro interno ao excluir vídeo"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -2210,7 +3149,7 @@
     },
     "/video/paginate": {
       "get": {
-        "summary": "Lista de Videos Paginada (handle)",
+        "summary": "Listagem Paginada de Vídeos (handle)",
         "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/video/paginate.controller.ts_ - **handle**",
         "parameters": [
           {
@@ -2218,7 +3157,7 @@
             "name": "page",
             "description": "Número da página",
             "schema": {
-              "example": "",
+              "example": "1",
               "type": "number"
             },
             "required": false
@@ -2226,9 +3165,9 @@
           {
             "in": "query",
             "name": "perPage",
-            "description": "Quantidade de registros por página",
+            "description": "Itens por página",
             "schema": {
-              "example": "",
+              "example": "10",
               "type": "number"
             },
             "required": false
@@ -2238,14 +3177,14 @@
             "name": "search",
             "description": "Termo de busca",
             "schema": {
-              "example": "",
+              "example": "\"TypeScript\"",
               "type": "string"
             },
             "required": false
           }
         ],
         "tags": [
-          "VIDEOS"
+          "VÍDEOS"
         ],
         "responses": {
           "200": {
@@ -2254,33 +3193,58 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Video"
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "total": 100,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 10
                       }
                     },
-                    "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "1",
+                            "title": "Introdução ao TypeScript",
+                            "date": "2024-05-20",
+                            "duration": "01:23:45",
+                            "instructor": "John Doe",
+                            "url": "https://exemplo.com/videos/typescript",
+                            "description": "Tutorial completo",
+                            "thumbnail": "https://exemplo.com/thumbs/typescript.jpg",
+                            "createdAt": "2024-05-15T10:00:00.000Z",
+                            "updatedAt": "2024-05-15T10:00:00.000Z"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
-                  "data": [
-                    {}
-                  ],
                   "meta": {
                     "total": 100,
-                    "page": 2,
+                    "currentPage": 1,
                     "perPage": 10,
-                    "currentPage": 3,
-                    "lastPage": 10,
-                    "firstPage": 1,
-                    "lastPageUrl": "/?page=10",
-                    "firstPageUrl": "/?page=1",
-                    "nextPageUrl": "/?page=6",
-                    "previousPageUrl": "/?page=5"
-                  }
+                    "lastPage": 10
+                  },
+                  "data": [
+                    {
+                      "id": "1",
+                      "title": "Introdução ao TypeScript",
+                      "date": "2024-05-20",
+                      "duration": "01:23:45",
+                      "instructor": "John Doe",
+                      "url": "https://exemplo.com/videos/typescript",
+                      "description": "Tutorial completo",
+                      "thumbnail": "https://exemplo.com/thumbs/typescript.jpg",
+                      "createdAt": "2024-05-15T10:00:00.000Z",
+                      "updatedAt": "2024-05-15T10:00:00.000Z"
+                    }
+                  ]
                 }
               }
             },
@@ -2356,20 +3320,12 @@
       "description": "Everything related to ALBUMS"
     },
     {
-      "name": ":ID",
-      "description": "Everything related to :ID"
-    },
-    {
       "name": "ALBUMS",
       "description": "Everything related to ALBUMS"
     },
     {
       "name": "ALBUMS",
       "description": "Everything related to ALBUMS"
-    },
-    {
-      "name": "PAGINATE",
-      "description": "Everything related to PAGINATE"
     },
     {
       "name": "ALBUMS",
@@ -2420,6 +3376,34 @@
       "description": "Everything related to PODCASTS"
     },
     {
+      "name": "PODCASTS",
+      "description": "Everything related to PODCASTS"
+    },
+    {
+      "name": "PODCASTS",
+      "description": "Everything related to PODCASTS"
+    },
+    {
+      "name": "DEPOIMENTOS",
+      "description": "Everything related to DEPOIMENTOS"
+    },
+    {
+      "name": "DEPOIMENTOS",
+      "description": "Everything related to DEPOIMENTOS"
+    },
+    {
+      "name": "DEPOIMENTOS",
+      "description": "Everything related to DEPOIMENTOS"
+    },
+    {
+      "name": "DEPOIMENTOS",
+      "description": "Everything related to DEPOIMENTOS"
+    },
+    {
+      "name": "USUÁRIOS",
+      "description": "Everything related to USUÁRIOS"
+    },
+    {
       "name": "USUÁRIOS",
       "description": "Everything related to USUÁRIOS"
     },
@@ -2428,16 +3412,24 @@
       "description": "Everything related to USUÁRIOS"
     },
     {
-      "name": "VIDEOS",
-      "description": "Everything related to VIDEOS"
+      "name": "USUÁRIOS",
+      "description": "Everything related to USUÁRIOS"
     },
     {
-      "name": "VIDEOS",
-      "description": "Everything related to VIDEOS"
+      "name": "VÍDEOS",
+      "description": "Everything related to VÍDEOS"
     },
     {
-      "name": "VIDEOS",
-      "description": "Everything related to VIDEOS"
+      "name": "VÍDEOS",
+      "description": "Everything related to VÍDEOS"
+    },
+    {
+      "name": "VÍDEOS",
+      "description": "Everything related to VÍDEOS"
+    },
+    {
+      "name": "VÍDEOS",
+      "description": "Everything related to VÍDEOS"
     }
   ]
 }

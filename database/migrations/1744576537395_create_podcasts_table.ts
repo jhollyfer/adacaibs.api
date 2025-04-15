@@ -5,7 +5,7 @@ export default class extends BaseSchema {
 
   async up(): Promise<void> {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('id')
+      table.uuid('id').primary().defaultTo(this.db.knexRawQuery('uuid_generate_v4()'))
       table.string('title').notNullable()
       table.string('date').notNullable()
       table.string('duration').notNullable()
