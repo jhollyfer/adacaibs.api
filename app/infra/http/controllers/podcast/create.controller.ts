@@ -10,10 +10,11 @@ export default class PodcastCreateController {
   /**
    * @handle
    * @tag Podcasts
-   * @summary Criação de Podcast
-   * @description Criação de Podcast
-   * @requestBody {"email": "example@adacaibs.com", "name": "John Doe", "role": "ADMINISTRATOR"}
-   * @responseBody 201 - <User>
+   * @summary Criar Podcast
+   * @description Endpoint para criação de novo episódio de podcast
+   * @requestBody {"title": "Tecnologia na Atualidade", "date": "2024-05-20", "duration": "01:30:00", "presenters": ["Apresentador 1", "Apresentador 2"], "guests": ["Especialista Convidado"], "description": "Discussão sobre tendências tech", "cover": "https://exemplo.com/capa.jpg", "content": "Conteúdo detalhado do episódio..."}
+   * @responseBody 201 - {"id":"1","title":"Tecnologia na Atualidade","date":"2024-05-20","duration":"01:30:00","presenters":["Apresentador 1","Apresentador 2"],"guests":["Especialista Convidado"],"description":"Discussão sobre tendências tech","cover":"https://exemplo.com/capa.jpg","content":"Conteúdo detalhado do episódio...","createdAt":"2024-05-15T12:00:00.000Z","updatedAt":"2024-05-15T12:00:00.000Z"}
+   * @responseBody 500 - {"message":"Erro interno no servidor"}
    */
 
   async handle(context: HttpContext): Promise<void> {

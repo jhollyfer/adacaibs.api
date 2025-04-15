@@ -10,13 +10,13 @@ export default class AlbumPaginateController {
   /**
    * @handle
    * @tag Albums
-   * @summary Lista de Albums Paginada
-   * @description Lista de Albums Paginada
-   * @paramQuery page - Número da página - @type(number)
-   * @paramQuery perPage - Quantidade de registros por página - @type(number)
-   * @paramQuery search - Termo de busca - @type(string)
-   * @responseBody 200 - <Album[]>.paginated()
-   * @responseBody 401 - {"message": "Não autorizado"}
+   * @summary Listagem Paginada de Álbuns
+   * @description Endpoint para listar álbuns com paginação e busca
+   * @paramQuery page - Número da página - @type(number) @example(1)
+   * @paramQuery perPage - Quantidade de itens por página - @type(number) @example(10)
+   * @paramQuery search - Termo para filtragem de álbuns - @type(string) @example("Aniversário")
+   * @responseBody 200 - { "meta": { "total": 50, "currentPage": 1, "perPage": 10, "lastPage": 5 }, "data": [ { "id": "1", "title": "Festa de Aniversário", "date": "2024-03-15", "description": "Álbum com fotos da celebração", "cover": "https://exemplo.com/capa.jpg", "images": ["https://exemplo.com/foto1.jpg", "https://exemplo.com/foto2.jpg"], "createdAt": "2024-03-16T08:00:00.000Z", "updatedAt": "2024-03-16T08:00:00.000Z" } ] }
+   * @responseBody 401 - {"message": "Acesso não autorizado"}
    */
   async handle(context: HttpContext): Promise<void> {
     const validator = AlbumValidator['paginate']

@@ -1,7 +1,7 @@
 import { Album, Paginated } from '#core/entity'
 import { AlbumContractRepository } from '#domain/album/repository'
 import { AlbumMapper } from '#infra/database/lucid/album/mapper'
-import Model from '#infra/database/lucid/video/model'
+import Model from '#infra/database/lucid/album/model'
 import { PaginationQuery } from '#infra/http/validators/query.validator'
 
 export default class AlbumLucidRepository implements AlbumContractRepository {
@@ -11,6 +11,7 @@ export default class AlbumLucidRepository implements AlbumContractRepository {
     return AlbumMapper.toDomain(video)
   }
 
+  // TODO: Problema no método de save do Album.
   async save(payload: Album): Promise<Album> {
     const parsed = AlbumMapper.toLucid(payload)
     const old = await Model.query().where('id', parsed.id).firstOrFail()

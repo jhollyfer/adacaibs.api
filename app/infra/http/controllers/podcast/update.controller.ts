@@ -7,6 +7,18 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class PodcastUpdateController {
   constructor(private readonly useCase: PodcastUpdateUseCase) {}
 
+  /**
+   * @handle
+   * @tag Podcasts
+   * @summary Atualizar Podcast
+   * @description Endpoint para atualizar um episódio de podcast existente
+   * @paramPath id - ID único do podcast - @type(string) @example("550e8400-e29b-41d4-a716-446655440000")
+   * @requestBody {"title": "Atualização Tech","date": "2024-05-25","duration": "01:15:00","presenters": ["Novo Apresentador"],"guests": ["Novo Convidado"],"description": "Descrição atualizada","cover": "https://exemplo.com/nova-capa.jpg","content": "Conteúdo revisado"}
+   * @responseBody 200 - {"id":"550e8400-e29b-41d4-a716-446655440000","title":"Atualização Tech","date":"2024-05-25","duration":"01:15:00","presenters":["Novo Apresentador"],"guests":["Novo Convidado"],"description":"Descrição atualizada","cover":"https://exemplo.com/nova-capa.jpg","content":"Conteúdo revisado","createdAt":"2024-05-01T00:00:00.000Z","updatedAt":"2024-05-25T15:30:00.000Z"}
+   * @responseBody 404 - {"message":"Podcast não encontrado"}
+   * @responseBody 500 - {"message":"Erro ao atualizar podcast"}
+   */
+
   async handle(context: HttpContext): Promise<void> {
     const validator = PodcastValidator['update']
     const body = await validator['body'].validate(context.request.body())

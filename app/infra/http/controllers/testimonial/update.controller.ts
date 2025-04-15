@@ -7,17 +7,17 @@ import type { HttpContext } from '@adonisjs/core/http'
 export default class TestimonialUpdateController {
   constructor(private readonly useCase: TestimonialUpdateUseCase) {}
 
-  // /**
-  //  * @handle
-  //  * @tag Depoimentos
-  //  * @summary Atualização de Depoimento
-  //  * @description Atualiza um depoimento existente
-  //  * @paramPath id - ID do depoimento a ser atualizado - @type(string)
-  //  * @requestBody {"name": "John Doe", "position": "CEO", "rating": "5 stars", "testimonial": "Updated testimonial!", "photo": null, "status": "Approved"}
-  //  * @responseBody 200 - {"id": "uuid", "name": "John Doe", "position": "CEO", "rating": "5 stars", "testimonial": "Content here", "photo": null, "status": "Approved", "createdAt": "2023-01-01", "updatedAt": "2023-01-02"}
-  //  * @responseBody 404 - {"message": "Depoimento não encontrado"}
-  //  * @responseBody 500 - {"message": "Mensagem de erro interno"}
-  //  */
+  /**
+   * @handle
+   * @tag Depoimentos
+   * @summary Atualizar Depoimento
+   * @description Endpoint para atualizar um depoimento existente
+   * @paramPath id - ID único do depoimento - @type(string) @example("550e8400-e29b-41d4-a716-446655440000")
+   * @requestBody {"name":"João Silva Atualizado","position":"CEO & Founder","rating":"5","testimonial":"Serviço excepcional!","photo":"https://exemplo.com/nova-foto.jpg","status":"PUBLISHED"}
+   * @responseBody 200 - {"id":"1","name":"João Silva Atualizado","position":"CEO & Founder","rating":"5","testimonial":"Serviço excepcional!","photo":"https://exemplo.com/nova-foto.jpg","status":"PUBLISHED","createdAt":"2024-05-01T00:00:00.000Z","updatedAt":"2024-05-20T15:30:00.000Z"}
+   * @responseBody 404 - {"message":"Depoimento não encontrado"}
+   * @responseBody 500 - {"message":"Erro ao atualizar depoimento"}
+   */
   async handle(context: HttpContext): Promise<void> {
     const validator = TestimonialValidator['update']
     const body = await validator['body'].validate(context.request.body())

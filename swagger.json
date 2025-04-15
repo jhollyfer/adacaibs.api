@@ -113,9 +113,33 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Video"
+                  "type": "object",
+                  "properties": {
+                    "id": 1,
+                    "title": "Meu Album",
+                    "date": "2024-04-13",
+                    "description": "Descrição do album",
+                    "cover": "https://example.com/cover.jpg",
+                    "images": {
+                      "type": "object",
+                      "properties": {
+                        "0": "https://example.com/image1.jpg",
+                        "1": "https://example.com/image2.jpg"
+                      }
+                    }
+                  }
                 },
-                "example": {}
+                "example": {
+                  "id": 1,
+                  "title": "Meu Album",
+                  "date": "2024-04-13",
+                  "description": "Descrição do album",
+                  "cover": "https://example.com/cover.jpg",
+                  "images": [
+                    "https://example.com/image1.jpg",
+                    "https://example.com/image2.jpg"
+                  ]
+                }
               }
             },
             "description": "Returns **201** (Created) as **application/json**"
@@ -140,23 +164,28 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": "Como usar TypeScript",
-                  "date": "2025-04-13",
-                  "duration": "01:23:45",
-                  "instructor": "John Doe",
-                  "url": "https://example.com/videos/typescript",
-                  "description": "Tutorial completo de TypeScript",
-                  "thumbnail": "https://example.com/thumbs/typescript.jpg"
+                  "title": "Meu Album",
+                  "date": "2024-04-13",
+                  "description": "Descrição do album",
+                  "cover": "https://example.com/cover.jpg",
+                  "images": {
+                    "type": "object",
+                    "properties": {
+                      "0": "https://example.com/image1.jpg",
+                      "1": "https://example.com/image2.jpg"
+                    }
+                  }
                 }
               },
               "example": {
-                "title": "Como usar TypeScript",
-                "date": "2025-04-13",
-                "duration": "01:23:45",
-                "instructor": "John Doe",
-                "url": "https://example.com/videos/typescript",
-                "description": "Tutorial completo de TypeScript",
-                "thumbnail": "https://example.com/thumbs/typescript.jpg"
+                "title": "Meu Album",
+                "date": "2024-04-13",
+                "description": "Descrição do album",
+                "cover": "https://example.com/cover.jpg",
+                "images": [
+                  "https://example.com/image1.jpg",
+                  "https://example.com/image2.jpg"
+                ]
               }
             }
           }
@@ -165,13 +194,13 @@
     },
     "/album/{id}": {
       "patch": {
-        "summary": "Update Album (handle)",
-        "description": "Updates an existing Album\n\n _app/infra/http/controllers/album/update.controller.ts_ - **handle**",
+        "summary": "Atualizar Álbum (handle)",
+        "description": "Endpoint para atualizar um álbum existente\n\n _app/infra/http/controllers/album/update.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
-            "description": "ID of the video to update",
+            "description": "ID do álbum a ser atualizado",
             "schema": {
               "example": "",
               "type": "string"
@@ -190,28 +219,31 @@
                   "type": "object",
                   "properties": {
                     "id": "123",
-                    "title": "TypeScript Avançado",
-                    "date": "13/04/2025",
-                    "duration": "01:45:30",
-                    "instructor": "Jane Smith",
-                    "url": "https://exemplo.com/videos/typescript-avancado",
-                    "description": "Curso atualizado de TypeScript avançado",
-                    "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg",
-                    "createdAt": "2025-01-01T00:00:00.000Z",
-                    "updatedAt": "2025-04-13T15:30:00.000Z"
+                    "title": "Meu Album Atualizado",
+                    "date": "2024-04-15",
+                    "description": "Nova descrição",
+                    "cover": "https://exemplo.com/nova-capa.jpg",
+                    "images": {
+                      "type": "object",
+                      "properties": {
+                        "0": "https://exemplo.com/nova-imagem1.jpg"
+                      }
+                    },
+                    "createdAt": "2024-01-01T00:00:00.000Z",
+                    "updatedAt": "2024-04-15T12:30:00.000Z"
                   }
                 },
                 "example": {
                   "id": "123",
-                  "title": "TypeScript Avançado",
-                  "date": "13/04/2025",
-                  "duration": "01:45:30",
-                  "instructor": "Jane Smith",
-                  "url": "https://exemplo.com/videos/typescript-avancado",
-                  "description": "Curso atualizado de TypeScript avançado",
-                  "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg",
-                  "createdAt": "2025-01-01T00:00:00.000Z",
-                  "updatedAt": "2025-04-13T15:30:00.000Z"
+                  "title": "Meu Album Atualizado",
+                  "date": "2024-04-15",
+                  "description": "Nova descrição",
+                  "cover": "https://exemplo.com/nova-capa.jpg",
+                  "images": [
+                    "https://exemplo.com/nova-imagem1.jpg"
+                  ],
+                  "createdAt": "2024-01-01T00:00:00.000Z",
+                  "updatedAt": "2024-04-15T12:30:00.000Z"
                 }
               }
             },
@@ -229,11 +261,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": "Video não encontrado"
+                    "message": "Album não encontrado"
                   }
                 },
                 "example": {
-                  "message": "Video não encontrado"
+                  "message": "Album não encontrado"
                 }
               }
             },
@@ -245,11 +277,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": "Mensagem de erro interno"
+                    "message": "Erro interno no servidor"
                   }
                 },
                 "example": {
-                  "message": "Mensagem de erro interno"
+                  "message": "Erro interno no servidor"
                 }
               }
             },
@@ -269,43 +301,48 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": "TypeScript Avançado",
-                  "date": "13/04/2025",
-                  "duration": "01:45:30",
-                  "instructor": "Jane Smith",
-                  "url": "https://exemplo.com/videos/typescript-avancado",
-                  "description": "Curso atualizado de TypeScript avançado",
-                  "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                  "title": "Meu Album Atualizado",
+                  "date": "2024-04-15",
+                  "description": "Nova descrição",
+                  "cover": "https://exemplo.com/nova-capa.jpg",
+                  "images": {
+                    "type": "object",
+                    "properties": {
+                      "0": "https://exemplo.com/nova-imagem1.jpg"
+                    }
+                  }
                 }
               },
               "example": {
-                "title": "TypeScript Avançado",
-                "date": "13/04/2025",
-                "duration": "01:45:30",
-                "instructor": "Jane Smith",
-                "url": "https://exemplo.com/videos/typescript-avancado",
-                "description": "Curso atualizado de TypeScript avançado",
-                "thumbnail": "https://exemplo.com/thumbs/typescript-avancado.jpg"
+                "title": "Meu Album Atualizado",
+                "date": "2024-04-15",
+                "description": "Nova descrição",
+                "cover": "https://exemplo.com/nova-capa.jpg",
+                "images": [
+                  "https://exemplo.com/nova-imagem1.jpg"
+                ]
               }
             }
           }
         }
       },
       "delete": {
-        "summary": " (handle)",
-        "description": "\n\n _app/infra/http/controllers/album/delete.controller.ts_ - **handle**",
+        "summary": "Excluir Álbum (handle)",
+        "description": "Endpoint para excluir permanentemente um álbum específico\n\n _app/infra/http/controllers/album/delete.controller.ts_ - **handle**",
         "parameters": [
           {
             "in": "path",
             "name": "id",
+            "description": "ID único do álbum a ser excluído",
             "schema": {
+              "example": "\"550e8400-e29b-41d4-a716-446655440000\"",
               "type": "string"
             },
-            "required": true
+            "required": false
           }
         ],
         "tags": [
-          ":ID"
+          "ALBUMS"
         ],
         "responses": {
           "401": {
@@ -313,6 +350,38 @@
           },
           "403": {
             "description": "Returns **403** (Forbidden)"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Album não encontrado"
+                  }
+                },
+                "example": {
+                  "message": "Album não encontrado"
+                }
+              }
+            },
+            "description": "Returns **404** (Not Found) as **application/json**"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": "Falha ao excluir o álbum"
+                  }
+                },
+                "example": {
+                  "message": "Falha ao excluir o álbum"
+                }
+              }
+            },
+            "description": "Returns **500** (Internal Server Error) as **application/json**"
           }
         },
         "security": [
@@ -326,7 +395,7 @@
     },
     "/album/paginate": {
       "get": {
-        "summary": "Lista de Albums Paginada (handle)",
+        "summary": "Listagem Paginada de Álbuns (handle)",
         "description": "Returns **200** (OK) as **application/json**\n\n _app/infra/http/controllers/album/paginate.controller.ts_ - **handle**",
         "parameters": [
           {
@@ -334,7 +403,7 @@
             "name": "page",
             "description": "Número da página",
             "schema": {
-              "example": "",
+              "example": "1",
               "type": "number"
             },
             "required": false
@@ -342,9 +411,9 @@
           {
             "in": "query",
             "name": "perPage",
-            "description": "Quantidade de registros por página",
+            "description": "Quantidade de itens por página",
             "schema": {
-              "example": "",
+              "example": "10",
               "type": "number"
             },
             "required": false
@@ -352,9 +421,9 @@
           {
             "in": "query",
             "name": "search",
-            "description": "Termo de busca",
+            "description": "Termo para filtragem de álbuns",
             "schema": {
-              "example": "",
+              "example": "\"Aniversário\"",
               "type": "string"
             },
             "required": false
@@ -370,33 +439,63 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Album"
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "total": 50,
+                        "currentPage": 1,
+                        "perPage": 10,
+                        "lastPage": 5
                       }
                     },
-                    "meta": {
-                      "$ref": "#/components/schemas/PaginationMeta"
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "0": {
+                          "type": "object",
+                          "properties": {
+                            "id": "1",
+                            "title": "Festa de Aniversário",
+                            "date": "2024-03-15",
+                            "description": "Álbum com fotos da celebração",
+                            "cover": "https://exemplo.com/capa.jpg",
+                            "images": {
+                              "type": "object",
+                              "properties": {
+                                "0": "https://exemplo.com/foto1.jpg",
+                                "1": "https://exemplo.com/foto2.jpg"
+                              }
+                            },
+                            "createdAt": "2024-03-16T08:00:00.000Z",
+                            "updatedAt": "2024-03-16T08:00:00.000Z"
+                          }
+                        }
+                      }
                     }
                   }
                 },
                 "example": {
-                  "data": [
-                    {}
-                  ],
                   "meta": {
-                    "total": 100,
-                    "page": 2,
+                    "total": 50,
+                    "currentPage": 1,
                     "perPage": 10,
-                    "currentPage": 3,
-                    "lastPage": 10,
-                    "firstPage": 1,
-                    "lastPageUrl": "/?page=10",
-                    "firstPageUrl": "/?page=1",
-                    "nextPageUrl": "/?page=6",
-                    "previousPageUrl": "/?page=5"
-                  }
+                    "lastPage": 5
+                  },
+                  "data": [
+                    {
+                      "id": "1",
+                      "title": "Festa de Aniversário",
+                      "date": "2024-03-15",
+                      "description": "Álbum com fotos da celebração",
+                      "cover": "https://exemplo.com/capa.jpg",
+                      "images": [
+                        "https://exemplo.com/foto1.jpg",
+                        "https://exemplo.com/foto2.jpg"
+                      ],
+                      "createdAt": "2024-03-16T08:00:00.000Z",
+                      "updatedAt": "2024-03-16T08:00:00.000Z"
+                    }
+                  ]
                 }
               }
             },
@@ -408,11 +507,11 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "message": "Não autorizado"
+                    "message": "Acesso não autorizado"
                   }
                 },
                 "example": {
-                  "message": "Não autorizado"
+                  "message": "Acesso não autorizado"
                 }
               }
             },
@@ -2259,6 +2358,10 @@
     {
       "name": ":ID",
       "description": "Everything related to :ID"
+    },
+    {
+      "name": "ALBUMS",
+      "description": "Everything related to ALBUMS"
     },
     {
       "name": "ALBUMS",
